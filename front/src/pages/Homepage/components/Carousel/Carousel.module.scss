@@ -1,0 +1,14 @@
+.carouselContainer {
+    width: 40%;
+    margin: 0 auto;
+    padding: 5% 0;
+
+    .oneImage {
+        width: 100%;
+        border: 0.2rem solid var(--secondary);
+
+        img {
+            width: 100%;
+        }
+    }
+}

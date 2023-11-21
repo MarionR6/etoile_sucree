@@ -1,0 +1,54 @@
+section {
+    padding-block: var(--padding-block-section);
+}
+
+.sectionBrown {
+    background-color: var(--secondary);
+}
+
+.storyContainer {
+    background-color: var(--secondary);
+
+    h1 {
+        color: var(--text-color-light);
+        padding: 2% 4% 0 4%;
+        text-align: right;
+    }
+
+    .txtImgContainer {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 0 4% 4% 4%;
+
+        .imgStory {
+            width: 35%;
+
+            img {
+                width: 100%;
+                border: 0.2rem solid var(--primary)
+            }
+        }
+
+        .lineStory {
+            width: 0.2rem;
+            height: 25rem;
+            background: linear-gradient(to top, #522525, #EAC4E0, #522525);
+        }
+
+        .txtStory {
+            width: 35%;
+            display: flex;
+            align-items: center;
+            padding: 3% 2%;
+        }
+    }
+}
+
+.servicesContainer {
+    h1 {
+        color: var(--text-color-dark);
+        padding: 2% 4% 0 4%;
+    }
+}

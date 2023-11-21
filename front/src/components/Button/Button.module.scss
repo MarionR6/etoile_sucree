@@ -1,0 +1,16 @@
+.btn {
+    color: var(--text-color-light);
+    border-radius: 2rem;
+    border: 0.1rem solid var(--text-color-light);
+    margin: 0 auto;
+    padding: 2% 4%;
+    font-family: var(--font-family);
+    font-size: 1.2rem;
+    transition: .5s all;
+    background-color: var(--secondary);
+
+    &:hover {
+        background-color: var(--primary);
+        color: var(--text-color-dark);
+    }
+}

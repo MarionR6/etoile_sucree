@@ -1,0 +1,35 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+body {
+    background-color: var(--primary);
+}
+
+a,
+img {
+    display: block;
+}
+
+h1 {
+    font-family: var(--font-title);
+    font-size: 3.5rem;
+    font-weight: 500;
+}
+
+h2 {
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+}
+
+p {
+    font-family: var(--font-family);
+    font-size: 1.2rem;
+}

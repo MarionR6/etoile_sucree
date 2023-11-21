@@ -1,0 +1,16 @@
+.btnSecondary {
+    border-radius: 2rem;
+    margin: 0 auto;
+    padding: 2% 4%;
+    font-family: var(--font-family);
+    font-size: 1.2rem;
+    color: var(--text-color-dark);
+    border: 0.1rem solid var(--text-color-dark);
+    transition: .5s all;
+    background-color: var(--primary);
+
+    &:hover {
+        background-color: var(--secondary);
+        color: var(--text-color-light);
+    }
+}
