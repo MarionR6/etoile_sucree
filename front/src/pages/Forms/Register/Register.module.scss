@@ -1,0 +1,94 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px #EAC4E0 inset;
+}
+
+.inscriptionArticle {
+    background-color: var(--primary);
+    padding-bottom: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .formContainer {
+        width: 28%;
+        padding: 3% 0;
+        display: flex;
+        justify-content: center;
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 70%;
+
+            label {
+                font-family: var(--font-family);
+                font-size: 1.2rem;
+                color: var(--text-color-light);
+                margin: 3% 0 1% 0;
+                align-self: flex-start;
+            }
+
+            input {
+
+                background-color: var(--primary);
+                border-radius: 1rem;
+                border: .1rem solid var(--secondary);
+                padding: 3% 2%;
+                width: 100%;
+                margin-bottom: 2%;
+
+                &::placeholder {
+                    color: var(--text-color-dark);
+                    font-size: .8rem;
+                    opacity: .8;
+                    font-style: italic;
+                }
+            }
+
+            .feedbackContainer {
+                margin-block: 5%;
+
+                .alreadyExists {
+                    display: flex;
+                    align-items: center;
+
+                    a {
+                        color: var(--text-color-light);
+                        font-family: var(--font-family);
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+
+            button {
+                background-color: var(--secondary);
+                font-size: 1.2rem;
+                cursor: pointer;
+                margin-top: 1%;
+                transition: 1s all;
+
+                &:hover {
+                    background-color: var(--primary);
+                    color: var(--text-color-dark);
+                }
+            }
+        }
+    }
+}
+
+.feedback {
+    color: rgb(255, 79, 79);
+}
+
+.feedbackGood {
+    color: rgb(89, 240, 89);
+}
+
+.link a {
+    color: var(--text-color-light);
+    text-decoration: underline;
+}

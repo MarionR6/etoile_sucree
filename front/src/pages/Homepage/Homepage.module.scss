@@ -51,4 +51,10 @@ section {
         color: var(--text-color-dark);
         padding: 2% 4% 0 4%;
     }
+
+    .allServices {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

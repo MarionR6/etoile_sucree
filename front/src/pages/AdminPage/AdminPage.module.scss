@@ -1,0 +1,58 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px #EAC4E0 inset;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-block: 5%;
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        padding: 2%;
+        width: 40%;
+
+        h2 {
+            text-align: center;
+            color: var(--text-color-light);
+            margin-bottom: 5%;
+        }
+
+        .oneFormElement {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2%;
+            padding: 0 5%;
+
+            label {
+                font-family: var(--font-family);
+                font-size: 1.1rem;
+                margin-bottom: 1%;
+            }
+
+            input,
+            textarea,
+            select {
+                background-color: var(--primary);
+                border-radius: 1rem;
+                border: .1rem solid var(--secondary);
+                padding: 2% 2%;
+                width: 100%;
+                margin-bottom: 2%;
+
+                &::placeholder {
+                    color: var(--text-color-dark);
+                    font-size: .8rem;
+                    opacity: .8;
+                    font-style: italic;
+                }
+            }
+        }
+    }
+
+}

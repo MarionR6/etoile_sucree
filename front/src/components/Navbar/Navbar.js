@@ -1,10 +1,13 @@
+import { useContext } from "react";
 import Logo from "../../assets/img/Logo.svg";
 import Cupcake from "../../assets/img/nav-cupcake.png";
 import UserIcon from "../../assets/img/user.svg";
 import styles from "./Navbar.module.scss";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../context";
 
 export default function Navbar() {
+    const { user } = useContext(AuthContext);
     return (
         <header>
             <div className={`${styles.navbar}`}>
@@ -19,7 +22,8 @@ export default function Navbar() {
                     </ul>
                 </nav>
                 <div className={`${styles.icon}`}>
-                    <Link to="/utilisateur"><img src={UserIcon} alt="" /></Link>
+                    {user ? (<Link to="/profil"><img src={UserIcon} alt="" /></Link>) : (<Link to="/utilisateur"><img src={UserIcon} alt="" /></Link>)}
+
                 </div>
             </div>
         </header>

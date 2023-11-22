@@ -1,8 +1,10 @@
-import ButtonSecondary from "../../../../../components/Button/ButtonSecondary";
+import ButtonSecondary from "../../../../components/Button/ButtonSecondary";
 import styles from "./ServiceCard.module.scss";
-export default function ServiceCard({ servImg, title, servTxt, isButton, txtButton }) {
+import { Link } from "react-router-dom";
+
+export default function ServiceCard({ servImg, title, servTxt, isButton, txtButton, isReversed, linkContent }) {
     return (
-        <div className={`cardBrown ${styles.oneService}`}>
+        <div className={isReversed ? (`cardBrown ${styles.oneService} ${styles.reverseCard}`) : (`cardBrown ${styles.oneService}`)}>
             <div className={`${styles.imgContainer}`}>
                 <img src={servImg} alt="" />
             </div>
@@ -12,7 +14,7 @@ export default function ServiceCard({ servImg, title, servTxt, isButton, txtButt
                 <p className={`${styles.serviceTxt}`}>
                     {servTxt}
                 </p>
-                {isButton && <ButtonSecondary txtButton={txtButton} />}
+                {isButton && <Link to={linkContent}><ButtonSecondary txtButton={txtButton} /></Link>}
             </div>
         </div>
     );
