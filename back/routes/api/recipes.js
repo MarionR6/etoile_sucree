@@ -25,8 +25,8 @@ router.post("/addRecipe", upload.single("img"), async (req, res) => {
     console.log(req.file);
     const { recipeName, cookingTime, preparingTime, difficulty, instructions, cakeIngredients, icingIngredients } = req.body;
     let img = req.file.filename;
-    const sql = `INSERT INTO recipes (recipeName, cookingTime, preparingTime, difficulty, instructions, cakeIngredients, icingIngredients) VALUES (?, ?, ?, ?, ?, ?, ?)`;
-    connection.query(sql, [recipeName, cookingTime, preparingTime, difficulty, instructions, cakeIngredients, icingIngredients], (err, result) => {
+    const sql = `INSERT INTO recipes (recipeName, cookingTime, preparingTime, difficulty, instructions, img, cakeIngredients, icingIngredients) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+    connection.query(sql, [recipeName, cookingTime, preparingTime, difficulty, instructions, img, cakeIngredients, icingIngredients], (err, result) => {
         if (err) throw err;
         let validateRecipe = { messageGood: "La recette a bien été ajoutée en base de données" };
         res.send(validateRecipe);

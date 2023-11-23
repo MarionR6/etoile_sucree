@@ -17,7 +17,7 @@ export default function AdminPage() {
         recipeName: "",
         cookingTime: "",
         preparingTime: "",
-        difficulty: "",
+        difficulty: "facile",
         instructions: "",
         img: "",
         cakeIngredients: "",
@@ -74,15 +74,17 @@ export default function AdminPage() {
         formData.append("icingIngredients", values.icingIngredients);
 
         if (imgRef.current && imgRef.current.files[0]) {
-            const maxFileSize = 4000;
+            const maxFileSize = 200000;
             if (imgRef.current.files[0].size > maxFileSize) {
-                setErrorImg("Le fichier est trop volumineux, celui-ci ne doit pas dépasser 2Mo.");
+                setErrorImg("Le fichier est trop volumineux, celui-ci ne doit pas dépasser 9Mo.");
+                console.log("Fichier trop volumineux");
                 return;
             }
             const supportedExtensions = ["jpg", "jpeg", "png", "webp", "avif"];
             const fileExtension = imgRef.current.files[0].name.split(".").pop().toLowerCase();
             if (!supportedExtensions.includes(fileExtension)) {
                 setErrorImg("Format de fichier non supporté.");
+                console.log("Format non supporté");
                 return;
             }
             formData.append("img", imgRef.current.files[0]);
@@ -133,7 +135,7 @@ export default function AdminPage() {
                             {...register("difficulty")}
                             id="difficulty"
                         >
-                            <option value="facile" selected="selected">Facile</option>
+                            <option value="facile" defaultValue="selected">Facile</option>
                             <option value="intermédiaire">Intermédiaire</option>
                             <option value="difficile">Difficile</option>
                         </select>

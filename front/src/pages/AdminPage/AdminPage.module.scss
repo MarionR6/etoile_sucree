@@ -41,9 +41,12 @@ input:-webkit-autofill:active {
                 background-color: var(--primary);
                 border-radius: 1rem;
                 border: .1rem solid var(--secondary);
-                padding: 2% 2%;
+                padding: 1% 2%;
                 width: 100%;
                 margin-bottom: 2%;
+                color: var(--text-color-dark);
+                font-size: 1rem;
+                font-family: var(--font-family);
 
                 &::placeholder {
                     color: var(--text-color-dark);
