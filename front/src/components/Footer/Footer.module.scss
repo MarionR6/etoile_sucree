@@ -10,35 +10,42 @@ footer {
         display: flex;
         justify-content: space-around;
         align-items: center;
+        flex-wrap: wrap;
 
-        .logoContainer {
-            width: 20%;
-            display: flex;
-            justify-content: center;
+        // .logoContainer {
+        //     width: 20%;
+        //     display: flex;
+        //     justify-content: center;
+        //     display: none;
 
-            @include mixin.laptop {
-                width: 10%;
-            }
+        //     @include mixin.laptop {
+        //         width: 10%;
+        //     }
 
-            @include mixin.tablet {
-                width: 7%;
-            }
+        //     @include mixin.tablet {
+        //         width: 7%;
+        //     }
 
-            img {
-                width: 25%;
+        //     @include mixin.smartphone {
+        //         display: none;
+        //     }
 
-                @include mixin.laptop {
-                    width: 60%;
-                }
+        //     img {
+        //         width: 25%;
 
-                @include mixin.tablet {
-                    width: 100%;
-                }
-            }
-        }
+        //         @include mixin.laptop {
+        //             width: 60%;
+        //         }
+
+        //         @include mixin.tablet {
+        //             width: 100%;
+        //         }
+        //     }
+        // }
 
         .footerCategory {
-            width: 20%;
+            // width: 20%;
+            min-width: 200px;
             color: var(--text-color-dark);
             font-size: 1.1rem;
 
@@ -74,10 +81,29 @@ footer {
             }
 
             .iconsContainer {
+                width: 60%;
                 padding-top: 1.5%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
 
                 i {
                     padding-right: 5%;
+
+                    @include mixin.smartphone {
+                        font-size: 1.3rem;
+                    }
+                }
+
+                @include mixin.smartphone {
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    margin-top: 5%;
+                    border: .09rem solid var(--text-color-dark);
+                    border-radius: 1rem;
+                    padding: 3% 0;
+                    width: 100%;
                 }
             }
         }
@@ -97,6 +123,28 @@ footer {
             align-items: center;
             color: var(--text-color-light);
 
+            @include mixin.smartphone {
+                flex-direction: column;
+            }
+
+            .legalName {
+                display: flex;
+
+                @include mixin.smartphone {
+                    margin-bottom: 2%;
+                }
+
+                #legalNameBars {
+                    @include mixin.smartphone {
+                        display: none;
+                    }
+                }
+            }
+
+            .legalLinks {
+                display: flex;
+            }
+
             p {
                 font-size: 1rem;
 
@@ -110,10 +158,21 @@ footer {
                 color: var(--text-color-light);
                 transition: .5s all;
 
+                @include mixin.tablet {
+                    font-size: .9rem;
+                }
+
                 &:hover {
                     transform: scale(1.02);
                 }
             }
         }
+    }
+}
+
+#socialTitle,
+#socialSubtitle {
+    @include mixin.smartphone {
+        display: none;
     }
 }

@@ -1,0 +1,242 @@
+@use"../../assets/styles/mixin" as mixin;
+
+section {
+    padding-block: var(--padding-block-section);
+
+    .deliveryContainer {
+        padding: var(--padding-block-article);
+
+        .serviceTitle {
+            color: var(--text-color-dark);
+        }
+
+        .txtImgContainer {
+            display: flex;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: var(--padding-block-article);
+
+            @include mixin.tablet {
+                padding-left: 1%;
+                padding-right: 1%;
+                margin-top: 3%;
+            }
+
+            @include mixin.smartphone {
+                flex-wrap: wrap-reverse;
+            }
+
+            .serviceTxt {
+                width: 35%;
+                padding: 3% 2%;
+
+                @include mixin.tablet {
+                    width: 50%;
+                }
+
+                @include mixin.smartphone {
+                    width: 80%;
+                    margin-bottom: 2%;
+
+                }
+
+                p {
+                    @include mixin.tablet {
+                        font-size: .9rem;
+                    }
+
+                    @include mixin.smartphone {
+                        padding: 1% 3%;
+                    }
+                }
+            }
+
+            .serviceImg {
+                width: 35%;
+
+                @include mixin.smartphone {
+                    width: 80%;
+                    margin-bottom: 5%;
+
+                }
+
+                img {
+                    width: 100%;
+                    border: 0.2rem solid var(--secondary)
+                }
+            }
+        }
+
+        .deliveryIcons {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 0 20%;
+
+            @include mixin.smartphone {
+                padding: 0 10%;
+            }
+
+            .deliveryOneIcon {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                i {
+                    font-size: 5rem;
+                    background-color: var(--secondary);
+                    border-radius: 50%;
+                    color: var(--primary);
+                    height: 10rem;
+                    width: 10rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    @include mixin.large-laptop {
+                        font-size: 3.5rem;
+                        width: 8rem;
+                        height: 8rem;
+                    }
+
+                    @include mixin.tablet {
+                        font-size: 2rem;
+                        width: 5rem;
+                        height: 5rem;
+                    }
+
+                    @include mixin.smartphone {
+                        font-size: 1.5rem;
+                        width: 3rem;
+                        height: 3rem;
+                    }
+                }
+
+                p {
+                    margin-top: 1em;
+                    color: var(--text-color-dark);
+
+                    @include mixin.large-laptop {
+                        max-width: 120px;
+                        font-size: 1rem;
+                        text-align: center;
+                    }
+
+                    @include mixin.tablet {
+                        font-size: .8rem;
+                    }
+                }
+            }
+
+            .deliveryArrow {
+                font-size: 4rem;
+                color: var(--secondary);
+                padding-bottom: .5em;
+
+                @include mixin.large-laptop {
+                    font-size: 3rem;
+                }
+
+                @include mixin.tablet {
+                    font-size: 2rem;
+                    padding-bottom: 1.5em;
+                }
+            }
+        }
+    }
+
+
+}
+
+.sectionBrown {
+    background-color: var(--secondary);
+    padding-block: var(--padding-block-section);
+
+    .caterArticle {
+        padding: var(--padding-block-article);
+
+        .txtImgContainer {
+            display: flex;
+            width: 100%;
+            justify-content: space-evenly;
+            align-items: center;
+            padding-top: 5%;
+
+            @include mixin.tablet {
+                margin-top: 3%;
+                padding-top: 0;
+            }
+
+            @include mixin.smartphone {
+                flex-wrap: wrap;
+            }
+
+            .caterTxtTitle {
+                width: 35%;
+                padding: 3% 2%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                @include mixin.tablet {
+                    width: 55%;
+                }
+
+                @include mixin.smartphone {
+                    width: 100%;
+                }
+
+                h2 {
+                    margin-bottom: 7%;
+                    color: var(--text-color-light);
+                }
+
+                .caterTxt {
+                    padding: 3% 5%;
+
+                    p {
+                        padding: 1% 0;
+                    }
+                }
+            }
+
+            .caterImgContainer {
+                width: 20%;
+
+                @include mixin.tablet {
+                    width: 35%;
+                }
+
+                @include mixin.smartphone {
+                    width: 40%;
+                }
+
+                img {
+                    width: 100%;
+                    border: 0.2rem solid var(--primary)
+                }
+            }
+        }
+    }
+}
+
+#salonTxtImgContainer {
+    flex-direction: row-reverse;
+    padding: 0;
+
+    .caterImgContainer {
+        width: 30%;
+
+        @include mixin.tablet {
+            width: 35%;
+            align-self: center;
+        }
+
+        @include mixin.smartphone {
+            width: 60%;
+        }
+    }
+}

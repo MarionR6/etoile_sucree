@@ -5,6 +5,7 @@ import FormsContainer from "./pages/Forms/FormsContainer";
 import Login from "./pages/Forms/Login/Login";
 import Register from "./pages/Forms/Register/Register";
 import AdminPage from "./pages/AdminPage/AdminPage";
+import Services from "./pages/Services/Services";
 
 export const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
                         element: <Register />
                     }
                 ]
+            },
+            {
+                path: "/services",
+                element: <Services />
             },
             {
                 path: "/admin",

@@ -2,7 +2,7 @@
 
 .header {
     width: 100%;
-    height: 70vh;
+    height: 55vh;
     display: flex;
 
     @include mixin.laptop {
@@ -13,7 +13,22 @@
         height: 25vh;
     }
 
+    @include mixin.smartphone {
+        height: 20vh;
+    }
+
     h1 {
         align-self: center;
+        color: var(--text-color-light);
+        font-size: 8rem;
+        padding: 0 4%;
+
+        @include mixin.tablet {
+            font-size: 4rem;
+        }
+
+        @include mixin.smartphone {
+            font-size: 3rem;
+        }
     }
 }

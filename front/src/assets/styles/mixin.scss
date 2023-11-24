@@ -5,7 +5,7 @@
 }
 
 @mixin smartphone {
-    @media (max-width: 480px) {
+    @media (max-width: 481px) {
         @content;
     }
 }
@@ -16,26 +16,14 @@
     }
 }
 
-// @mixin md {
-//     @media (min-width: 769px) and (max-width: 992px) {
-//         @content;
-//     }
-// }
-
-// @mixin md-lt {
-//     @media (max-width: 992px) {
-//         @content;
-//     }
-// }
-
 @mixin laptop {
-    @media (min-width: 993px) and (max-width: 1399px) {
+    @media (max-width: 1399px) {
         @content;
     }
 }
 
 @mixin large-laptop {
-    @media (max-width: 1440px) {
+    @media (max-width: 1550px) {
         @content;
     }
 }

@@ -10,12 +10,23 @@
         height: 25vw;
     }
 
+    @include mixin.smartphone {
+        width: 70vw;
+        height: 70vw;
+        margin-block: 2%;
+    }
+
     img {
         width: 22vw;
         height: 22vw;
         border: 0.2rem solid var(--primary);
 
         @include mixin.tablet {
+            width: 100%;
+            height: 100%;
+        }
+
+        @include mixin.smartphone {
             width: 100%;
             height: 100%;
         }
