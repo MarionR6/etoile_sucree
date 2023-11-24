@@ -8,7 +8,7 @@ footer {
         padding: 3% 0;
         width: 100%;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-evenly;
         align-items: center;
         flex-wrap: wrap;
 
@@ -45,7 +45,7 @@ footer {
 
         .footerCategory {
             // width: 20%;
-            min-width: 200px;
+            min-width: 170px;
             color: var(--text-color-dark);
             font-size: 1.1rem;
 
@@ -59,6 +59,10 @@ footer {
 
                 @include mixin.laptop {
                     font-size: 1.8rem;
+                }
+
+                @include mixin.smartphone {
+                    font-size: 1.3rem;
                 }
             }
 
