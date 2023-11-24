@@ -1,5 +1,5 @@
 import styles from "./ButtonSecondary.module.scss";
-export default function Button({ txtButton }) {
+export default function ButtonSecondary({ txtButton }) {
     return (
         <button className={styles.btnSecondary}>
             {txtButton}

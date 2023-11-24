@@ -1,9 +1,15 @@
+@use "../../assets/styles/mixin" as mixin;
+
 .banner {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     background-color: var(--secondary);
     padding: .5% 0;
+
+    @include mixin.smartphone {
+        padding: .8% 0;
+    }
 
     .bannerLine {
         width: 30%;
@@ -12,5 +18,21 @@
     h1 {
         font-size: 3.5rem;
         color: var(--primary);
+
+        @include mixin.large-laptop {
+            font-size: 3rem;
+        }
+
+        @include mixin.laptop {
+            font-size: 2.5rem;
+        }
+
+        @include mixin.tablet {
+            font-size: 2rem;
+        }
+
+        @include mixin.smartphone {
+            font-size: 1.5rem;
+        }
     }
 }

@@ -1,0 +1,104 @@
+@use"../../../../assets/styles/mixin" as mixin;
+
+.oneRecipe {
+    width: 22wv;
+    height: 22vw;
+    position: relative;
+
+    @include mixin.tablet {
+        width: 25vw;
+        height: 25vw;
+    }
+
+    img {
+        width: 22vw;
+        height: 22vw;
+        border: 0.2rem solid var(--primary);
+
+        @include mixin.tablet {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .showTxt {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: var(--text-color-light);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 0.2rem solid var(--primary);
+        opacity: 0;
+        transition: .5s all;
+
+        @include mixin.tablet {
+            opacity: 1;
+            height: 20%;
+            top: 80%;
+            border-top: none;
+            background: linear-gradient(0deg, rgba(24, 24, 24, 1) 0%, rgba(24, 24, 24, 1) 0%, rgba(24, 24, 24, 0.87718837535014) 24%, rgba(24, 24, 24, 0.7035189075630253) 53%, rgba(24, 24, 24, 0) 100%);
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+
+        p {
+            margin-bottom: 5%;
+
+            @include mixin.large-laptop {
+                font-size: 1.1rem;
+            }
+
+            @include mixin.laptop {
+                font-size: 1rem;
+            }
+
+            @include mixin.tablet {
+                display: none;
+            }
+        }
+
+        .btnRecipe {
+            background: none;
+
+            &:hover {
+                color: var(--text-color-dark);
+                background-color: var(--primary);
+            }
+
+            @include mixin.laptop {
+                font-size: 1rem;
+            }
+
+            @include mixin.tablet {
+                display: none;
+            }
+
+        }
+
+        .btnRecipeTablet {
+            display: none;
+
+            @include mixin.tablet {
+                display: block;
+                font-size: 0.8rem;
+                background: none;
+            }
+
+            &:hover {
+                color: var(--text-color-dark);
+                background-color: var(--primary);
+            }
+        }
+
+
+    }
+}

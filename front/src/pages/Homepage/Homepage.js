@@ -1,7 +1,8 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import Carousel from './components/Carousel/Carousel';
 import styles from "./Homepage.module.scss";
+import { Link } from "react-router-dom";
 
 // Image imports
 import HomepageHeader from "../../assets/img/HomepageImg/header.jpg";
@@ -10,9 +11,27 @@ import ServiceCard from './components/ServiceCard/ServiceCard';
 import imgSurPlace from "../../assets/img/HomepageImg/Services/sur-place.jpg";
 import imgSalon from "../../assets/img/HomepageImg/Services/salon-the.jpg";
 import imgLivraison from "../../assets/img/HomepageImg/Services/livraison-traiteur.jpg";
+import SquareCards from './components/SquareCards/SquareCards';
 
 
 export default function Homepage() {
+
+    const [homeRecipes, setHomeRecipes] = useState([]);
+
+    useEffect(() => {
+        async function getRecipesForHomepage() {
+            try {
+                const response = await fetch(`http://localhost:8000/api/recipes/getRecipesHomepage`);
+                if (response.ok) {
+                    const recipesFromBack = await response.json();
+                    console.log(recipesFromBack);
+                    setHomeRecipes(recipesFromBack);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        } getRecipesForHomepage();
+    }, []);
 
     return (
         <>
@@ -46,9 +65,21 @@ export default function Homepage() {
                 </article>
             </section>
 
-            <section>
-                <article>
+            <section className={styles.sectionBrown}>
+                <article className={styles.forYouContainer}>
+                    <h1>Juste pour vous</h1>
+                    <div className={`cardPink ${styles.txtRecipes}`}>
+                        <p>Plongez chaque mois dans de nouvelles recettes sélectionnées soigneusement par notre équipe, juste pour vous ! Régalez-vous avec de douces créations et mettez en avant votre esprit créatif, votre imagination est votre seule limite !</p>
+                    </div>
+                    <h2 className={styles.titleOnTheBill}>Nos recettes à l'affiche</h2>
+                    <div className={`line-dark ${styles.underline}`}></div>
+                    <div className={styles.recipesContainer}>
+                        {homeRecipes.map((r) => (
+                            <SquareCards image={`http://localhost:8000/${r.img}`} recipeName={r.recipeName} />
+                        ))}
+                    </div>
 
+                    <Link to="/" className={`btn ${styles.linkHomepage}`}>Venez les découvrir !</Link>
                 </article>
             </section>
         </>

@@ -1,3 +1,5 @@
+@use"../../assets/styles/mixin" as mixin;
+
 *,
 *::after,
 *::before {
@@ -7,6 +9,14 @@
     scroll-behavior: smooth;
     text-decoration: none;
     list-style-type: none;
+}
+
+html {
+    font-size: 16px;
+
+    @include mixin.tablet {
+        font-size: 1rem;
+    }
 }
 
 body {
@@ -22,14 +32,42 @@ h1 {
     font-family: var(--font-title);
     font-size: 3.5rem;
     font-weight: 500;
+
+    @include mixin.large-laptop {
+        font-size: 3rem;
+    }
+
+    @include mixin.laptop {
+        font-size: 2.5rem;
+    }
+
+    @include mixin.tablet {
+        font-size: 2rem;
+    }
 }
 
 h2 {
     font-family: var(--font-title);
     font-size: 2.5rem;
+
+    @include mixin.large-laptop {
+        font-size: 2.2rem;
+    }
+
+    @include mixin.laptop {
+        font-size: 1.9rem;
+    }
+
+    @include mixin.tablet {
+        font-size: 1.5rem;
+    }
 }
 
 p {
     font-family: var(--font-family);
     font-size: 1.2rem;
+
+    @include mixin.large-laptop {
+        font-size: 1rem;
+    }
 }

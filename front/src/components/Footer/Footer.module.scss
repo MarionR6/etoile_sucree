@@ -1,3 +1,5 @@
+@use"../../assets/styles/mixin" as mixin;
+
 footer {
     width: 100%;
     background-color: var(--primary);
@@ -14,8 +16,24 @@ footer {
             display: flex;
             justify-content: center;
 
+            @include mixin.laptop {
+                width: 10%;
+            }
+
+            @include mixin.tablet {
+                width: 7%;
+            }
+
             img {
                 width: 25%;
+
+                @include mixin.laptop {
+                    width: 60%;
+                }
+
+                @include mixin.tablet {
+                    width: 100%;
+                }
             }
         }
 
@@ -24,14 +42,26 @@ footer {
             color: var(--text-color-dark);
             font-size: 1.1rem;
 
+            @include mixin.laptop {
+                font-size: 1rem;
+            }
+
             .footerTitle {
                 font-family: var(--font-title);
                 color: var(--text-color-dark);
+
+                @include mixin.laptop {
+                    font-size: 1.8rem;
+                }
             }
 
             .footerLines {
                 font-family: var(--font-family);
                 padding-top: 1.5%;
+
+                @include mixin.tablet {
+                    font-size: .9rem;
+                }
             }
 
             a {
@@ -69,11 +99,20 @@ footer {
 
             p {
                 font-size: 1rem;
+
+                @include mixin.tablet {
+                    font-size: .9rem;
+                }
             }
 
             a {
                 font-size: 1rem;
                 color: var(--text-color-light);
+                transition: .5s all;
+
+                &:hover {
+                    transform: scale(1.02);
+                }
             }
         }
     }

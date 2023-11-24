@@ -10,7 +10,7 @@ export default function ServiceCard({ servImg, title, servTxt, isButton, txtButt
             </div>
             <div className={`${styles.txtContainer}`}>
                 <h2>{title}</h2>
-                <div className="line-dark"></div>
+                <div className={`line-dark ${styles.servicesLine}`}></div>
                 <p className={`${styles.serviceTxt}`}>
                     {servTxt}
                 </p>

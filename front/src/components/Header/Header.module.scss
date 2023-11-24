@@ -1,7 +1,17 @@
+@use"../../assets/styles/mixin" as mixin;
+
 .header {
     width: 100%;
     height: 70vh;
     display: flex;
+
+    @include mixin.laptop {
+        height: 45vh;
+    }
+
+    @include mixin.tablet {
+        height: 25vh;
+    }
 
     h1 {
         align-self: center;

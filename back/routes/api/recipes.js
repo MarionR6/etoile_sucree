@@ -5,6 +5,8 @@ const fs = require("fs");
 
 const connection = require("../../database");
 
+//UPLOAD IMAGES
+
 const upload = multer({
     storage: multer.diskStorage({
         destination: (req, file, cb) => {
@@ -20,6 +22,8 @@ const upload = multer({
     }
 });
 
+//ADD NEW RECIPES TO DATABASE AND UPLOAD IMAGES TO THE SERVER
+
 router.post("/addRecipe", upload.single("img"), async (req, res) => {
     console.log(req.body);
     console.log(req.file);
@@ -30,6 +34,28 @@ router.post("/addRecipe", upload.single("img"), async (req, res) => {
         if (err) throw err;
         let validateRecipe = { messageGood: "La recette a bien été ajoutée en base de données" };
         res.send(validateRecipe);
+    });
+});
+
+// GET ALL RECIPES
+
+router.get("/getRecipes", (req, res) => {
+    const sql = `SELECT * FROM recipes ORDER BY idRecipe DESC`;
+    connection.query(sql, (err, result) => {
+        if (err) throw err;
+        console.log("Recettes récupérées");
+        res.send(JSON.stringify(result));
+    });
+});
+
+// GET RECIPES FROM DATABASE TO DISPLAY THEM ON HOMEPAGE
+
+router.get("/getRecipesHomepage", (req, res) => {
+    const sql = `SELECT * FROM recipes ORDER BY idRecipe DESC LIMIT 3`;
+    connection.query(sql, (err, result) => {
+        if (err) throw err;
+        console.log("Recettes récupérées");
+        res.send(JSON.stringify(result));
     });
 });
 

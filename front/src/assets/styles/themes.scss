@@ -1,3 +1,5 @@
+@use"../../assets/styles/mixin" as mixin;
+
 .cardPink {
     border-radius: var(--border-radius);
     background-color: var(--primary);
