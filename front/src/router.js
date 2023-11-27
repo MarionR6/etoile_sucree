@@ -6,6 +6,7 @@ import Login from "./pages/Forms/Login/Login";
 import Register from "./pages/Forms/Register/Register";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import Services from "./pages/Services/Services";
+import Recipes from "./pages/Recipes/Recipes";
 
 export const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
             {
                 path: "/services",
                 element: <Services />
+            },
+            {
+                path: "/recettes",
+                element: <Recipes />
             },
             {
                 path: "/admin",

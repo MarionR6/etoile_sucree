@@ -23,10 +23,10 @@ export default function Footer() {
                     <h2 className={styles.footerTitle} id={styles.socialTitle}>Nous suivre</h2>
                     <p className={styles.footerLines} id={styles.socialSubtitle}>Nos réseaux :</p>
                     <div className={styles.iconsContainer}>
-                        <a href="https://www.facebook.com/"><i className="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/"><i className="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.pinterest.fr/"><i className="fa-brands fa-pinterest-p"></i></a>
-                        <a href="https://www.tiktok.com/fr/"><i className="fa-brands fa-tiktok"></i></a>
+                        <a href="https://www.facebook.com/" target='_blank'><i className="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/" target='_blank'><i className="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.pinterest.fr/" target='_blank'><i className="fa-brands fa-pinterest-p"></i></a>
+                        <a href="https://www.tiktok.com/fr/" target='_blank'><i className="fa-brands fa-tiktok"></i></a>
                     </div>
                 </div>
             </div>

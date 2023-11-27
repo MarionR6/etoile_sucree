@@ -21,7 +21,8 @@ export default function AdminPage() {
         instructions: "",
         img: "",
         cakeIngredients: "",
-        icingIngredients: ""
+        icingIngredients: "",
+        nbrOfPeople: 4
     };
 
     const recipeSchema = yup.object({
@@ -46,6 +47,9 @@ export default function AdminPage() {
         icingIngredients: yup
             .string()
             .required("Ce champ est obligatoire"),
+        nbrOfPeople: yup
+            .number()
+            .required("Ce champ est obligatoire")
     });
 
     const {
@@ -72,6 +76,7 @@ export default function AdminPage() {
         formData.append("instructions", values.instructions);
         formData.append("cakeIngredients", values.cakeIngredients);
         formData.append("icingIngredients", values.icingIngredients);
+        formData.append("nbrOfPeople", values.nbrOfPeople);
 
         if (imgRef.current && imgRef.current.files[0]) {
             const maxFileSize = 200000;
@@ -177,6 +182,18 @@ export default function AdminPage() {
                         />
                         {errors.icingIngredients && (
                             <p className="form-error">{errors.icingIngredients.message}</p>
+                        )}
+                    </div>
+                    <div className={styles.oneFormElement}>
+                        <label htmlFor="nbrOfPeople">Pour combien de personnes ?</label>
+                        <input type="number"
+                            min={1}
+                            max={10}
+                            {...register("nbrOfPeople")}
+                            id="nbrOfPeople"
+                        />
+                        {errors.nbrOfPeople && (
+                            <p className="form-error">{errors.nbrOfPeople.message}</p>
                         )}
                     </div>
                     <div className={styles.oneFormElement}>

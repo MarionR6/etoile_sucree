@@ -27,10 +27,10 @@ const upload = multer({
 router.post("/addRecipe", upload.single("img"), async (req, res) => {
     console.log(req.body);
     console.log(req.file);
-    const { recipeName, cookingTime, preparingTime, difficulty, instructions, cakeIngredients, icingIngredients } = req.body;
+    const { recipeName, cookingTime, preparingTime, difficulty, instructions, cakeIngredients, icingIngredients, nbrOfPeople } = req.body;
     let img = req.file.filename;
-    const sql = `INSERT INTO recipes (recipeName, cookingTime, preparingTime, difficulty, instructions, img, cakeIngredients, icingIngredients) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-    connection.query(sql, [recipeName, cookingTime, preparingTime, difficulty, instructions, img, cakeIngredients, icingIngredients], (err, result) => {
+    const sql = `INSERT INTO recipes (recipeName, cookingTime, preparingTime, difficulty, instructions, img, cakeIngredients, icingIngredients, nbrOfPeople) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    connection.query(sql, [recipeName, cookingTime, preparingTime, difficulty, instructions, img, cakeIngredients, icingIngredients, nbrOfPeople], (err, result) => {
         if (err) throw err;
         let validateRecipe = { messageGood: "La recette a bien été ajoutée en base de données" };
         res.send(validateRecipe);
@@ -48,7 +48,7 @@ router.get("/getRecipes", (req, res) => {
     });
 });
 
-// GET RECIPES FROM DATABASE TO DISPLAY THEM ON HOMEPAGE
+// GET 3 LATEST RECIPES FROM DATABASE TO DISPLAY THEM ON HOMEPAGE
 
 router.get("/getRecipesHomepage", (req, res) => {
     const sql = `SELECT * FROM recipes ORDER BY idRecipe DESC LIMIT 3`;
