@@ -27,7 +27,7 @@ export default function Navbar() {
                 </div>
             </div>
             <div className={styles.burgerMenu}>
-                <i class="fa-solid fa-bars"></i>
+                <i className="fa-solid fa-bars"></i>
             </div>
         </header>
     );

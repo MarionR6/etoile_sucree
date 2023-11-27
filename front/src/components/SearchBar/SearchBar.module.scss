@@ -1,0 +1,22 @@
+.searchContainer {
+    display: inline-block;
+    padding: .8% 1%;
+    margin-block: 2%;
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+
+    i {
+        color: var(--text-color-dark);
+    }
+
+    input {
+        background-color: var(--primary);
+        border: none;
+        font-size: 1rem;
+
+        &::placeholder {
+            color: var(--text-color-dark);
+        }
+    }
+}

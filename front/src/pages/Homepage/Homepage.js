@@ -79,7 +79,7 @@ export default function Homepage() {
                         ))}
                     </div>
 
-                    <Link to="/" className={`btn ${styles.linkHomepage}`}>Venez les découvrir !</Link>
+                    <Link to="/recettes" className={`btn ${styles.linkHomepage}`}>Venez les découvrir !</Link>
                 </article>
             </section>
         </>
