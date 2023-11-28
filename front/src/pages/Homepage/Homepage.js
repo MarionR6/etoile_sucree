@@ -74,8 +74,8 @@ export default function Homepage() {
                     <h2 className={styles.titleOnTheBill}>Nos recettes à l'affiche</h2>
                     <div className={`line-dark ${styles.underline}`}></div>
                     <div className={styles.recipesContainer}>
-                        {homeRecipes.map((r) => (
-                            <SquareCards image={`http://localhost:8000/${r.img}`} recipeName={r.recipeName} />
+                        {homeRecipes.map((r, index) => (
+                            <SquareCards key={index} image={`http://localhost:8000/${r.img}`} recipeName={r.recipeName} />
                         ))}
                     </div>
 

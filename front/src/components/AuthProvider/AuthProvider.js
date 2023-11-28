@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AuthContext } from "../../context";
 import { useLoaderData } from "react-router-dom";
+import { signin } from "../../api/users";
 
 export default function AuthProvider({ children }) {
 
@@ -10,6 +11,11 @@ export default function AuthProvider({ children }) {
     const [feedback, setFeedback] = useState("");
     const [feedbackGood, setFeedbackGood] = useState("");
 
+    async function login(values) {
+        const newUser = await signin(values);
+        setUser({ ...newUser, password: "" });
+    }
+
     return (
         <AuthContext.Provider
             value={{
@@ -18,7 +24,8 @@ export default function AuthProvider({ children }) {
                 feedback,
                 setFeedback,
                 feedbackGood,
-                setFeedbackGood
+                setFeedbackGood,
+                login
             }}>
             {children}
         </AuthContext.Provider>

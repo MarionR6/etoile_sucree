@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "react-router-dom";
+import { register } from '../../../api/users';
 
 export default function Register() {
     const navigate = useNavigate();
@@ -47,8 +48,8 @@ export default function Register() {
         handleSubmit,
         reset,
         formState: {
-            errors, isSubmitted
-        } } = useForm({
+            errors, isSubmitting
+        }, setError, clearErrors } = useForm({
             defaultValues,
             mode: "onChange",
             resolver: yupResolver(yupSchema)
@@ -56,30 +57,15 @@ export default function Register() {
 
     async function submit(values) {
         try {
-            setFeedback("");
-            const response = await fetch('http://localhost:8000/api/users/addUser', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(values)
-            });
-            if (response.ok) {
-                const newUser = await response.json();
-                console.log(newUser);
-                if (newUser.message) {
-                    setFeedback(newUser.message);
-                } else {
-                    setFeedbackGood(newUser.messageGood);
-                    reset(defaultValues);
-                    setTimeout(() => {
-                        navigate("../");
+            clearErrors();
+            await register(values);
+            setFeedbackGood("Inscription réussie, vous allez être redirigé(e)");
+            setTimeout(() => {
+                navigate("/utilisateur");
+            }, 3000);
 
-                    }, 3000);
-                }
-            }
         } catch (error) {
-            console.error(error);
+            setError("generic", { type: "generic", message: error });
         }
 
     }
@@ -131,7 +117,7 @@ export default function Register() {
                         {feedback === "Email déjà existant" && <p className={styles.alreadyExists}>Souhaitez-vous vous&nbsp;<span className={`${styles.link}`}><Link to="../">connecter</Link></span>&nbsp;?</p>}
                         {feedbackGood && <p className={`${styles.feedbackGood}`}>{feedbackGood}</p>}
                     </div>
-                    <button className="btn" disabled={isSubmitted}>Envoyer</button>
+                    <button className="btn" disabled={isSubmitting}>Envoyer</button>
                 </form>
             </div >
         </div>

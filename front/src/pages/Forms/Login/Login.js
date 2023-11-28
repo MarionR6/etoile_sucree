@@ -10,9 +10,8 @@ import { AuthContext } from '../../../context';
 export default function Login() {
 
     const navigate = useNavigate();
-    const [feedback, setFeedback] = useState("");
     const [feedbackGood, setFeedbackGood] = useState("");
-    const { setUser } = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
 
     const defaultValues = {
         mail: "",
@@ -30,10 +29,9 @@ export default function Login() {
 
     const { register,
         handleSubmit,
-        reset,
         formState: {
-            errors, isSubmitted
-        } } = useForm({
+            errors, isSubmitting
+        }, setError, clearErrors } = useForm({
             defaultValues,
             mode: "onChange",
             resolver: yupResolver(yupSchema)
@@ -42,30 +40,14 @@ export default function Login() {
     async function submit(values) {
         try {
             // console.log(values);
-            setFeedback("");
-            const response = await fetch('http://localhost:8000/api/users/login', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(values)
-            });
-            if (response.ok) {
-                const doesExist = await response.json();
-                console.log(doesExist);
-                if (doesExist.message) {
-                    setFeedback(doesExist.message);
-                } else {
-                    setFeedbackGood("Connexion réussie, vous allez être redirigé(e)");
-                    reset(defaultValues);
-                    setUser({ ...doesExist, password: "" });
-                    setTimeout(() => {
-                        navigate("../");
-                    }, 3000);
-                }
-            }
+            clearErrors();
+            await login(values);
+            setTimeout(() => {
+                navigate("../");
+            }, 3000);
+            setFeedbackGood("Connexion réussie, vous allez être redirigé(e)");
         } catch (error) {
-            console.error(error);
+            setError("generic", { type: "generic", message: error });
         }
     }
 
@@ -91,10 +73,13 @@ export default function Login() {
                     {errors?.password && (<p className={`${styles.feedback}`}>{errors.password.message}</p>)}
 
                     <div className={styles.feedbackContainer}>
-                        {feedback && <p className={`${styles.feedback}`}>{feedback}</p>}
+                        {/* {feedback && <p className={`${styles.feedback}`}>{feedback}</p>} */}
                         {feedbackGood && <p className={`${styles.feedbackGood}`}>{feedbackGood}</p>}
+                        {errors.generic && (
+                            <p className={styles.feedback}>{errors.generic.message}</p>
+                        )}
                     </div>
-                    <button className="btn" disabled={isSubmitted}>Envoyer</button>
+                    <button className="btn" disabled={isSubmitting}>Envoyer</button>
                 </form>
             </div >
         </div>
