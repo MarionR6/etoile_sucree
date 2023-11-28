@@ -1,0 +1,29 @@
+.chosenCategory {
+    padding: var(--padding-block-article);
+    display: flex;
+    flex-direction: column;
+
+    .chosenCategoryTitle {
+        font-family: var(--font-family);
+        font-weight: 500;
+        font-size: 1.5rem;
+        align-self: center;
+        margin-block: 2%;
+    }
+
+    .subContainerProfile {
+        .userInfoProfile {
+            .oneInfo {
+                margin-block: 2%;
+
+                .lockedInfo {
+                    background-color: var(--primary);
+                    width: 25%;
+                    border-radius: 2rem;
+                    padding: .25% 2%;
+                    color: var(--text-color-dark);
+                }
+            }
+        }
+    }
+}

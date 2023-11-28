@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "react-router-dom";
-import { register } from '../../../api/users';
+import { createUser } from '../../../api/users';
 
 export default function Register() {
     const navigate = useNavigate();
 
-    const [feedback, setFeedback] = useState('');
+    // const [feedback, setFeedback] = useState('');
     const [feedbackGood, setFeedbackGood] = useState('');
 
     const defaultValues = {
@@ -58,7 +58,7 @@ export default function Register() {
     async function submit(values) {
         try {
             clearErrors();
-            await register(values);
+            await createUser(values);
             setFeedbackGood("Inscription réussie, vous allez être redirigé(e)");
             setTimeout(() => {
                 navigate("/utilisateur");
@@ -113,9 +113,15 @@ export default function Register() {
                     />
                     {errors?.confirmPassword && (<p className={`${styles.feedback}`}>{errors.confirmPassword.message}</p>)}
                     <div className={styles.feedbackContainer}>
-                        {feedback && <p className={`${styles.feedback}`}>{feedback}</p>}
-                        {feedback === "Email déjà existant" && <p className={styles.alreadyExists}>Souhaitez-vous vous&nbsp;<span className={`${styles.link}`}><Link to="../">connecter</Link></span>&nbsp;?</p>}
+                        {/* {feedback && <p className={`${styles.feedback}`}>{feedback}</p>} */}
+                        {/* {feedback === "Email déjà existant" && <p className={styles.alreadyExists}>Souhaitez-vous vous&nbsp;<span className={`${styles.link}`}><Link to="../">connecter</Link></span>&nbsp;?</p>} */}
                         {feedbackGood && <p className={`${styles.feedbackGood}`}>{feedbackGood}</p>}
+                        {errors.generic && (
+                            <>
+                                <p className={styles.feedback}>{errors.generic.message}</p>
+                                <Link to="../" className={styles.link}>Se connecter</Link>
+                            </>
+                        )}
                     </div>
                     <button className="btn" disabled={isSubmitting}>Envoyer</button>
                 </form>

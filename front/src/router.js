@@ -12,6 +12,8 @@ import Recipes from "./pages/Recipes/Recipes";
 import Menu from "./pages/Menu/Menu";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import Profile from "./pages/Profile/Profile";
+import ModifyInfo from "./pages/Profile/components/ModifyInfo/ModifyInfo";
+import FavoriteRecipes from "./pages/Profile/components/FavoriteRecipes/FavoriteRecipes";
 
 export const router = createBrowserRouter([
     {
@@ -53,7 +55,17 @@ export const router = createBrowserRouter([
                 path: "/profil",
                 element: (<ProtectedRoutes>
                     <Profile />
-                </ProtectedRoutes>)
+                </ProtectedRoutes>),
+                children: [
+                    {
+                        path: "",
+                        element: <ModifyInfo />
+                    },
+                    {
+                        path: "/profil/favoris",
+                        element: <FavoriteRecipes />
+                    }
+                ]
             },
             {
                 path: "/admin",

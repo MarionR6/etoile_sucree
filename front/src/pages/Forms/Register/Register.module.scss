@@ -88,7 +88,13 @@ input:-webkit-autofill:active {
     color: rgb(89, 240, 89);
 }
 
-.link a {
+.link {
     color: var(--text-color-light);
-    text-decoration: underline;
+    font-family: var(--font-family);
+    transition: .5s all;
+    text-align: center;
+
+    &:hover {
+        color: var(--primary);
+    }
 }

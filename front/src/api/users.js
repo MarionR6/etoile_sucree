@@ -27,7 +27,7 @@ export async function signin(values) {
     }
 }
 
-export async function register(values) {
+export async function createUser(values) {
     const response = await fetch(`${API_USERS}/addUser`, {
         method: "POST",
         headers: {
