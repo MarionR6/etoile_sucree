@@ -3,6 +3,8 @@ const router = require("express").Router();
 const bcrypt = require("bcrypt");
 
 const connection = require("../../database");
+const jsonwebtoken = require("jsonwebtoken");
+const { key, keyPub } = require("../../keys");
 
 // REGISTER
 
@@ -52,10 +54,48 @@ router.post("/login", (req, res) => {
                 let doesExist = { message: "Email et/ou mot de passe incorrects" };
                 res.send(JSON.stringify(doesExist));
             } else {
-                res.send(result);
+                const token = jsonwebtoken.sign({}, key, {
+                    subject: result[0].idUser.toString(),
+                    expiresIn: 3600 * 24 * 30,
+                    algorithm: "RS256"
+                });
+                res.cookie("token", token, { maxAge: 30 * 24 * 60 * 60 * 1000 });
+                console.log("Token créé");
+                res.json(result[0]);
             }
         }
     });
+});
+
+router.get('/userConnected', (req, res) => {
+    const { token } = req.cookies;
+    if (token) {
+        try {
+            const decodedToken = jsonwebtoken.verify(token, keyPub, {
+                algorithms: "RS256",
+            });
+            const sqlSelect = "SELECT idUser, name, firstname, mail, isAdmin FROM users WHERE idUser = ?";
+            connection.query(sqlSelect, [decodedToken.sub], (err, result) => {
+                if (err) throw err;
+                const connectedUser = result[0];
+                if (connectedUser) {
+                    res.json(connectedUser);
+                } else {
+                    res.json(null);
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    } else {
+        res.json(null);
+    }
+});
+
+router.delete("/logout", (req, res) => {
+    res.clearCookie("token");
+    console.log("Déconnexion en cours");
+    res.send("Cookie cleared");
 });
 
 module.exports = router;

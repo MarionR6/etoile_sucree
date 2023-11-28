@@ -1,11 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cookie = require("cookie-parser");
 const path = require("path");
 
 const app = express();
 app.use(express.static(path.join(__dirname, "upload")));
 
 app.use(bodyParser.json());
+app.use(cookie());
 
 const port = 8000;
 
