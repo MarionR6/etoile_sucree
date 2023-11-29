@@ -4,11 +4,15 @@ import styles from "./Profile.module.scss";
 import { AuthContext } from "../../context";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import BrownStrip from "../../components/BrownStrip/BrownStrip";
+import { logout } from "../../api/users";
 
 export default function Profile() {
-    const { user } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext);
 
-    console.log(user);
+    async function handleDisconnect() {
+        await logout();
+        setUser(null);
+    }
 
     return (
         <>
@@ -26,7 +30,7 @@ export default function Profile() {
                                 </ul>
                                 <div className={`${styles.line} line-dark`}></div>
                                 <ul>
-                                    <li><button className={`${styles.disconnectButton}`} ><Link to="/">Déconnexion</Link></button></li>
+                                    <li><button className={styles.disconnectButton} onClick={handleDisconnect} ><Link to="/">Déconnexion</Link></button></li>
                                     <li><Link>Supprimer mon compte</Link></li>
                                 </ul>
                             </nav>

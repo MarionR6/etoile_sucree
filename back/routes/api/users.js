@@ -18,21 +18,18 @@ router.post("/addUser", async (req, res) => {
             if (err) throw err;
             console.log(result);
             if (result.length) {
-                console.log("EMAIL EXISTANT");
-                // let isEmail = { message: "Email déjà existant" };
                 res.status(401).json("Adresse mail déjà existante");
             } else {
                 const sqlInsert = `INSERT INTO users (name, firstname, mail, password) VALUES (?, ?, ?, ?)`;
                 const values = [name, firstname, mail, hashedPassword];
                 connection.query(sqlInsert, values, (err, result) => {
                     if (err) throw err;
-                    // let isEmail = { messageGood: "Inscription réussie ! Vous allez être redirigé(e)." };
                     res.status(200).json("Inscription réussie, vous allez être redirigé(e)");
 
                 });
             }
         } catch (error) {
-
+            console.error(error);
         }
 
     });
@@ -103,6 +100,17 @@ router.delete("/logout", (req, res) => {
     res.clearCookie("token");
     console.log("Déconnexion en cours");
     res.send("Cookie cleared");
+});
+
+// MODIFY USER INFO
+
+router.patch("/modifyUser", (req, res) => {
+    const { name, firstname, mail, idUser } = req.body;
+    const sql = "UPDATE users SET name = ?, firstname = ?, mail = ? WHERE idUser = ?";
+    connection.query(sql, [name, firstname, mail, idUser], (err, result) => {
+        if (err) throw err;
+        res.sendStatus(200);
+    });
 });
 
 module.exports = router;

@@ -47,3 +47,25 @@ export async function createUser(values) {
         }
     }
 }
+
+export async function modifyUserInfo(values) {
+    const response = await fetch(`${API_USERS}/modifyUser`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+    });
+    if (response.ok) {
+        return;
+    } else {
+        throw new Error("Error API modifyUser");
+    }
+}
+
+export async function logout() {
+    const response = await fetch(`${API_USERS}/logout`, {
+        method: "DELETE"
+    }
+    );
+}
