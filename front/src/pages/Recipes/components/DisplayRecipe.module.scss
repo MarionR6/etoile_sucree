@@ -1,0 +1,223 @@
+    .txtImgContainer {
+        display: flex;
+        justify-content: center;
+        gap: 10%;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .imgContainer {
+            width: 25%;
+
+            .currentRecipeImage {
+                width: 100%;
+                border: 0.2rem solid var(--secondary);
+            }
+        }
+
+        .txtContainer {
+            min-width: 910px;
+            padding: 3% 2%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+
+            .heartContainer {
+                position: absolute;
+                right: 5%;
+                top: 5%;
+
+                button {
+                    background: none;
+                    border: none;
+
+                    i {
+                        font-size: 1.5rem;
+                        color: var(--text-color-light);
+                        cursor: pointer;
+                        transition: .5s all;
+
+                        &:hover {
+                            animation: like-anim .7s linear;
+                            // transform: scale(1.2);
+
+                            @keyframes like-anim {
+
+                                0% {
+                                    transform: scale(1) rotate(0deg);
+                                }
+
+                                20% {
+                                    transform: scale(1.05) rotate(0deg);
+                                }
+
+                                45% {
+                                    transform: scale(1.2) rotate(10deg);
+                                }
+
+                                50% {
+                                    transform: scale(1.2) rotate(-10deg);
+                                }
+
+                                80% {
+                                    transform: scale(1.05) rotate(0deg);
+                                }
+
+                                100% {
+                                    transform: scale(1) rotate(0deg);
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            .darkHeart {
+                i {
+                    color: var(--text-color-dark);
+                }
+            }
+
+
+            h3 {
+                align-self: center;
+                font-weight: 500;
+                font-size: 1.5rem;
+            }
+
+            .line {
+                margin-block: 3%;
+                width: 50%;
+                align-self: center;
+            }
+
+            .currentRecipeInfo {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+
+                i {
+                    font-size: 1.5rem;
+                }
+
+                .timeRecipe {
+                    display: flex;
+                    align-items: center;
+                    // justify-content: center;
+                    width: 33%;
+                    min-width: 267px;
+                    gap: 5%;
+
+                    p {
+                        font-size: 1rem;
+                    }
+                }
+
+                .currentRecipeDifficulty,
+                .currentRecipePeople {
+                    width: 25%;
+                    min-width: 200px;
+                    display: flex;
+                    align-items: center;
+                    // justify-content: center;
+                    gap: 5%;
+
+                    p {
+                        font-size: 1rem;
+                        text-transform: capitalize;
+                    }
+                }
+            }
+        }
+
+        .ingredientsCurrentRecipe {
+
+            h4 {
+                text-align: center;
+                margin-block: 3%;
+                font-weight: 500;
+            }
+
+            .ingredientsContainer {
+                display: flex;
+                justify-content: space-around;
+
+                .cupcakeIngredients {
+                    display: flex;
+                    flex-direction: column;
+
+                    h5 {
+                        font-size: 1rem;
+                        font-weight: 500;
+                        margin-bottom: 3%;
+                    }
+
+                    ul {
+                        li {
+
+                            list-style-type: disc;
+                        }
+                    }
+
+                    button {
+                        align-self: flex-end;
+                        margin: 15% 0;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+    // #reversedCategory {
+    //     flex-direction: row-reverse;
+    // }
+
+    #darkHeart {
+        i {
+            color: var(--text-color-dark);
+
+            &:hover {
+                animation: like-anim .7s linear;
+                // transform: scale(1.2);
+
+                @keyframes like-anim {
+
+                    0% {
+                        transform: scale(1) rotate(0deg);
+                    }
+
+                    20% {
+                        transform: scale(1.05) rotate(0deg);
+                    }
+
+                    45% {
+                        transform: scale(1.2) rotate(10deg);
+                    }
+
+                    50% {
+                        transform: scale(1.2) rotate(-10deg);
+                    }
+
+                    80% {
+                        transform: scale(1.05) rotate(0deg);
+                    }
+
+                    100% {
+                        transform: scale(1) rotate(0deg);
+                    }
+                }
+            }
+        }
+    }
+
+    .liked {
+        color: red;
+    }
+
+    #brownBackgroundImgContainer {
+        margin: 0 auto;
+        width: 40%;
+        margin-top: 1%;
+    }

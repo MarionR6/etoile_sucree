@@ -73,7 +73,6 @@ export default function Login() {
                     {errors?.password && (<p className={`${styles.feedback}`}>{errors.password.message}</p>)}
 
                     <div className={styles.feedbackContainer}>
-                        {/* {feedback && <p className={`${styles.feedback}`}>{feedback}</p>} */}
                         {feedbackGood && <p className={`${styles.feedbackGood}`}>{feedbackGood}</p>}
                         {errors.generic && (
                             <p className={styles.feedback}>{errors.generic.message}</p>

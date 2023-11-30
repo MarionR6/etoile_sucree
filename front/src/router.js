@@ -10,10 +10,11 @@ import AdminPage from "./pages/AdminPage/AdminPage";
 import Services from "./pages/Services/Services";
 import Recipes from "./pages/Recipes/Recipes";
 import Menu from "./pages/Menu/Menu";
-import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
+import { ProtectedRoutes, ProtectedRoutesAdmin } from "./components/ProtectedRoutes/ProtectedRoutes";
 import Profile from "./pages/Profile/Profile";
 import ModifyInfo from "./pages/Profile/components/ModifyInfo/ModifyInfo";
 import FavoriteRecipes from "./pages/Profile/components/FavoriteRecipes/FavoriteRecipes";
+import DisplayRecipe from "./pages/Recipes/components/DisplayRecipe";
 
 export const router = createBrowserRouter([
     {
@@ -45,7 +46,13 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/recettes",
-                element: <Recipes />
+                element: <Recipes />,
+                children: [
+                    {
+                        path: "",
+                        element: <DisplayRecipe />
+                    }
+                ]
             },
             {
                 path: "/carte",
@@ -69,7 +76,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/admin",
-                element: <AdminPage />
+                element: (<ProtectedRoutesAdmin>
+                    <AdminPage />
+                </ProtectedRoutesAdmin>)
             }
         ]
     }

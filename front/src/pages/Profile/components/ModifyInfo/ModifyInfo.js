@@ -66,10 +66,13 @@ export default function ModifyInfo() {
                         <form onSubmit={handleSubmit(submit)}>
                             <label htmlFor="name" className={styles.oneInfo}>Nom</label>
                             <input type="text" id='name' className={styles.lockedInfo} {...register("name")} />
+                            {errors?.name && (<p className={`${styles.feedback}`}>{errors.name.message}</p>)}
                             <label htmlFor="firstname" className={styles.oneInfo}>Prénom</label>
                             <input type="text" id='firstname' className={styles.lockedInfo} {...register("firstname")} />
+                            {errors?.firstname && (<p className={`${styles.feedback}`}>{errors.firstname.message}</p>)}
                             <label htmlFor="mail" className={styles.oneInfo}>Adresse mail</label>
                             <input type="mail" id='mail' className={styles.lockedInfo} {...register("mail")} />
+                            {errors?.mail && (<p className={`${styles.feedback}`}>{errors.mail.message}</p>)}
                         </form>
                     ) : (
                         <>
