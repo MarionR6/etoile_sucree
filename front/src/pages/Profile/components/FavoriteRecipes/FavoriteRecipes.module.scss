@@ -1,0 +1,19 @@
+.chosenCategory {
+    padding: var(--padding-block-article);
+    display: flex;
+    flex-direction: column;
+
+    .chosenCategoryTitle {
+        font-family: var(--font-family);
+        font-weight: 500;
+        font-size: 1.5rem;
+        align-self: center;
+        margin: 5% 0 3% 0;
+    }
+
+    .recipesContainer {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

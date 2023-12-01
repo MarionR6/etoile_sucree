@@ -31,6 +31,8 @@ header {
         }
 
         nav {
+            width: 50%;
+
             ul {
                 display: flex;
                 justify-content: space-evenly;
@@ -51,18 +53,41 @@ header {
                     }
                 }
 
-                img {
-                    width: 5%;
-                }
+                // img {
+                //     width: 5%;
+                // }
             }
         }
 
         .icon {
-            cursor: pointer;
-            width: 3%;
+            width: 13%;
 
-            img {
-                width: 100%;
+            .buttonsContainer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                button,
+                a {
+                    font-size: 1rem;
+                    font-family: var(--font-family);
+                    color: var(--text-color-dark);
+                    background: none;
+                    border: .1rem solid var(--text-color-dark);
+                    border-radius: 2rem;
+                    padding: 1.5% 2.5%;
+                    cursor: pointer;
+                    transition: .5s all;
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+
+                .firstButton {
+                    background-color: var(--secondary);
+                    color: var(--text-color-light);
+                }
             }
         }
     }

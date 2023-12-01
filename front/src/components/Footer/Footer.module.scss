@@ -86,13 +86,18 @@ footer {
 
             .iconsContainer {
                 width: 60%;
-                padding-top: 1.5%;
+                padding-top: 3%;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
 
                 i {
                     padding-right: 5%;
+                    transition: .5s all;
+
+                    &:hover {
+                        transform: scale(1.2);
+                    }
 
                     @include mixin.smartphone {
                         font-size: 1.3rem;

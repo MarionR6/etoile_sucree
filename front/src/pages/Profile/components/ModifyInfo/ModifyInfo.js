@@ -102,6 +102,17 @@ export default function ModifyInfo() {
                         </button>
                         {viewForm && <button type='button' onClick={handleSubmit(submit)} className={`btn ${styles.modifyInfoButton}`} disabled={isSubmitting}>Enregistrer</button>}
                     </div>
+                    <p className={styles.oneInfo}>Modifier mon mot de passe</p>
+                </div>
+                <div className={`line-dark ${styles.modifyProfileLine}`}></div>
+                <div className={styles.favoriteRecipe}>
+                    <h3>Recette favorite</h3>
+                    <div className={styles.imgContainer}>
+
+                    </div>
+                    <select name="faveRecipe" id="faveRecipe">
+                        <option value=""></option>
+                    </select>
                 </div>
             </div>
         </div>

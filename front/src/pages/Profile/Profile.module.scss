@@ -32,6 +32,12 @@
                     ul {
                         li {
                             padding: 5% 0;
+                            transition: .5s all;
+
+                            &:hover {
+                                transform-origin: left;
+                                transform: scale(1.05);
+                            }
 
                             .disconnectButton {
                                 background: none;
@@ -55,6 +61,7 @@
 
             .chosenProfileCategory {
                 width: 50%;
+                min-height: 40vh;
             }
         }
 

@@ -59,4 +59,29 @@ router.get("/getRecipesHomepage", (req, res) => {
     });
 });
 
+router.get("/getFaves/:idUser", (req, res) => {
+    const idUser = req.params.idUser;
+    console.log(req.params.idUser);
+    console.log("User's id", idUser);
+    // const sql = "SELECT * FROM favorites WHERE idUser = ?";
+    const sql = "SELECT recipes.idRecipe, recipes.recipeName, recipes.img FROM users INNER JOIN favorites ON users.idUser = favorites.idUser INNER JOIN recipes ON favorites.idRecipe = recipes.idRecipe WHERE users.idUser = ?";
+    connection.query(sql, [idUser], (err, result) => {
+        if (err) throw (err);
+        console.log("Recettes favorites récupérées");
+        console.log(JSON.stringify(result));
+        res.send(JSON.stringify(result));
+    });
+});
+
+router.delete("/dislike/:idUser", (req, res) => {
+    const idUser = req.params.idUser;
+    const { idRecipe } = req.body;
+    const sql = "DELETE FROM favorites WHERE idRecipe = ? AND idUser = ?";
+    connection.query(sql, [idRecipe, idUser], (err, result) => {
+        if (err) throw err;
+        console.log("Recette supprimée des favoris");
+        res.sendStatus(200);
+    });
+});
+
 module.exports = router;
