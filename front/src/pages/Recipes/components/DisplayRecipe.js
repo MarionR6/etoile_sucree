@@ -5,11 +5,7 @@ export default function DisplayRecipe({ chosenRecipe, brownBackground }) {
     const latestRecipeIcingIngredientsLines = chosenRecipe[0]?.icingIngredients.split("\n");
     console.log(chosenRecipe);
     return (
-        <>{chosenRecipe ? (<div className={styles.txtImgContainer}>
-            {!brownBackground && <div className={styles.imgContainer}>
-                {chosenRecipe[0]?.img && <img src={`http://localhost:8000/${chosenRecipe[0]?.img}`} className={styles.currentRecipeImage} id={brownBackground ? styles.allRecipesImg : undefined} alt="" />}
-            </div>}
-
+        <div className={styles.displayRecipeContainer}>{chosenRecipe ? (
             <div className={brownBackground ? (`cardPink ${styles.txtContainer}`) : (`cardBrown ${styles.txtContainer}`)}>
                 <div className={brownBackground ? `${styles.heartContainer} ${styles.darkHeart}` : styles.heartContainer}>
                     <button type="button">
@@ -19,8 +15,8 @@ export default function DisplayRecipe({ chosenRecipe, brownBackground }) {
                 <h3>
                     {chosenRecipe[0]?.recipeName}
                 </h3>
-                {brownBackground && <div className={styles.imgContainer} id={styles.brownBackgroundImgContainer}>
-                    {chosenRecipe[0]?.img && <img src={`http://localhost:8000/${chosenRecipe[0]?.img}`} className={styles.currentRecipeImage} id={brownBackground ? styles.allRecipesImg : undefined} alt="" />} </div>}
+                <div className={styles.imgContainer} id={brownBackground && styles.brownBackgroundImgContainer}>
+                    {chosenRecipe[0]?.img && <img src={`http://localhost:8000/${chosenRecipe[0]?.img}`} className={styles.currentRecipeImage} id={brownBackground ? styles.allRecipesImg : undefined} alt="" />} </div>
                 <div className={brownBackground ? `line-light ${styles.line}` : `line-dark ${styles.line}`}></div>
                 <div className={styles.currentRecipeInfo}>
                     <div className={styles.timeRecipe}>
@@ -44,43 +40,11 @@ export default function DisplayRecipe({ chosenRecipe, brownBackground }) {
                         </p>
 
                     </div>
-
-
                 </div>
-                <div className={styles.ingredientsCurrentRecipe}>
-                    <h4>
-                        Ingrédients
-                    </h4>
-                    <div className={styles.ingredientsContainer}>
-                        <div className={styles.cupcakeIngredients}>
-                            <h5>Pour les cupcakes :</h5>
-                            <ul>
-                                {latestRecipeCakeIngredientsLines?.map((line, index) => (
-                                    <li key={index}>
-                                        {line}
-                                    </li>
-                                ))}
-                            </ul>
-
-                        </div>
-                        <div className={styles.cupcakeIngredients}>
-                            <h5>Pour le glaçage :</h5>
-                            <ul>
-                                {latestRecipeIcingIngredientsLines?.map((line, index) => (
-                                    <li key={index}>
-                                        {line}
-                                    </li>
-                                ))}
-                            </ul>
-
-                            <button type="button" className={brownBackground ? `btn btn-secondary` : "btn"}>
-                                Voir la recette
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>) : ("")}
-        </>
+                <button type="button" className={brownBackground ? `btn btn-secondary` : "btn"}>
+                    Voir la recette
+                </button>
+            </div>) : ("")}
+        </div>
     );
 }

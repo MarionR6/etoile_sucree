@@ -1,21 +1,24 @@
-    .txtImgContainer {
+    // .txtImgContainer {
+    //     display: flex;
+    //     justify-content: center;
+    //     gap: 10%;
+    //     align-items: center;
+    //     flex-wrap: wrap;
+
+    //     .imgContainer {
+    //         width: 70%;
+
+    //         .currentRecipeImage {
+    //             width: 70%;
+    //             border: 0.2rem solid var(--secondary);
+    //         }
+    //     }
+    .displayRecipeContainer {
         display: flex;
         justify-content: center;
-        gap: 10%;
-        align-items: center;
-        flex-wrap: wrap;
-
-        .imgContainer {
-            width: 25%;
-
-            .currentRecipeImage {
-                width: 100%;
-                border: 0.2rem solid var(--secondary);
-            }
-        }
 
         .txtContainer {
-            min-width: 910px;
+            width: 30%;
             padding: 3% 2%;
             display: flex;
             flex-direction: column;
@@ -86,16 +89,33 @@
             }
 
             .line {
-                margin-block: 2%;
+                margin-block: 5%;
                 width: 50%;
                 align-self: center;
             }
 
+            .imgContainer {
+                margin: 0 auto;
+                width: 40%;
+                margin-top: 3%;
+                margin-bottom: 3%;
+
+                img {
+                    width: 100%;
+                    border: .2rem solid var(--primary);
+                }
+            }
+
+            #brownBackgroundImgContainer {
+                img {
+                    border: .2rem solid var(--secondary);
+                }
+            }
+
             .currentRecipeInfo {
                 display: flex;
-                align-items: center;
-                justify-content: space-between;
-                flex-wrap: wrap;
+                flex-direction: column;
+                align-items: flex-start;
 
                 i {
                     font-size: 1.5rem;
@@ -114,13 +134,16 @@
                     }
                 }
 
+                .currentRecipeDifficulty {
+                    margin-block: 5%;
+                }
+
                 .currentRecipeDifficulty,
                 .currentRecipePeople {
                     width: 25%;
                     min-width: 200px;
                     display: flex;
                     align-items: center;
-                    // justify-content: center;
                     gap: 5%;
 
                     p {
@@ -129,96 +152,52 @@
                     }
                 }
             }
+
+            button {
+                margin-top: 5%;
+                cursor: pointer;
+            }
         }
 
-        .ingredientsCurrentRecipe {
+        #darkHeart {
+            i {
+                color: var(--text-color-dark);
 
-            h4 {
-                text-align: center;
-                margin-block: 3%;
-                font-weight: 500;
-            }
+                &:hover {
+                    animation: like-anim .7s linear;
 
-            .ingredientsContainer {
-                display: flex;
-                justify-content: space-around;
+                    @keyframes like-anim {
 
-                .cupcakeIngredients {
-                    display: flex;
-                    flex-direction: column;
+                        0% {
+                            transform: scale(1) rotate(0deg);
+                        }
 
-                    h5 {
-                        font-size: 1rem;
-                        font-weight: 500;
-                        margin-bottom: 3%;
-                    }
+                        20% {
+                            transform: scale(1.05) rotate(0deg);
+                        }
 
-                    ul {
-                        li {
+                        45% {
+                            transform: scale(1.2) rotate(10deg);
+                        }
 
-                            list-style-type: disc;
+                        50% {
+                            transform: scale(1.2) rotate(-10deg);
+                        }
+
+                        80% {
+                            transform: scale(1.05) rotate(0deg);
+                        }
+
+                        100% {
+                            transform: scale(1) rotate(0deg);
                         }
                     }
-
-                    button {
-                        align-self: flex-end;
-                        margin: 15% 0;
-                        cursor: pointer;
-                    }
                 }
             }
         }
     }
 
-    // #reversedCategory {
-    //     flex-direction: row-reverse;
-    // }
-
-    #darkHeart {
-        i {
-            color: var(--text-color-dark);
-
-            &:hover {
-                animation: like-anim .7s linear;
-                // transform: scale(1.2);
-
-                @keyframes like-anim {
-
-                    0% {
-                        transform: scale(1) rotate(0deg);
-                    }
-
-                    20% {
-                        transform: scale(1.05) rotate(0deg);
-                    }
-
-                    45% {
-                        transform: scale(1.2) rotate(10deg);
-                    }
-
-                    50% {
-                        transform: scale(1.2) rotate(-10deg);
-                    }
-
-                    80% {
-                        transform: scale(1.05) rotate(0deg);
-                    }
-
-                    100% {
-                        transform: scale(1) rotate(0deg);
-                    }
-                }
-            }
-        }
-    }
 
     .liked {
         color: red;
-    }
-
-    #brownBackgroundImgContainer {
-        margin: 0 auto;
-        width: 40%;
-        margin-top: 3%;
-        margin-bottom: 3%;
     }
