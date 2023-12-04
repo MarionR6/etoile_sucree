@@ -1,18 +1,3 @@
-    // .txtImgContainer {
-    //     display: flex;
-    //     justify-content: center;
-    //     gap: 10%;
-    //     align-items: center;
-    //     flex-wrap: wrap;
-
-    //     .imgContainer {
-    //         width: 70%;
-
-    //         .currentRecipeImage {
-    //             width: 70%;
-    //             border: 0.2rem solid var(--secondary);
-    //         }
-    //     }
     .displayRecipeContainer {
         display: flex;
         justify-content: center;
@@ -156,6 +141,15 @@
             button {
                 margin-top: 5%;
                 cursor: pointer;
+            }
+        }
+
+        #brownBackgroundTxtContainer {
+            width: 100%;
+            padding: 5% 4%;
+
+            .currentRecipeInfo {
+                padding: 0 5%;
             }
         }
 

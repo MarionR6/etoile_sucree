@@ -65,9 +65,11 @@ export default function Recipes() {
                             <SearchBar setFilter={setFilter} />
                             <div className={styles.recipeNamesContainer}>
                                 <ul>
-                                    {allRecipesButLatest.map((r, index) => (
-                                        <li key={index}><button onClick={() => handleShowRecipe(r)}>{r.recipeName}</button></li>
-                                    ))}
+                                    {allRecipesButLatest
+                                        .filter((recipe) => recipe.recipeName.toLowerCase().includes(filter))
+                                        .map((r, index) => (
+                                            <li key={index}><button onClick={() => handleShowRecipe(r)}>{r.recipeName}</button></li>
+                                        ))}
                                 </ul>
                             </div>
                         </div>

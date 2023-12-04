@@ -25,8 +25,6 @@ const upload = multer({
 //ADD NEW RECIPES TO DATABASE AND UPLOAD IMAGES TO THE SERVER
 
 router.post("/addRecipe", upload.single("img"), async (req, res) => {
-    console.log(req.body);
-    console.log(req.file);
     const { recipeName, cookingTime, preparingTime, difficulty, instructions, cakeIngredients, icingIngredients, nbrOfPeople } = req.body;
     let img = req.file.filename;
     const sql = `INSERT INTO recipes (recipeName, cookingTime, preparingTime, difficulty, instructions, img, cakeIngredients, icingIngredients, nbrOfPeople) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
@@ -43,7 +41,6 @@ router.get("/getRecipes", (req, res) => {
     const sql = `SELECT * FROM recipes ORDER BY idRecipe DESC`;
     connection.query(sql, (err, result) => {
         if (err) throw err;
-        console.log("Recettes récupérées");
         res.send(JSON.stringify(result));
     });
 });
@@ -54,23 +51,41 @@ router.get("/getRecipesHomepage", (req, res) => {
     const sql = `SELECT * FROM recipes ORDER BY idRecipe DESC LIMIT 3`;
     connection.query(sql, (err, result) => {
         if (err) throw err;
-        console.log("Recettes récupérées");
         res.send(JSON.stringify(result));
     });
 });
 
 router.get("/getFaves/:idUser", (req, res) => {
     const idUser = req.params.idUser;
-    console.log(req.params.idUser);
-    console.log("User's id", idUser);
-    // const sql = "SELECT * FROM favorites WHERE idUser = ?";
     const sql = "SELECT recipes.idRecipe, recipes.recipeName, recipes.img FROM users INNER JOIN favorites ON users.idUser = favorites.idUser INNER JOIN recipes ON favorites.idRecipe = recipes.idRecipe WHERE users.idUser = ?";
     connection.query(sql, [idUser], (err, result) => {
         if (err) throw (err);
-        console.log("Recettes favorites récupérées");
-        console.log(JSON.stringify(result));
         res.send(JSON.stringify(result));
     });
+});
+
+router.post("/likeRecipe/:idUser", (req, res) => {
+    const idUser = req.params.idUser;
+    const { idRecipe } = req.body;
+    const verifySql = "SELECT * FROM favorites WHERE idRecipe = ? AND idUser = ?";
+    connection.query(verifySql, [idRecipe, idUser], (err, result) => {
+        if (err) throw err;
+        if (result.length > 0) {
+            const deleteSQL = "DELETE FROM favorites WHERE idRecipe = ? AND idUser = ?";
+            connection.query(deleteSQL, [idRecipe, idUser], (err, result) => {
+                if (err) throw err;
+                console.log("Disliked the already liked recipe");
+            });
+        } else {
+            const sql = "INSERT INTO favorites (idRecipe, idUser) VALUES (?, ?)";
+            connection.query(sql, [idRecipe, idUser], (err, result) => {
+                if (err) throw err;
+                console.log("Recipe Liked !");
+                res.sendStatus(200);
+            });
+        }
+    });
+
 });
 
 router.delete("/dislike/:idUser", (req, res) => {
@@ -79,7 +94,6 @@ router.delete("/dislike/:idUser", (req, res) => {
     const sql = "DELETE FROM favorites WHERE idRecipe = ? AND idUser = ?";
     connection.query(sql, [idRecipe, idUser], (err, result) => {
         if (err) throw err;
-        console.log("Recette supprimée des favoris");
         res.sendStatus(200);
     });
 });
