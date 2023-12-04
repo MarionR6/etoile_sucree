@@ -75,7 +75,7 @@ export default function Homepage() {
                     <div className={`line-dark ${styles.underline}`}></div>
                     <div className={styles.recipesContainer}>
                         {homeRecipes.map((r, index) => (
-                            <SquareCards key={index} image={`http://localhost:8000/${r.img}`} recipeName={r.recipeName} />
+                            <SquareCards key={index} image={`http://localhost:8000/${r.img}`} recipeName={r.recipeName} id={r.idRecipe} />
                         ))}
                     </div>
 

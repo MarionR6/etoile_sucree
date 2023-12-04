@@ -138,10 +138,24 @@
                 }
             }
 
-            button {
-                margin-top: 5%;
-                cursor: pointer;
+            .buttonContainer {
+                width: 100%;
+
+                a {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+
+                    button {
+                        margin-top: 5%;
+                        cursor: pointer;
+                    }
+                }
             }
+
+
+
+
         }
 
         #brownBackgroundTxtContainer {

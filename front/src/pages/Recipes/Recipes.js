@@ -29,6 +29,7 @@ export default function Recipes() {
             } catch (error) {
                 console.error(error);
             }
+            window.scrollTo(0, 0);
         } getRecipes();
     }, []);
 

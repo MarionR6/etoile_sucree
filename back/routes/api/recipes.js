@@ -45,6 +45,17 @@ router.get("/getRecipes", (req, res) => {
     });
 });
 
+// GET RECIPES DETAILS
+
+router.get("/getRecipeDetails/:id", (req, res) => {
+    const idRecipe = req.params.id;
+    const sql = `SELECT * FROM recipes WHERE idRecipe = ?`;
+    connection.query(sql, [idRecipe], (err, result) => {
+        if (err) throw err;
+        res.send(JSON.stringify(result));
+    });
+});
+
 // GET 3 LATEST RECIPES FROM DATABASE TO DISPLAY THEM ON HOMEPAGE
 
 router.get("/getRecipesHomepage", (req, res) => {

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import styles from './DisplayRecipe.module.scss';
 import { AuthContext } from '../../../context';
 import { toggleLikeRecipe } from '../../../api/recipes';
+import { Link } from 'react-router-dom';
 
 export default function DisplayRecipe({ chosenRecipe, brownBackground }) {
     // const latestRecipeCakeIngredientsLines = chosenRecipe[0]?.cakeIngredients.split("\n");
@@ -26,8 +27,8 @@ export default function DisplayRecipe({ chosenRecipe, brownBackground }) {
                 const response = await fetch(`http://localhost:8000/api/recipes/getFaves/${idUser}`);
                 if (response.ok) {
                     const favesFromBack = await response.json();
-                    const isRecipeLiked = favesFromBack.some((fave) => fave.idRecipe === chosenRecipe[0]?.idRecipe);
-                    setIsLiked(isRecipeLiked); //Searching through the array "chosenRecipe", testing each element of the array to find whether the chosenRecipe is part of the array, if it is, it sets the liked state to true, if it is not, it is set to false. I am using this in order to render the heart in the recipe display component conditionally
+                    const isRecipeLiked = favesFromBack.some((fave) => fave.idRecipe === chosenRecipe[0]?.idRecipe);//Searching through the array "chosenRecipe", testing each element of the array to find whether the chosenRecipe is part of the array, if it is, it sets the liked state to true, if it is not, it is set to false. I am using this in order to render the heart in the recipe display component conditionally
+                    setIsLiked(isRecipeLiked);
                 }
             } catch (error) {
                 console.error(error);
@@ -73,9 +74,13 @@ export default function DisplayRecipe({ chosenRecipe, brownBackground }) {
 
                     </div>
                 </div>
-                <button type="button" className={brownBackground ? `btn btn-secondary` : "btn"}>
-                    Voir la recette
-                </button>
+                <div className={styles.buttonContainer}>
+                    <Link to={`/recette/${chosenRecipe[0]?.idRecipe}`}>
+                        <button type="button" className={brownBackground ? `btn btn-secondary` : "btn"}>
+                            Voir la recette
+                        </button></Link>
+                </div>
+
             </div>) : ("")}
         </div>
     );

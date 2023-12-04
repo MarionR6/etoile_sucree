@@ -203,6 +203,9 @@ export default function AdminPage() {
                         {errors.img && <p className="form-error">{errors.img.message}</p>}
                     </div>
                     <div>
+                        {feedbackGood && <p>{feedbackGood}</p>}
+                    </div>
+                    <div className={styles.buttonContainer}>
                         <button className="btn btn-primary">
                             Sauvegarder
                         </button>

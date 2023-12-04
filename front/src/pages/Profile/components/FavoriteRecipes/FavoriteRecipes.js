@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import styles from "./FavoriteRecipes.module.scss";
 import { AuthContext } from '../../../../context';
 import SmallCards from './components/SmallCards/SmallCards';
+import { Link } from 'react-router-dom';
 
 export default function FavoriteRecipes() {
 
@@ -30,17 +31,19 @@ export default function FavoriteRecipes() {
     const handleDeleteFront = (id) => {
         console.log("id sent", id);
         setUsersFaves(usersFaves.filter((oneRecipe) => oneRecipe.idRecipe !== id));
-        console.log("usersFaves array", usersFaves);
     };
+    console.log(usersFaves);
 
     return (
         <div className={styles.chosenCategory}>
             <h1 className={styles.chosenCategoryTitle}>Mes recettes préférées</h1>
             <div className={styles.recipesContainer}>
+                {usersFaves.length === 0 && <p>Aucune recette en favoris</p>}
                 {usersFaves.map((r, index) => (
                     <SmallCards key={index} image={`http://localhost:8000/${r.img}`} recipeName={r.recipeName} idRecipe={r.idRecipe} handleDeleteFront={handleDeleteFront} />
                 ))}
             </div>
+            <Link to="/recettes" className="btn">Voir toutes les recettes</Link>
         </div>
     );
 }

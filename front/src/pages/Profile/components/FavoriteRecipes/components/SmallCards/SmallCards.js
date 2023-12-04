@@ -22,10 +22,10 @@ export default function SmallCards({ image, recipeName, idRecipe, handleDeleteFr
                     <i onClick={() => handleDislike(idRecipe, idUser)} className="fas fa-heart"></i>
                 </div>
                 <p>{recipeName}</p>
-                <Link to="/" className={`${styles.btnRecipe} btn`}>
+                <Link to={`/recette/${idRecipe}`} className={`${styles.btnRecipe} btn`}>
                     La recette
                 </Link>
-                <Link to="/" className={`${styles.btnRecipeTablet} btn`}>
+                <Link to={`/recette/${idRecipe}`} className={`${styles.btnRecipeTablet} btn`}>
                     {recipeName}
                 </Link>
             </div>

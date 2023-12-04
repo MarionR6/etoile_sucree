@@ -58,4 +58,14 @@ input:-webkit-autofill:active {
         }
     }
 
+    .buttonContainer {
+        margin-top: 3%;
+        display: flex;
+        justify-content: center;
+
+        button {
+            cursor: pointer;
+        }
+    }
+
 }

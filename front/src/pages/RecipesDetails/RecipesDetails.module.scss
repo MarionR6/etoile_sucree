@@ -1,0 +1,174 @@
+section {
+    padding: 5% 1.5%;
+
+    .recipeArticle {
+        width: 75%;
+        padding: 2%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        position: relative;
+
+        .heartContainer {
+            position: absolute;
+            right: 5%;
+            top: 5%;
+
+            button {
+                background: none;
+                border: none;
+
+                i {
+                    font-size: 1.5rem;
+                    color: var(--text-color-light);
+                    cursor: pointer;
+                    transition: .5s all;
+
+                    &:hover {
+                        animation: like-anim .7s linear;
+                        // transform: scale(1.2);
+
+                        @keyframes like-anim {
+
+                            0% {
+                                transform: scale(1) rotate(0deg);
+                            }
+
+                            20% {
+                                transform: scale(1.05) rotate(0deg);
+                            }
+
+                            45% {
+                                transform: scale(1.2) rotate(10deg);
+                            }
+
+                            50% {
+                                transform: scale(1.2) rotate(-10deg);
+                            }
+
+                            80% {
+                                transform: scale(1.05) rotate(0deg);
+                            }
+
+                            100% {
+                                transform: scale(1) rotate(0deg);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .recipeTitle {
+            // text-align: center;
+            color: var(--text-color-light);
+        }
+
+        .line {
+            width: 30%;
+            margin-block: 2%;
+        }
+
+        .recipeContent {
+            display: flex;
+            width: 100%;
+            padding: 0 2%;
+            gap: 5%;
+
+            .imgContainer {
+                width: 25%;
+
+                img {
+                    width: 100%;
+                    border: .2rem solid var(--primary);
+                }
+            }
+
+            .txtContainer {
+                width: 70%;
+
+                .infoContainer {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+
+                    i {
+                        font-size: 1.5rem;
+                    }
+
+                    p {
+                        font-size: 1rem;
+                    }
+
+                    .time {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-evenly;
+                        min-width: 270px;
+                    }
+
+                    .difficulty {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-evenly;
+                        min-width: 220px;
+
+                        .difficultyDots {
+                            display: flex;
+                        }
+                    }
+
+                    .nbrOfPeople {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-evenly;
+                        min-width: 210px;
+                    }
+                }
+
+                .ingredients {
+
+                    .flexIngredients {
+                        display: flex;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
+
+                        .ingredientsPart {
+                            max-width: 40%;
+                            min-width: 240px;
+
+                            .ingredientsSubtitle {
+                                font-weight: 500;
+                                font-size: 1.1rem;
+                                margin-bottom: 2%;
+                            }
+
+                        }
+                    }
+                }
+
+                .categoryTitle {
+                    font-size: 1.3rem;
+                    font-weight: 500;
+                    text-align: center;
+                    margin-block: 2%;
+                }
+
+                ul {
+                    li {
+                        list-style-type: disc;
+                    }
+                }
+
+                .ending {
+                    font-family: var(--font-title);
+                    font-size: 2rem;
+                    text-align: center;
+                    margin-block: 2%;
+                }
+            }
+        }
+    }
+}

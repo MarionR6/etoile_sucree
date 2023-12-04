@@ -4,8 +4,13 @@ import imgHeader from "../../assets/img/ServicesImg/services-header.jpg";
 import DeliveryImg from "../../assets/img/ServicesImg/services-delivery.jpg";
 import caterImg from "../../assets/img/ServicesImg/cater-img.jpg";
 import salonImg from "../../assets/img/ServicesImg/salon.jpg";
+import { useEffect } from 'react';
 
 export default function Services() {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <>
             <Header title={"Nos services"} srcImg={imgHeader} />

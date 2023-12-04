@@ -15,6 +15,7 @@ import Profile from "./pages/Profile/Profile";
 import ModifyInfo from "./pages/Profile/components/ModifyInfo/ModifyInfo";
 import FavoriteRecipes from "./pages/Profile/components/FavoriteRecipes/FavoriteRecipes";
 import DisplayRecipe from "./pages/Recipes/components/DisplayRecipe";
+import RecipesDetails from "./pages/RecipesDetails/RecipesDetails";
 
 export const router = createBrowserRouter([
     {
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
                         element: <DisplayRecipe />
                     }
                 ]
+            },
+            {
+                path: "/recette/:id",
+                element: <RecipesDetails />
             },
             {
                 path: "/carte",

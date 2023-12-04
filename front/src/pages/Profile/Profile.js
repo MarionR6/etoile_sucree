@@ -14,6 +14,8 @@ export default function Profile() {
         setUser(null);
     }
 
+    console.log(user);
+
     return (
         <>
             <Banner />
@@ -30,6 +32,7 @@ export default function Profile() {
                                 </ul>
                                 <div className={`${styles.line} line-dark`}></div>
                                 <ul>
+                                    {user.isAdmin === 1 && (<li><Link to="/admin">Zone administrateur</Link></li>)}
                                     <li><button className={styles.disconnectButton} onClick={handleDisconnect} ><Link to="/">Déconnexion</Link></button></li>
                                     <li><Link>Supprimer mon compte</Link></li>
                                 </ul>
