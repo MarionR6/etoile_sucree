@@ -1,0 +1,15 @@
+.deleteAccountContainer {
+    padding: 5% 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+        align-self: flex-start;
+        margin-block: 3%;
+    }
+
+    button {
+        cursor: pointer;
+    }
+}

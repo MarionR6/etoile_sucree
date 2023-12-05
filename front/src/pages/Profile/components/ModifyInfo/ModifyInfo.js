@@ -106,13 +106,7 @@ export default function ModifyInfo() {
                 </div>
                 <div className={`line-dark ${styles.modifyProfileLine}`}></div>
                 <div className={styles.favoriteRecipe}>
-                    <h3>Recette favorite</h3>
-                    <div className={styles.imgContainer}>
 
-                    </div>
-                    <select name="faveRecipe" id="faveRecipe">
-                        <option value=""></option>
-                    </select>
                 </div>
             </div>
         </div>

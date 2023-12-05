@@ -113,4 +113,26 @@ router.patch("/modifyUser", (req, res) => {
     });
 });
 
+router.delete("/deleteUser/:userId", (req, res) => {
+    const { password } = req.body;
+    const userId = req.params.userId;
+    const verifySql = "SELECT * FROM users WHERE idUser = ?";
+    connection.query(verifySql, [userId], async (err, result) => {
+        if (err) throw err;
+        const dbPassword = result[0].password;
+        const passwordMatch = await bcrypt.compare(password, dbPassword);
+        if (!passwordMatch) {
+            console.log("Mot de passe incorrect");
+            res.status(401).json("Le mot de passe est incorrect.");
+        } else {
+            const deleteSql = "DELETE FROM users WHERE idUser = ?";
+            connection.query(deleteSql, [userId], (err, result) => {
+                if (err) throw err;
+                res.clearCookie("token");
+                res.sendStatus(200);
+            });
+        }
+    });
+});
+
 module.exports = router;

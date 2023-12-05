@@ -171,4 +171,13 @@ section {
             }
         }
     }
+
+    .buttonContainer {
+        display: flex;
+        margin-top: 2%;
+
+        .buttonRecipe {
+            padding: 1% 2%;
+        }
+    }
 }

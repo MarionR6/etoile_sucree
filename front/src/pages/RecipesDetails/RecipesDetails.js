@@ -5,6 +5,7 @@ import Banner from '../../components/Banner/Banner';
 import BrownStrip from '../../components/BrownStrip/BrownStrip';
 import { AuthContext } from '../../context';
 import { toggleLikeRecipe } from '../../api/recipes';
+import { Link } from 'react-router-dom';
 
 export default function RecipesDetails() {
 
@@ -136,6 +137,9 @@ export default function RecipesDetails() {
                         </div>
                     </div>
                 </article>
+                <div className={styles.buttonContainer}>
+                    <Link to="/recettes" className={`btn btn-secondary ${styles.buttonRecipe}`}>Retourner aux recettes</Link>
+                </div>
             </section>) : ("")}
 
             <BrownStrip />

@@ -82,18 +82,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-
-            h3 {
-                font-size: 1.3rem;
-                font-weight: 500;
-            }
-
-            .imgContainer {
-                width: 10vw;
-                height: 10vw;
-                border: .1rem solid var(--primary);
-                margin-block: 5%;
-            }
         }
     }
 }

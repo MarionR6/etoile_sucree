@@ -16,6 +16,7 @@ import ModifyInfo from "./pages/Profile/components/ModifyInfo/ModifyInfo";
 import FavoriteRecipes from "./pages/Profile/components/FavoriteRecipes/FavoriteRecipes";
 import DisplayRecipe from "./pages/Recipes/components/DisplayRecipe";
 import RecipesDetails from "./pages/RecipesDetails/RecipesDetails";
+import DeleteAccount from "./pages/Profile/components/DeleteAccount/DeleteAccount";
 
 export const router = createBrowserRouter([
     {
@@ -76,6 +77,10 @@ export const router = createBrowserRouter([
                     {
                         path: "/profil/favoris",
                         element: <FavoriteRecipes />
+                    },
+                    {
+                        path: "/profil/suppression",
+                        element: <DeleteAccount />
                     }
                 ]
             },
