@@ -2,18 +2,20 @@ import { useContext, useEffect, useState } from 'react';
 import styles from './DisplayRecipe.module.scss';
 import { AuthContext } from '../../../context';
 import { toggleLikeRecipe } from '../../../api/recipes';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function DisplayRecipe({ chosenRecipe, brownBackground }) {
     // const latestRecipeCakeIngredientsLines = chosenRecipe[0]?.cakeIngredients.split("\n");
     // const latestRecipeIcingIngredientsLines = chosenRecipe[0]?.icingIngredients.split("\n");
     // console.log(chosenRecipe);
 
-    const [isLiked, setIsLiked] = useState([]);
+    const [isLiked, setIsLiked] = useState(false);
 
     const { user } = useContext(AuthContext);
 
-    const idUser = user.idUser;
+    const idUser = user?.idUser;
+
+    const navigate = useNavigate();
 
     const handleLike = async (id, idUser) => {
         setIsLiked(!isLiked);
@@ -24,11 +26,15 @@ export default function DisplayRecipe({ chosenRecipe, brownBackground }) {
     useEffect(() => {
         async function getFavoriteRecipes() {
             try {
+                if (!idUser) {
+                    setIsLiked(false);
+                }
                 const response = await fetch(`http://localhost:8000/api/recipes/getFaves/${idUser}`);
                 if (response.ok) {
                     const favesFromBack = await response.json();
                     const isRecipeLiked = favesFromBack.some((fave) => fave.idRecipe === chosenRecipe[0]?.idRecipe);//Searching through the array "chosenRecipe", testing each element of the array to find whether the chosenRecipe is part of the array, if it is, it sets the liked state to true, if it is not, it is set to false. I am using this in order to render the heart in the recipe display component conditionally
                     setIsLiked(isRecipeLiked);
+                    console.log(isLiked);
                 }
             } catch (error) {
                 console.error(error);
@@ -41,9 +47,12 @@ export default function DisplayRecipe({ chosenRecipe, brownBackground }) {
         <div className={styles.displayRecipeContainer}>{chosenRecipe ? (
             <div className={brownBackground ? (`cardPink ${styles.txtContainer}`) : (`cardBrown ${styles.txtContainer}`)} id={brownBackground && styles.brownBackgroundTxtContainer}>
                 <div className={brownBackground ? `${styles.heartContainer} ${styles.darkHeart}` : styles.heartContainer}>
-                    <button type="button" onClick={() => handleLike(chosenRecipe[0].idRecipe, idUser)}>
+                    {user ? (<button type="button" onClick={() => handleLike(chosenRecipe[0].idRecipe, idUser)}>
                         {brownBackground ? !isLiked ? (<i class="fa-regular fa-heart" style={{ color: "var(--text-color-dark)" }}></i>) : (<i className="fa-solid fa-heart" style={{ color: "var(--text-color-dark)" }}></i>) : (!isLiked ? (<i class="fa-regular fa-heart"></i>) : (<i className="fa-solid fa-heart"></i>))}
-                    </button>
+                    </button>) : (<button type="button" onClick={() => navigate("/utilisateur")}>
+                        {brownBackground ? (<i class="fa-regular fa-heart" style={{ color: "var(--text-color-dark)" }}></i>) : (<i class="fa-regular fa-heart"></i>)}
+                    </button>)}
+
                 </div>
                 <h3>
                     {chosenRecipe[0]?.recipeName}

@@ -7,9 +7,11 @@ export default function AuthProvider({ children }) {
 
     const userConnect = useLoaderData();
     const [user, setUser] = useState(userConnect);
-    console.log(user);
-    const [feedback, setFeedback] = useState("");
-    const [feedbackGood, setFeedbackGood] = useState("");
+    const [changingPassword, setChangingPassword] = useState(false);
+
+    const [resetPasswordCode, setResetPasswordCode] = useState([]);
+
+    console.log(resetPasswordCode);
 
     async function login(values) {
         const newUser = await signin(values);
@@ -21,11 +23,11 @@ export default function AuthProvider({ children }) {
             value={{
                 user,
                 setUser,
-                feedback,
-                setFeedback,
-                feedbackGood,
-                setFeedbackGood,
-                login
+                login,
+                resetPasswordCode,
+                setResetPasswordCode,
+                changingPassword,
+                setChangingPassword
             }}>
             {children}
         </AuthContext.Provider>

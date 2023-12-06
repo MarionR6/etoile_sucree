@@ -50,7 +50,16 @@ input:-webkit-autofill:active {
             }
 
             .feedbackContainer {
-                margin-block: 5%;
+                margin-block: 2%;
+            }
+
+            .forgottenPassword {
+                margin-bottom: 5%;
+
+                a {
+                    color: var(--text-color-light);
+                    font-family: var(--font-family);
+                }
             }
 
             button {
@@ -71,10 +80,12 @@ input:-webkit-autofill:active {
 
 .feedback {
     color: rgb(255, 79, 79);
+    font-size: 1rem;
 }
 
 .feedbackGood {
     color: rgb(89, 240, 89);
+    font-size: 1rem;
 }
 
 .link a {

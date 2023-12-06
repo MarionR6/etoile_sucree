@@ -11,6 +11,8 @@ export default function Register() {
 
     // const [feedback, setFeedback] = useState('');
     const [feedbackGood, setFeedbackGood] = useState('');
+    const [acceptGCU, setAcceptGCU] = useState(false);
+    const [acceptGDPR, setAcceptGDPR] = useState(false);
 
     const defaultValues = {
         name: "",
@@ -54,6 +56,15 @@ export default function Register() {
             mode: "onChange",
             resolver: yupResolver(yupSchema)
         });
+
+    const handleChangeAcceptGCU = () => {
+        setAcceptGCU(!acceptGCU);
+        console.log(acceptGCU);
+    };
+    const handleChangeAcceptGDPR = () => {
+        setAcceptGDPR(!acceptGDPR);
+        console.log(acceptGDPR);
+    };
 
     async function submit(values) {
         try {
@@ -112,6 +123,18 @@ export default function Register() {
                         {...register("confirmPassword")}
                     />
                     {errors?.confirmPassword && (<p className={`${styles.feedback}`}>{errors.confirmPassword.message}</p>)}
+                    <div className={styles.acceptConditions}>
+                        <div className={styles.oneCondition}>
+                            <label htmlFor="gcu" className={styles.conditionLabel}><Link to="/cgu" target='_blank'>J'accepte les conditions générales d'utilisation</Link></label>
+                            <input type="checkbox" id='gcu' onChange={handleChangeAcceptGCU} />
+                        </div>
+                        <div className={styles.oneCondition}>
+                            <label htmlFor="gpdr" className={styles.conditionLabel}><Link to="/rgpd" target='_blank'>J'accepte la politique de confidentialité des données</Link></label>
+                            <input type="checkbox" id='gpdr' onChange={handleChangeAcceptGDPR} />
+                        </div>
+
+
+                    </div>
                     <div className={styles.feedbackContainer}>
                         {/* {feedback && <p className={`${styles.feedback}`}>{feedback}</p>} */}
                         {/* {feedback === "Email déjà existant" && <p className={styles.alreadyExists}>Souhaitez-vous vous&nbsp;<span className={`${styles.link}`}><Link to="../">connecter</Link></span>&nbsp;?</p>} */}
@@ -123,7 +146,10 @@ export default function Register() {
                             </>
                         )}
                     </div>
-                    <button className="btn" disabled={isSubmitting}>Envoyer</button>
+                    <button className="btn" style={{
+                        backgroundColor: isSubmitting || !acceptGCU || !acceptGDPR ? 'rgba(128, 128, 128, 0.4)' : '',
+                        cursor: isSubmitting || !acceptGCU || !acceptGDPR ? 'default' : ''
+                    }} disabled={isSubmitting || !acceptGCU || !acceptGDPR}>Envoyer</button>
                 </form>
             </div >
         </div>

@@ -10,13 +10,15 @@ import AdminPage from "./pages/AdminPage/AdminPage";
 import Services from "./pages/Services/Services";
 import Recipes from "./pages/Recipes/Recipes";
 import Menu from "./pages/Menu/Menu";
-import { ProtectedRoutes, ProtectedRoutesAdmin } from "./components/ProtectedRoutes/ProtectedRoutes";
+import { ProtectedRoutes, ProtectedRoutesAdmin, ProtectedRoutesChangingPassword } from "./components/ProtectedRoutes/ProtectedRoutes";
 import Profile from "./pages/Profile/Profile";
 import ModifyInfo from "./pages/Profile/components/ModifyInfo/ModifyInfo";
 import FavoriteRecipes from "./pages/Profile/components/FavoriteRecipes/FavoriteRecipes";
 import DisplayRecipe from "./pages/Recipes/components/DisplayRecipe";
 import RecipesDetails from "./pages/RecipesDetails/RecipesDetails";
 import DeleteAccount from "./pages/Profile/components/DeleteAccount/DeleteAccount";
+import ForgottenPassword from "./pages/Forms/ForgottenPassword/ForgottenPassword";
+import ResetPassword from "./pages/Forms/ForgottenPassword/ResetPassword";
 
 export const router = createBrowserRouter([
     {
@@ -83,6 +85,16 @@ export const router = createBrowserRouter([
                         element: <DeleteAccount />
                     }
                 ]
+            },
+            {
+                path: "/mot-de-passe-oublie",
+                element: <ForgottenPassword />
+            },
+            {
+                path: "/resetPassword",
+                element: (<ProtectedRoutesChangingPassword>
+                    <ResetPassword />
+                </ProtectedRoutesChangingPassword>)
             },
             {
                 path: "/admin",

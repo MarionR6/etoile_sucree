@@ -6,6 +6,14 @@ const connection = require("../../database");
 const jsonwebtoken = require("jsonwebtoken");
 const { key, keyPub } = require("../../keys");
 
+const nodeMailer = require("nodemailer");
+const transporter = nodeMailer.createTransport({
+    service: "Gmail",
+    auth: {
+        user: "etoile.sucree.cupcakes@gmail.com",
+        pass: "cwuu wqdn wgxr utxr"
+    }
+});
 // REGISTER
 
 router.post("/addUser", async (req, res) => {
@@ -63,7 +71,7 @@ router.post("/login", (req, res) => {
                     expiresIn: 3600 * 24 * 30,
                     algorithm: "RS256"
                 });
-                res.cookie("token", token, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true, sameSite: 'strict' });
+                res.cookie("token", token, { maxAge: 30 * 24 * 60 * 60 * 1000 });
                 console.log("Token créé");
                 res.json(result[0]);
             }
@@ -130,6 +138,31 @@ router.delete("/deleteUser/:userId", (req, res) => {
                 if (err) throw err;
                 res.clearCookie("token");
                 res.sendStatus(200);
+            });
+        }
+    });
+});
+
+router.get("/resetPassword/:email", (req, res) => {
+    const email = req.params.email;
+    let randomNumber = Math.floor(Math.random() * 9000 + 1000);
+    const sqlSearchEmail = "SELECT * FROM users WHERE mail = ?";
+    connection.query(sqlSearchEmail, [email], (err, result) => {
+        if (err) throw err;
+        if (result.length !== 0) {
+            const mailOptions = {
+                from: "etoile.sucree.cupcakes@gmail.com",
+                to: email,
+                subject: "L'Étoile Sucrée - Mot de passe oublié",
+                text: `Vous avez récemment effectué une demande de récupération de mot de passe. Si ce n'était pas vous, ne tenez pas compte de ce courriel. Sinon, veuillez entrez le mot de passe suivant : ${randomNumber}`
+            };
+            transporter.sendMail(mailOptions, (err, info) => {
+                if (err) {
+                    throw err;
+                } else {
+                    // console.log(randomNumber);
+                    res.send(JSON.stringify(randomNumber));
+                }
             });
         }
     });

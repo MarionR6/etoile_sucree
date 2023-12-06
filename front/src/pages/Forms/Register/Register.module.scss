@@ -49,6 +49,33 @@ input:-webkit-autofill:active {
                 }
             }
 
+            .acceptConditions {
+                .oneCondition {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+
+                    .conditionLabel {
+                        width: 90%;
+
+                        a {
+                            font-size: 1rem;
+                            color: var(--text-color-light);
+                            text-decoration: underline;
+                            transition: .5s all;
+
+                            &:hover {
+                                color: var(--primary);
+                            }
+                        }
+                    }
+
+                    input {
+                        width: 5%;
+                    }
+                }
+            }
+
             .feedbackContainer {
                 margin-block: 5%;
 
@@ -82,10 +109,12 @@ input:-webkit-autofill:active {
 
 .feedback {
     color: rgb(255, 79, 79);
+    font-size: 1rem;
 }
 
 .feedbackGood {
     color: rgb(89, 240, 89);
+    font-size: 1rem;
 }
 
 .link {

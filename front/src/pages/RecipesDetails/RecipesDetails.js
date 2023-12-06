@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styles from "./RecipesDetails.module.scss";
 import Banner from '../../components/Banner/Banner';
 import BrownStrip from '../../components/BrownStrip/BrownStrip';
@@ -11,12 +11,14 @@ export default function RecipesDetails() {
 
     const { user } = useContext(AuthContext);
 
+    const navigate = useNavigate();
+
     const { id } = useParams();
 
-    const idUser = user.idUser;
+    const idUser = user?.idUser;
 
     const [details, setDetails] = useState();
-    const [isLiked, setIsLiked] = useState();
+    const [isLiked, setIsLiked] = useState(false);
 
     useEffect(() => {
         async function getRecipeDetails() {
@@ -35,6 +37,10 @@ export default function RecipesDetails() {
     useEffect(() => {
         async function getFavoriteRecipes() {
             try {
+                if (!idUser) {
+                    setIsLiked(false);
+                    return;
+                }
                 const response = await fetch(`http://localhost:8000/api/recipes/getFaves/${idUser}`);
                 if (response.ok) {
                     const favesFromBack = await response.json();
@@ -62,9 +68,11 @@ export default function RecipesDetails() {
             {details ? (<section>
                 <article className={`${styles.recipeArticle} cardBrown`}>
                     <div className={styles.heartContainer}>
-                        <button type="button" onClick={() => handleLike(details.idRecipe, idUser)}>
+                        {user ? (<button type="button" onClick={() => handleLike(details.idRecipe, idUser)}>
                             {!isLiked ? (<i className="fa-regular fa-heart"></i>) : (<i className="fa-solid fa-heart"></i>)}
-                        </button>
+                        </button>) : (<button type="button" onClick={() => navigate("/utilisateur")}>
+                            {!isLiked ? (<i className="fa-regular fa-heart"></i>) : (<i className="fa-solid fa-heart"></i>)}
+                        </button>)}
                     </div>
                     <h2 className={styles.recipeTitle}>{details?.recipeName}</h2>
                     <div className={`line-dark ${styles.line}`}></div>

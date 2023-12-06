@@ -88,6 +88,8 @@
                 img {
                     width: 100%;
                     border: .2rem solid var(--primary);
+                    aspect-ratio: 1;
+                    object-fit: cover;
                 }
             }
 

@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthContext } from '../../../context';
+import { Link } from "react-router-dom";
 
 
 export default function Login() {
@@ -78,6 +79,11 @@ export default function Login() {
                             <p className={styles.feedback}>{errors.generic.message}</p>
                         )}
                     </div>
+
+                    <div className={styles.forgottenPassword}>
+                        <Link to="/mot-de-passe-oublie">Mot de passe oublié ?</Link>
+                    </div>
+
                     <button className="btn" disabled={isSubmitting}>Envoyer</button>
                 </form>
             </div >
