@@ -168,4 +168,15 @@ router.get("/resetPassword/:email", (req, res) => {
     });
 });
 
+router.patch("/modifyPassword/:email", async (req, res) => {
+    const mail = req.params.email;
+    const { password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const sql = "UPDATE users SET password = ? WHERE mail = ?";
+    connection.query(sql, [hashedPassword, mail], (err, result) => {
+        if (err) throw err;
+        res.status(200).json("Votre mot de passe a bien été modifié, vous allez être redirigé(e).");
+    });
+});
+
 module.exports = router;

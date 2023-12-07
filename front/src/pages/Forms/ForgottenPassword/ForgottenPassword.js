@@ -5,6 +5,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthContext } from '../../../context';
 import { useNavigate } from 'react-router-dom';
+import Banner from '../../../components/Banner/Banner';
+import BrownStrip from '../../../components/BrownStrip/BrownStrip';
 
 export default function ForgottenPassword() {
 
@@ -46,7 +48,7 @@ export default function ForgottenPassword() {
             if (response.ok) {
                 const resetCodeFromBack = await response.json();
                 setResetPasswordCode(resetCodeFromBack);
-                setFeedbackGood("Un email vous a été envoyé afin de réinitialiser votre mot de passe. Vous allez être redirigé(e).");
+                setFeedbackGood("Un email vous a été envoyé. Vous allez être redirigé(e).");
                 console.log(resetPasswordCode);
                 setChangingPassword(true);
                 setTimeout(() => {
@@ -61,30 +63,33 @@ export default function ForgottenPassword() {
         }
     }
     return (
-        <section className={styles.sectionContainer}>
-            <div className={styles.forgottenPasswordContainer}>
-                <h1>Mot de passe oublié ?</h1>
-                <form onSubmit={handleSubmit(submit)} className={styles.form}>
-                    <div className={styles.formPart}>
-                        <label htmlFor="email">
-                            Email :
-                        </label>
-                        <input type="email" id="email" {...register("email")} />
-                    </div>
-                    <div className={styles.inputError}>
-                        {errors?.email && (
-                            <p className={`${styles.feedback}`}>{errors.email.message}</p>
-                        )}
-                        {feedback && <p>{feedback}</p>}
-                        {feedbackGood && <p>{feedbackGood}</p>}
-                    </div>
+        <>
+            <Banner />
+            <section className={styles.sectionContainer}>
+                <div className={styles.forgottenPasswordContainer}>
+                    <h1>Mot de passe oublié ?</h1>
+                    <form onSubmit={handleSubmit(submit)} className={styles.form}>
+                        <div className={styles.formPart}>
+                            <label htmlFor="email">
+                                Email :
+                            </label>
+                            <input type="email" id="email" {...register("email")} />
+                        </div>
+                        <div className={styles.inputError}>
+                            {errors?.email && (
+                                <p className={`${styles.feedback}`}>{errors.email.message}</p>
+                            )}
+                            {feedback && <p>{feedback}</p>}
+                            {feedbackGood && <p>{feedbackGood}</p>}
+                        </div>
 
-                    <button className="btn" disabled={isSubmitting}>
-                        Valider
-                    </button>
-                </form>
-            </div>
-        </section>
-
+                        <button className="btn" disabled={isSubmitting}>
+                            Valider
+                        </button>
+                    </form>
+                </div>
+            </section>
+            <BrownStrip />
+        </>
     );
 }
