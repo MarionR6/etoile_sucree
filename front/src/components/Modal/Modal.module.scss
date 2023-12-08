@@ -1,0 +1,30 @@
+.modalContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // filter: blur(.1rem);
+
+    .modalContent {
+        background-color: var(--primary);
+        padding: 5% 3%;
+        border-radius: .4rem;
+        text-align: center;
+        width: 40%;
+
+        .message {
+            font-family: var(--font-family);
+        }
+
+        .buttonsContainer {
+            display: flex;
+            justify-content: space-around;
+
+            .confirmButton {}
+        }
+    }
+}

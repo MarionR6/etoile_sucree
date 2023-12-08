@@ -39,7 +39,7 @@ export default function Footer() {
                     <div className={styles.legalLinks}>
                         <Link to="/">Mentions Légales</Link>
                         <p>&nbsp;||&nbsp;</p>
-                        <Link to="/">CGV</Link>
+                        <Link to="/">CGU</Link>
                         <p>&nbsp;||&nbsp;</p>
                         <Link to="/">Politique de confidentialité</Link>
                     </div>

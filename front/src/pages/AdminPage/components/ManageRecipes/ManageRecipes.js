@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import styles from "./ManageRecipes.module.scss";
 import { deleteRecipe } from '../../../../api/recipes';
 import { Link } from 'react-router-dom';
+import Modal from '../../../../components/Modal/Modal';
 
 export default function ManageRecipes() {
 
     const [allRecipes, setAllRecipes] = useState([]);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         async function getRecipes() {
@@ -32,16 +34,26 @@ export default function ManageRecipes() {
         } getRecipes();
     }, []);
 
-    const handleDelete = async (idRecipe) => {
-        console.log(idRecipe);
-        await deleteRecipe(idRecipe);
-        handleDeleteFront(idRecipe);
+    const handleDelete = () => {
+        // const isConfirmed = window.confirm("Voulez-vous vraiment supprimer cette recette ? Cette action est irréversible.");
+        setShowModal(true);
+    };
+
+    const handleCancelDelete = () => {
+        setShowModal(false);
     };
 
     const handleDeleteFront = (id) => {
         console.log("id sent", id);
         setAllRecipes(allRecipes.filter((oneRecipe) => oneRecipe.idRecipe !== id));
     };
+
+    const handleConfirmDelete = async (idRecipe) => {
+        await deleteRecipe(idRecipe);
+        handleDeleteFront(idRecipe);
+        setShowModal(false);
+    };
+
 
     // const handleModify = (idRecipe) => {
     //     handleModifyFront(idRecipe);
@@ -77,6 +89,8 @@ export default function ManageRecipes() {
                     ))}
                 </tbody>
             </table>
+            {showModal && <Modal message="Souhaitez-vous vraiment supprimer cette recette ? Cette action est irréversible."
+                onConfirm={handleConfirmDelete} onCancel={handleCancelDelete} />}
         </div>
     );
 }

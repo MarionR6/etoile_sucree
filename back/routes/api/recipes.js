@@ -123,18 +123,19 @@ router.delete("/deleteRecipe", (req, res) => {
     });
 });
 
-router.patch("/modifyRecipe", (req, res) => {
+router.patch("/modifyRecipe/:id", upload.single("img"), async (req, res) => {
     const idRecipePatched = req.params.id;
-    const { recipeName, cookingTime, preparingTime, difficulty, instructions, img, cakeIngredients, icingIngredients, nbrOfPeople } = req.body;
+    const { recipeName, cookingTime, preparingTime, difficulty, instructions, cakeIngredients, icingIngredients, nbrOfPeople } = req.body;
+    let img = req.file.filename;
     const sqlVerify = "SELECT idRecipe FROM recipes WHERE recipeName = ?";
     connection.query(sqlVerify, [recipeName], (err, result) => {
-        if (result[0].length) {
+        if (result.length) {
             if (result[0].idRecipe !== idRecipePatched) {
                 res.status(401).json("Une recette porte déjà ce nom.");
             }
         } else {
-            const sqlPatch = "UPDATE recipes SET recipeName, cookingTime, preparingTime, difficulty, instructions, img, cakeIngredients, icingIngredients, nbrOfPeople VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            connection.query(sqlPatch, [recipeName, cookingTime, preparingTime, difficulty, instructions, img, cakeIngredients, icingIngredients, nbrOfPeople], (err, result) => {
+            const sqlPatch = "UPDATE recipes SET recipeName = ?, cookingTime = ?, preparingTime = ?, difficulty = ?, instructions = ?, img = ?, cakeIngredients = ?, icingIngredients = ?, nbrOfPeople = ? WHERE idRecipe = ?";
+            connection.query(sqlPatch, [recipeName, cookingTime, preparingTime, difficulty, instructions, img, cakeIngredients, icingIngredients, nbrOfPeople, idRecipePatched], (err, result) => {
                 if (err) throw err;
                 res.status(200).json("Recette modifiée avec succès.");
             });
