@@ -23,7 +23,6 @@ section {
     .flexContainer {
         display: flex;
         justify-content: space-evenly;
-        align-items: flex-start;
 
         .searchContainer {
             background-color: var(--primary);
@@ -32,7 +31,6 @@ section {
             padding: 2% 2%;
 
             .recipeNamesContainer {
-                min-height: 500px;
 
                 ul {
                     li {
@@ -44,6 +42,11 @@ section {
                             font-family: var(--font-family);
                             margin-block: 1%;
                             cursor: pointer;
+                            transition: .5s all;
+
+                            &:hover {
+                                transform: scale(1.05);
+                            }
                         }
                     }
                 }

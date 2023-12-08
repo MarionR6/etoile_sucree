@@ -1,7 +1,7 @@
 const API_RECIPES = "/api/recipes";
 
 export async function toggleLikeRecipe(idRecipe, idUser) {
-    const response = await fetch(`http://localhost:8000/api/recipes/likeRecipe/${idUser}`, {
+    const response = await fetch(`http://localhost:8000${API_RECIPES}/likeRecipe/${idUser}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -15,17 +15,17 @@ export async function toggleLikeRecipe(idRecipe, idUser) {
     }
 }
 
-// export async function dislikeRecipe(idRecipe, idUser) {
-//     const response = await fetch(`http://localhost:8000/api/recipes/dislike/${idUser}`, {
-//         method: "DELETE",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify({ idRecipe }),
-//     });
-//     if (response.ok) {
-//         console.log("Disliked");
-//     } else {
-//         throw new Error("Error api recipes disliked");
-//     }
-// }
+export async function deleteRecipe(idRecipe) {
+    const response = await fetch(`http://localhost:8000${API_RECIPES}/deleteRecipe`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ idRecipe })
+    });
+    if (response.ok) {
+        return;
+    } else {
+        throw new Error("Error api recipes delete");
+    }
+}

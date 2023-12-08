@@ -1,0 +1,61 @@
+.recipesTableContainer {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    table {
+        padding: 2%;
+        border-spacing: 0;
+        font-family: var(--font-family);
+        width: 60%;
+
+        thead {
+
+            tr {
+
+                th {
+                    border-bottom: .1rem solid var(--primary);
+                    font-weight: 500;
+                    font-size: 1.2rem;
+                    padding-bottom: 3%;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+
+                td {
+                    border-bottom: .1rem solid var(--primary);
+                    padding-block: 2%;
+                }
+
+                .imgContainer {
+                    width: 20%;
+
+                    img {
+                        width: 100%;
+                        margin: 0 auto;
+                    }
+                }
+
+                .buttonContainer {
+                    text-align: center;
+
+                    button {
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+
+                        i {
+                            color: var(--text-color-light);
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}

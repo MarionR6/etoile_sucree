@@ -13,40 +13,56 @@
 
     .subContainerProfile {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        justify-content: center;
 
         .userInfoProfile {
-            width: 50%;
+            width: 100%;
 
             form {
                 display: flex;
                 flex-direction: column;
 
-                label {
-                    font-size: 1rem;
+                .oneInputCategory {
+                    display: flex;
+                    flex-direction: column;
+                    margin-block: 1%;
+
+                    label {
+                        font-size: 1rem;
+                    }
+
+                    input {
+                        background-color: var(--text-color-light);
+                        border: none;
+                        border-radius: .7rem;
+                        max-width: 80%;
+                        padding: .25% 2%;
+                        font-size: 1.2rem;
+                        font-family: var(--font-family);
+                    }
                 }
 
-                input {
-                    background-color: var(--text-color-light);
-                    border: none;
-                    border-radius: 2rem;
-                    max-width: 60%;
-                    padding: .25% 2%;
-                    font-size: 1.2rem;
-                    font-family: var(--font-family);
-                }
+
+            }
+
+            .flexInfo {
+                margin: 0 auto;
+                max-width: 300px;
+                min-width: fit-content;
             }
 
             .oneInfo {
-                margin-block: 2%;
-                font-size: 1.2rem;
+                margin-block: 5%;
+
+                .labelInfo {
+                    font-size: 1.2rem;
+                }
 
                 .lockedInfo {
                     background-color: var(--primary);
                     display: inline-block;
-                    min-width: 60%;
-                    border-radius: 2rem;
+                    width: 100%;
+                    border-radius: .7rem;
                     padding: .25% 2%;
                     color: var(--text-color-dark);
                     font-size: 1.2rem;
@@ -58,30 +74,26 @@
             }
 
             .buttonsContainer {
-                margin-top: 5%;
+                margin-block: 5%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
 
                 .modifyInfoButton {
-                    margin-right: 2%;
                     padding: 1% 2%;
                     font-size: 1rem;
                     cursor: pointer;
                 }
+
             }
-
-
-        }
-
-        .modifyProfileLine {
-            width: .12rem;
-            height: 15rem;
-            background: linear-gradient(to top, #522525, #EAC4E0, #522525);
-        }
-
-        .favoriteRecipe {
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
     }
+}
+
+.feedback {
+    color: red;
+}
+
+.feedbackGood {
+    color: green;
 }

@@ -13,13 +13,14 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
+            flex-wrap: wrap;
 
             .navContainer {
-                width: 20%;
+                width: fit-content;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                padding: 3% 0;
+                padding: 3% 5%;
 
                 .subContainerTitle {
                     font-size: 1.5rem;

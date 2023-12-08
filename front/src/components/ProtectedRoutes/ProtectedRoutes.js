@@ -16,3 +16,8 @@ export function ProtectedRoutesChangingPassword({ children }) {
     const { changingPassword } = useContext(AuthContext);
     return changingPassword ? children : <Navigate to="/" />;
 }
+
+export function ProtectedRoutesConnectedUser({ children }) {
+    const { user } = useContext(AuthContext);
+    return !user ? children : <Navigate to="/" />;
+}

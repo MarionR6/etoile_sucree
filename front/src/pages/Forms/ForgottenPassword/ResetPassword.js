@@ -77,7 +77,7 @@ export default function ResetPassword() {
     async function submit(values) {
         try {
             console.log("values", values);
-            const response = await fetch(`http://localhost:8000/api/users/modifyPassword/${email}`, {
+            const response = await fetch(`http://localhost:8000/api/users/resetPassword/${email}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json"

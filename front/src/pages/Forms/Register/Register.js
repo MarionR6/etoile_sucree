@@ -42,7 +42,7 @@ export default function Register() {
             .required("Vous devez confirmer le mot de passe")
             .oneOf(
                 [yup.ref("password", "")],
-                "Les mots de passes ne correspondent pas"
+                "Les mots de passe ne correspondent pas"
             )
     });
 

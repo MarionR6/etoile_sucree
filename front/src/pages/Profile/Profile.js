@@ -34,6 +34,7 @@ export default function Profile() {
                                 <ul>
                                     {user.isAdmin === 1 && (<li><Link to="/admin">Zone administrateur</Link></li>)}
                                     <li><button className={styles.disconnectButton} onClick={handleDisconnect} ><Link to="/">Déconnexion</Link></button></li>
+                                    <li><Link to="/profil/modifier-mot-de-passe">Modifier le mot de passe</Link></li>
                                     <li><Link to="/profil/suppression">Supprimer mon compte</Link></li>
                                 </ul>
                             </nav>

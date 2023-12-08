@@ -109,4 +109,38 @@ router.delete("/dislike/:idUser", (req, res) => {
     });
 });
 
+router.delete("/deleteRecipe", (req, res) => {
+    const { idRecipe } = req.body;
+    console.log(req.body);
+    const sqlDeleteFavorite = "DELETE FROM favorites WHERE idRecipe = ?";
+    connection.query(sqlDeleteFavorite, [idRecipe], (err, result) => {
+        if (err) throw err;
+        const sqlDelete = "DELETE FROM recipes WHERE idRecipe = ?";
+        connection.query(sqlDelete, [idRecipe], (err, result) => {
+            if (err) throw err;
+            res.sendStatus(200);
+        });
+    });
+});
+
+router.patch("/modifyRecipe", (req, res) => {
+    const idRecipePatched = req.params.id;
+    const { recipeName, cookingTime, preparingTime, difficulty, instructions, img, cakeIngredients, icingIngredients, nbrOfPeople } = req.body;
+    const sqlVerify = "SELECT idRecipe FROM recipes WHERE recipeName = ?";
+    connection.query(sqlVerify, [recipeName], (err, result) => {
+        if (result[0].length) {
+            if (result[0].idRecipe !== idRecipePatched) {
+                res.status(401).json("Une recette porte déjà ce nom.");
+            }
+        } else {
+            const sqlPatch = "UPDATE recipes SET recipeName, cookingTime, preparingTime, difficulty, instructions, img, cakeIngredients, icingIngredients, nbrOfPeople VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            connection.query(sqlPatch, [recipeName, cookingTime, preparingTime, difficulty, instructions, img, cakeIngredients, icingIngredients, nbrOfPeople], (err, result) => {
+                if (err) throw err;
+                res.status(200).json("Recette modifiée avec succès.");
+            });
+        }
+    });
+
+});
+
 module.exports = router;

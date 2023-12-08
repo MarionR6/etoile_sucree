@@ -10,7 +10,7 @@ import AdminPage from "./pages/AdminPage/AdminPage";
 import Services from "./pages/Services/Services";
 import Recipes from "./pages/Recipes/Recipes";
 import Menu from "./pages/Menu/Menu";
-import { ProtectedRoutes, ProtectedRoutesAdmin, ProtectedRoutesChangingPassword } from "./components/ProtectedRoutes/ProtectedRoutes";
+import { ProtectedRoutes, ProtectedRoutesAdmin, ProtectedRoutesChangingPassword, ProtectedRoutesConnectedUser } from "./components/ProtectedRoutes/ProtectedRoutes";
 import Profile from "./pages/Profile/Profile";
 import ModifyInfo from "./pages/Profile/components/ModifyInfo/ModifyInfo";
 import FavoriteRecipes from "./pages/Profile/components/FavoriteRecipes/FavoriteRecipes";
@@ -19,6 +19,10 @@ import RecipesDetails from "./pages/RecipesDetails/RecipesDetails";
 import DeleteAccount from "./pages/Profile/components/DeleteAccount/DeleteAccount";
 import ForgottenPassword from "./pages/Forms/ForgottenPassword/ForgottenPassword";
 import ResetPassword from "./pages/Forms/ForgottenPassword/ResetPassword";
+import ModifyPassword from "./pages/Profile/components/ModifyPassword/ModifyPassword";
+import AddRecipe from "./pages/AdminPage/components/AddRecipe/AddRecipe";
+import ManageRecipes from "./pages/AdminPage/components/ManageRecipes/ManageRecipes";
+import ModifyRecipe from "./pages/AdminPage/components/ModifyRecipe/ModifyRecipe";
 
 export const router = createBrowserRouter([
     {
@@ -32,7 +36,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/utilisateur",
-                element: <FormsContainer />,
+                element: (<ProtectedRoutesConnectedUser><FormsContainer /></ProtectedRoutesConnectedUser>),
                 children: [
                     {
                         path: "",
@@ -81,6 +85,10 @@ export const router = createBrowserRouter([
                         element: <FavoriteRecipes />
                     },
                     {
+                        path: "/profil/modifier-mot-de-passe",
+                        element: <ModifyPassword />
+                    },
+                    {
                         path: "/profil/suppression",
                         element: <DeleteAccount />
                     }
@@ -100,7 +108,21 @@ export const router = createBrowserRouter([
                 path: "/admin",
                 element: (<ProtectedRoutesAdmin>
                     <AdminPage />
-                </ProtectedRoutesAdmin>)
+                </ProtectedRoutesAdmin>),
+                children: [
+                    {
+                        path: "",
+                        element: <AddRecipe />
+                    },
+                    {
+                        path: "/admin/gestion-recettes",
+                        element: <ManageRecipes />
+                    },
+                    {
+                        path: "/admin/modifier-recette/:id",
+                        element: <ModifyRecipe />
+                    }
+                ]
             }
         ]
     }

@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import styles from './DeleteAccount.module.scss';
 import { AuthContext } from '../../../../context';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../../../../api/users';
 
 export default function DeleteAccount() {
 
@@ -33,6 +34,7 @@ export default function DeleteAccount() {
             if (response.ok) {
                 setFeedbackGood("Votre compte est en cours de suppresion.");
                 console.log(feedbackGood);
+                await logout();
                 setTimeout(() => {
                     setUser(null);
                     navigate("/");

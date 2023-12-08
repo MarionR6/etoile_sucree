@@ -40,7 +40,6 @@ export default function Login() {
 
     async function submit(values) {
         try {
-            // console.log(values);
             clearErrors();
             await login(values);
             setTimeout(() => {

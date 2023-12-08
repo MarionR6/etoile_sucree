@@ -12,6 +12,8 @@ export default function ModifyInfo() {
     const [viewForm, setViewForm] = useState(false);
     const [feedbackGood, setFeedbackGood] = useState("");
 
+    const userId = user.idUser;
+
     const defaultValues = {
         name: user?.name,
         firstname: user?.firstname,
@@ -28,8 +30,9 @@ export default function ModifyInfo() {
             .required("Ce champ est nécessaire"),
         mail: yup
             .string()
-            .required("Ce champ est nécessaire")
+            .required("Ce champ est nécessaire"),
     });
+
 
     const { register,
         handleSubmit,
@@ -41,7 +44,8 @@ export default function ModifyInfo() {
             resolver: yupResolver(yupSchema)
         });
 
-    async function submit(values) {
+    async function submitInfo(values) {
+        console.log("test");
         try {
             clearErrors();
             await modifyUserInfo(values);
@@ -57,56 +61,86 @@ export default function ModifyInfo() {
     }
 
 
+
     return (
         <div className={styles.chosenCategory}>
-            <h1 className={styles.chosenCategoryTitle}>Modifier mon profil</h1>
+            <h1 className={styles.chosenCategoryTitle}>Gestion de profil</h1>
             <div className={styles.subContainerProfile}>
                 <div className={styles.userInfoProfile}>
                     {viewForm ? (
-                        <form onSubmit={handleSubmit(submit)}>
-                            <label htmlFor="name" className={styles.oneInfo}>Nom</label>
-                            <input type="text" id='name' className={styles.lockedInfo} {...register("name")} />
-                            {errors?.name && (<p className={`${styles.feedback}`}>{errors.name.message}</p>)}
-                            <label htmlFor="firstname" className={styles.oneInfo}>Prénom</label>
-                            <input type="text" id='firstname' className={styles.lockedInfo} {...register("firstname")} />
-                            {errors?.firstname && (<p className={`${styles.feedback}`}>{errors.firstname.message}</p>)}
-                            <label htmlFor="mail" className={styles.oneInfo}>Adresse mail</label>
-                            <input type="mail" id='mail' className={styles.lockedInfo} {...register("mail")} />
-                            {errors?.mail && (<p className={`${styles.feedback}`}>{errors.mail.message}</p>)}
+                        <form onSubmit={handleSubmit(submitInfo)}>
+                            <div className={styles.oneInputCategory}>
+                                <label
+                                    htmlFor="name"
+                                    className={styles.labelInfo}>Nom</label>
+                                <input
+                                    type="text"
+                                    id='name'
+                                    className={styles.lockedInfo}
+                                    {...register("name")} />
+                                {errors?.name && (<p className={`${styles.feedback}`}>{errors.name.message}</p>)}
+                            </div>
+                            <div className={styles.oneInputCategory}>
+                                <label
+                                    htmlFor="firstname"
+                                    className={styles.labelInfo}>Prénom</label>
+                                <input
+                                    type="text"
+                                    id='firstname'
+                                    className={styles.lockedInfo}
+                                    {...register("firstname")} />
+                                {errors?.firstname && (<p className={`${styles.feedback}`}>{errors.firstname.message}</p>)}
+                            </div>
+                            <div className={styles.oneInputCategory}>
+                                <label
+                                    htmlFor="mail"
+                                    className={styles.labelInfo}>Adresse mail</label>
+                                <input
+                                    type="mail"
+                                    id='mail'
+                                    className={styles.lockedInfo}
+                                    {...register("mail")} />
+                                {errors?.mail && (<p className={`${styles.feedback}`}>{errors.mail.message}</p>)}
+                            </div>
                         </form>
                     ) : (
-                        <>
+                        <div className={styles.flexInfo}>
                             <div className={styles.oneInfo}>
-                                <p className={styles.oneInfo}>Nom</p>
+                                <p className={styles.labelInfo}>Nom</p>
                                 <p className={styles.lockedInfo}>
                                     {user?.name}</p>
                             </div>
 
                             <div className={styles.oneInfo}>
-                                <p className={styles.oneInfo}>Prénom</p>
+                                <p className={styles.labelInfo}>Prénom</p>
                                 <p className={styles.lockedInfo}>{user?.firstname}</p>
                             </div>
 
                             <div className={styles.oneInfo}>
-                                <p className={styles.oneInfo}>Adresse mail</p>
+                                <p className={styles.labelInfo}>Adresse mail</p>
                                 <p className={styles.lockedInfo}>{user?.mail}</p>
                             </div>
 
-                        </>
+                        </div>
                     )}
                     {viewForm && (<div className={styles.feedbackContainer}>
                         <p>{feedbackGood}</p></div>)}
                     <div className={styles.buttonsContainer}>
-                        <button onClick={() => setViewForm(!viewForm)} className={`btn ${styles.modifyInfoButton}`} type='button' disabled={isSubmitting}>
+                        <button
+                            onClick={() => setViewForm(!viewForm)}
+                            className={`btn ${styles.modifyInfoButton}`}
+                            type='button'
+                            disabled={isSubmitting}>
                             {viewForm ? ("Annuler") : ("Modifier les informations")}
                         </button>
-                        {viewForm && <button type='button' onClick={handleSubmit(submit)} className={`btn ${styles.modifyInfoButton}`} disabled={isSubmitting}>Enregistrer</button>}
+                        {viewForm &&
+                            <button
+                                onClick={handleSubmit(submitInfo)}
+                                className={`btn ${styles.modifyInfoButton}`}
+                                disabled={isSubmitting}>
+                                Enregistrer
+                            </button>}
                     </div>
-                    <p className={styles.oneInfo}>Modifier mon mot de passe</p>
-                </div>
-                <div className={`line-dark ${styles.modifyProfileLine}`}></div>
-                <div className={styles.favoriteRecipe}>
-
                 </div>
             </div>
         </div>

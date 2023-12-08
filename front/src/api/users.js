@@ -15,11 +15,9 @@ export async function signin(values) {
     });
     const backResponse = await response.json();
     if (response.ok) {
-        console.log(backResponse);
         return (backResponse);
     } else {
         if (backResponse) {
-            console.log(backResponse);
             throw backResponse;
         } else {
             throw new Error("Error API logUser");

@@ -48,7 +48,7 @@ router.post("/addUser", async (req, res) => {
 router.post("/login", (req, res) => {
     console.log(req.body);
     const { mail, password } = req.body;
-    const sql = `SELECT idUser, firstname, name, mail, password FROM users WHERE mail= ?`;
+    const sql = `SELECT * FROM users WHERE mail= ?`;
     connection.query(sql, [mail], async (err, result) => {
         if (err) throw err;
         console.log(result);
@@ -133,10 +133,16 @@ router.delete("/deleteUser/:userId", (req, res) => {
             console.log("Mot de passe incorrect");
             res.status(401).json("Le mot de passe est incorrect.");
         } else {
-            const deleteSql = "DELETE FROM users WHERE idUser = ?";
+            const deleteFavoritesSql = `DELETE FROM favorites WHERE idUser = ?`;
+            connection.query(deleteFavoritesSql, [userId], (err, result) => {
+                if (err) {
+                    throw err;
+                }
+            });
+            const deleteSql = `DELETE FROM users WHERE idUser = ?`;
             connection.query(deleteSql, [userId], (err, result) => {
                 if (err) throw err;
-                res.clearCookie("token");
+                // res.clearCookie("token");
                 res.sendStatus(200);
             });
         }
@@ -168,7 +174,7 @@ router.get("/resetPassword/:email", (req, res) => {
     });
 });
 
-router.patch("/modifyPassword/:email", async (req, res) => {
+router.patch("/resetPassword/:email", async (req, res) => {
     const mail = req.params.email;
     const { password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -176,6 +182,36 @@ router.patch("/modifyPassword/:email", async (req, res) => {
     connection.query(sql, [hashedPassword, mail], (err, result) => {
         if (err) throw err;
         res.status(200).json("Votre mot de passe a bien été modifié, vous allez être redirigé(e).");
+    });
+});
+
+router.patch("/modifyPassword/:id", async (req, res) => {
+    const { currentPassword, newPassword } = req.body;
+    const idUser = req.params.id;
+    console.log("req params", req.params.id);
+    console.log("idUser", idUser);
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const searchSql = "SELECT * FROM users WHERE idUser = ?";
+    connection.query(searchSql, [idUser], async (err, result) => {
+        if (err) {
+            throw err;
+        }
+        console.log(result);
+        const dataBasePassword = result[0]?.password;
+        const passwordMatch = await bcrypt.compare(currentPassword, dataBasePassword);
+        if (!passwordMatch) {
+            console.log("Mot de passe erronné");
+            res.status(401).json("Le mot de passe actuel est erronné");
+        } else {
+            const sql = "UPDATE users SET password = ? WHERE idUser = ?";
+            connection.query(sql, [hashedPassword, idUser], (err, result) => {
+                if (err) {
+                    throw err;
+                }
+                console.log("Modification réussie");
+                res.status(200).json("Votre mot de passe a été modifié avec succès.");
+            });
+        }
     });
 });
 

@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Banner from '../../components/Banner/Banner';
 import BrownStrip from '../../components/BrownStrip/BrownStrip';
 import { useRef, useState } from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
 
 export default function AdminPage() {
 
@@ -102,9 +103,14 @@ export default function AdminPage() {
             const newRecipe = await response.json();
             if (newRecipe.message) {
                 setFeedback(newRecipe.message);
+                console.log(feedback);
+
             } else {
                 setFeedbackGood(newRecipe.messageGood);
                 reset(defaultValues);
+                setTimeout(() => {
+                    setFeedbackGood("");
+                });
             }
         }
 
@@ -113,7 +119,7 @@ export default function AdminPage() {
     return (
         <>
             <Banner />
-            <div className={styles.formContainer}>
+            {/* <div className={styles.formContainer}>
                 <form
                     onSubmit={handleSubmit(submit)}
                     className={`cardBrown ${styles.form}`}
@@ -203,6 +209,7 @@ export default function AdminPage() {
                         {errors.img && <p className="form-error">{errors.img.message}</p>}
                     </div>
                     <div>
+                        {feedback && <p>{feedback}</p>}
                         {feedbackGood && <p>{feedbackGood}</p>}
                     </div>
                     <div className={styles.buttonContainer}>
@@ -211,7 +218,15 @@ export default function AdminPage() {
                         </button>
                     </div>
                 </form>
-            </div>
+            </div> */}
+            <nav className={styles.adminNav}>
+                <ul>
+                    <li><NavLink end to="/admin">Ajouter une recette</NavLink></li>
+                    <li><NavLink to="/admin/gestion-recettes">Gérer les recettes</NavLink></li>
+                    <li><NavLink to="/admin/gestion-utilisateurs">Gérer les utilisateurs</NavLink></li>
+                </ul>
+            </nav>
+            <Outlet />
             <BrownStrip />
         </>
 
