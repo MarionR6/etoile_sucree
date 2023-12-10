@@ -13,6 +13,7 @@ export default function ModifyRecipe() {
     const [feedback, setFeedback] = useState("");
     const [details, setDetails] = useState();
     const [modifiedInfo, setModifiedInfo] = useState(null);
+    const [sentValues, setSentValues] = useState([]);
 
     useEffect(() => {
         async function getRecipeDetails() {
@@ -37,11 +38,22 @@ export default function ModifyRecipe() {
     const changeValue = (e, choice) => {
         let value = e.target.value;
         let values = { value, choice };
-        submit(values);
+        console.log("values", values);
+        setSentValues(values);
+
     };
 
-    async function submit(values) {
-        console.log(values);
+    async function submit(sentValues) {
+        const response = await fetch(`http://localhost:8000/api/recipes/modifyRecipe/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(sentValues)
+        });
+        if (response.ok) {
+            setFeedback("Recette modifiée avec succès.");
+        }
     }
 
     // async function submit() {
@@ -100,7 +112,7 @@ export default function ModifyRecipe() {
                         defaultValue={details?.recipeName} />
                     {modifiedInfo === 1 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={submit}><i className="fa-regular fa-circle-check"></i></button>
+                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
                         <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
 
@@ -109,12 +121,13 @@ export default function ModifyRecipe() {
                     <label htmlFor="cookingTime">Temps de cuisson</label>
                     <input
                         onClick={() => handleShowPen(2)}
+                        onChange={(e) => changeValue(e, "cookingTime")}
                         type="text"
                         id="cookingTime"
                         defaultValue={details?.cookingTime} />
                     {modifiedInfo === 2 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={submit}><i className="fa-regular fa-circle-check"></i></button>
+                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
                         <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
                 </div>
@@ -123,10 +136,11 @@ export default function ModifyRecipe() {
                     <input
                         type="text"
                         id="preparingTime"
+                        onClick={() => handleShowPen(3)}
                         defaultValue={details?.preparingTime} />
                     {modifiedInfo === 3 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={submit}><i className="fa-regular fa-circle-check"></i></button>
+                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
                         <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
 
@@ -136,13 +150,23 @@ export default function ModifyRecipe() {
                     <select
                         id="difficulty"
                         defaultValue={details?.difficulty}
+                        onClick={() => handleShowPen(4)}
                     >
-                        <option value="facile" defaultValue={details?.difficulty === "facile" ? true : false}>Facile</option>
+                        <option value="facile"
+                            onClick={() => handleShowPen(4)} defaultValue={details?.difficulty === "facile" ? true : false}>Facile</option>
                         <option value={"intermédiaire"}
+                            onClick={() => handleShowPen(4)}
                             defaultValue={details?.difficulty === "intermédiaire" ? true : false}>Intermédiaire</option>
                         <option value="difficile"
+                            onClick={() => handleShowPen(4)}
                             defaultValue={details?.difficulty === "difficile" ? true : false}>Difficile</option>
+
                     </select>
+                    {modifiedInfo === 4 && <div className={styles.buttonContainer}>
+                        <button type='button'
+                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
+                        <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
+                    </div>}
 
                 </div>
                 <div className={styles.oneFormElement}>
@@ -153,10 +177,11 @@ export default function ModifyRecipe() {
                         rows={10}
                         id="instructions"
                         defaultValue={details?.instructions}
+                        onClick={() => handleShowPen(5)}
                     />
-                    {modifiedInfo === 4 && <div className={styles.buttonContainer}>
+                    {modifiedInfo === 5 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={submit}><i className="fa-regular fa-circle-check"></i></button>
+                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
                         <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
 
@@ -169,10 +194,11 @@ export default function ModifyRecipe() {
                         rows={10}
                         id="cakeIngredients"
                         defaultValue={details?.cakeIngredients}
+                        onClick={() => handleShowPen(6)}
                     />
-                    {modifiedInfo === 5 && <div className={styles.buttonContainer}>
+                    {modifiedInfo === 6 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={submit}><i className="fa-regular fa-circle-check"></i></button>
+                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
                         <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
 
@@ -185,10 +211,11 @@ export default function ModifyRecipe() {
                         rows={10}
                         id="icingIngredients"
                         defaultValue={details?.icingIngredients}
+                        onClick={() => handleShowPen(7)}
                     />
-                    {modifiedInfo === 6 && <div className={styles.buttonContainer}>
+                    {modifiedInfo === 7 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={submit}><i className="fa-regular fa-circle-check"></i></button>
+                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
                         <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
 
@@ -200,10 +227,11 @@ export default function ModifyRecipe() {
                         max={10}
                         id="nbrOfPeople"
                         defaultValue={details?.nbrOfPeople}
+                        onClick={() => handleShowPen(8)}
                     />
-                    {modifiedInfo === 7 && <div className={styles.buttonContainer}>
+                    {modifiedInfo === 8 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={submit}><i className="fa-regular fa-circle-check"></i></button>
+                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
                         <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
 
@@ -211,10 +239,11 @@ export default function ModifyRecipe() {
                 <div className={styles.oneFormElement}>
                     <label htmlFor="img">Photo de la recette</label>
                     <input type="file" id="img"
-                        ref={imgRef} />
-                    {modifiedInfo === 8 && <div className={styles.buttonContainer}>
+                        ref={imgRef}
+                        onClick={() => handleShowPen(9)} />
+                    {modifiedInfo === 9 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={submit}><i className="fa-regular fa-circle-check"></i></button>
+                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
                         <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
                 </div>

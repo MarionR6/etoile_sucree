@@ -8,6 +8,7 @@ export default function ManageRecipes() {
 
     const [allRecipes, setAllRecipes] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [idToDelete, setIdToDelete] = useState();
 
     useEffect(() => {
         async function getRecipes() {
@@ -34,9 +35,10 @@ export default function ManageRecipes() {
         } getRecipes();
     }, []);
 
-    const handleDelete = () => {
+    const handleDelete = (idRecipe) => {
         // const isConfirmed = window.confirm("Voulez-vous vraiment supprimer cette recette ? Cette action est irréversible.");
         setShowModal(true);
+        setIdToDelete(idRecipe);
     };
 
     const handleCancelDelete = () => {
@@ -48,9 +50,9 @@ export default function ManageRecipes() {
         setAllRecipes(allRecipes.filter((oneRecipe) => oneRecipe.idRecipe !== id));
     };
 
-    const handleConfirmDelete = async (idRecipe) => {
-        await deleteRecipe(idRecipe);
-        handleDeleteFront(idRecipe);
+    const handleConfirmDelete = async () => {
+        await deleteRecipe(idToDelete);
+        handleDeleteFront(idToDelete);
         setShowModal(false);
     };
 
