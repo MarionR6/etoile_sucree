@@ -107,7 +107,7 @@ export default function ModifyRecipe() {
                     <input
                         type="text"
                         id="recipeName"
-                        onClick={() => handleShowPen(1)}
+                        onFocus={() => handleShowPen(1)}
                         onChange={(e) => changeValue(e, "recipeName")}
                         defaultValue={details?.recipeName} />
                     {modifiedInfo === 1 && <div className={styles.buttonContainer}>
@@ -120,7 +120,7 @@ export default function ModifyRecipe() {
                 <div className={styles.oneFormElement}>
                     <label htmlFor="cookingTime">Temps de cuisson</label>
                     <input
-                        onClick={() => handleShowPen(2)}
+                        onFocus={() => handleShowPen(2)}
                         onChange={(e) => changeValue(e, "cookingTime")}
                         type="text"
                         id="cookingTime"
@@ -136,7 +136,8 @@ export default function ModifyRecipe() {
                     <input
                         type="text"
                         id="preparingTime"
-                        onClick={() => handleShowPen(3)}
+                        onFocus={() => handleShowPen(3)}
+                        onChange={(e) => changeValue(e, "preparingTime")}
                         defaultValue={details?.preparingTime} />
                     {modifiedInfo === 3 && <div className={styles.buttonContainer}>
                         <button type='button'
@@ -150,15 +151,14 @@ export default function ModifyRecipe() {
                     <select
                         id="difficulty"
                         defaultValue={details?.difficulty}
-                        onClick={() => handleShowPen(4)}
+                        onFocus={() => handleShowPen(4)}
+                        onChange={(e) => changeValue(e, "difficulty")}
                     >
                         <option value="facile"
-                            onClick={() => handleShowPen(4)} defaultValue={details?.difficulty === "facile" ? true : false}>Facile</option>
+                            defaultValue={details?.difficulty === "facile" ? true : false}>Facile</option>
                         <option value={"intermédiaire"}
-                            onClick={() => handleShowPen(4)}
                             defaultValue={details?.difficulty === "intermédiaire" ? true : false}>Intermédiaire</option>
                         <option value="difficile"
-                            onClick={() => handleShowPen(4)}
                             defaultValue={details?.difficulty === "difficile" ? true : false}>Difficile</option>
 
                     </select>
@@ -177,7 +177,8 @@ export default function ModifyRecipe() {
                         rows={10}
                         id="instructions"
                         defaultValue={details?.instructions}
-                        onClick={() => handleShowPen(5)}
+                        onFocus={() => handleShowPen(5)}
+                        onChange={(e) => changeValue(e, "instructions")}
                     />
                     {modifiedInfo === 5 && <div className={styles.buttonContainer}>
                         <button type='button'
@@ -194,7 +195,8 @@ export default function ModifyRecipe() {
                         rows={10}
                         id="cakeIngredients"
                         defaultValue={details?.cakeIngredients}
-                        onClick={() => handleShowPen(6)}
+                        onFocus={() => handleShowPen(6)}
+                        onChange={(e) => changeValue(e, "cakeIngredients")}
                     />
                     {modifiedInfo === 6 && <div className={styles.buttonContainer}>
                         <button type='button'
@@ -211,7 +213,8 @@ export default function ModifyRecipe() {
                         rows={10}
                         id="icingIngredients"
                         defaultValue={details?.icingIngredients}
-                        onClick={() => handleShowPen(7)}
+                        onFocus={() => handleShowPen(7)}
+                        onChange={(e) => changeValue(e, "icingIngredients")}
                     />
                     {modifiedInfo === 7 && <div className={styles.buttonContainer}>
                         <button type='button'
@@ -227,7 +230,8 @@ export default function ModifyRecipe() {
                         max={10}
                         id="nbrOfPeople"
                         defaultValue={details?.nbrOfPeople}
-                        onClick={() => handleShowPen(8)}
+                        onFocus={() => handleShowPen(8)}
+                        onChange={(e) => changeValue(e, "nbrOfPeople")}
                     />
                     {modifiedInfo === 8 && <div className={styles.buttonContainer}>
                         <button type='button'
@@ -240,7 +244,7 @@ export default function ModifyRecipe() {
                     <label htmlFor="img">Photo de la recette</label>
                     <input type="file" id="img"
                         ref={imgRef}
-                        onClick={() => handleShowPen(9)} />
+                        onFocus={() => handleShowPen(9)} />
                     {modifiedInfo === 9 && <div className={styles.buttonContainer}>
                         <button type='button'
                             onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
