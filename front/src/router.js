@@ -23,6 +23,7 @@ import ModifyPassword from "./pages/Profile/components/ModifyPassword/ModifyPass
 import AddRecipe from "./pages/AdminPage/components/AddRecipe/AddRecipe";
 import ManageRecipes from "./pages/AdminPage/components/ManageRecipes/ManageRecipes";
 import ModifyRecipe from "./pages/AdminPage/components/ModifyRecipe/ModifyRecipe";
+import ManageUsers from "./pages/AdminPage/components/ManageUsers/ManageUsers";
 
 export const router = createBrowserRouter([
     {
@@ -121,6 +122,10 @@ export const router = createBrowserRouter([
                     {
                         path: "/admin/modifier-recette/:id",
                         element: <ModifyRecipe />
+                    },
+                    {
+                        path: "/admin/gestion-utilisateurs",
+                        element: <ManageUsers />
                     }
                 ]
             }

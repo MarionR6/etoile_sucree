@@ -67,3 +67,9 @@ export async function logout() {
     }
     );
 }
+
+export async function getAllUsers() {
+    const response = await fetch(`${API_USERS}/getAllUsers`
+    );
+    return response.json();
+}

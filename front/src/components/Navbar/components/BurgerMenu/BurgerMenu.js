@@ -55,6 +55,13 @@ export default function BurgerMenu({ toggleMenu, handleDisconnect }) {
                 >
                     Profil
                 </Link>}
+                {user?.isAdmin === 1 && <Link
+                    onClick={(e) => toggleMenu(e)}
+                    to="/admin"
+                    className={styles.linkBurgerMenu}
+                >
+                    Zone Admin
+                </Link>}
                 {user ? (<Link
                     onClick={(e) => {
                         handleDisconnect();

@@ -215,4 +215,12 @@ router.patch("/modifyPassword/:id", async (req, res) => {
     });
 });
 
+router.get("/getAllUsers", (req, res) => {
+    const sql = "SELECT idUser, name, firstname FROM users";
+    connection.query(sql, (err, result) => {
+        if (err) throw err;
+        res.send(JSON.stringify(result));
+    });
+});
+
 module.exports = router;
