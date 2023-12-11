@@ -17,7 +17,7 @@ export default function Footer() {
                 <div className={styles.footerCategory}>
                     <h2 className={styles.footerTitle}>Nous contacter</h2>
                     <a href='tel:0000000000' className={styles.footerLines}>00.00.00.00.00</a>
-                    <a href='mailto:etoile.sucree@gmail.com' className={styles.footerLines}>etoile.sucree@gmail.com</a>
+                    <a href='mailto:etoile.sucree.cupcakes@gmail.com' className={styles.footerLines}>etoile.sucree.cupcakes@gmail.com</a>
                 </div>
                 <div className={styles.footerCategory}>
                     <h2 className={styles.footerTitle} id={styles.socialTitle}>Nous suivre</h2>

@@ -23,8 +23,38 @@
         .buttonsContainer {
             display: flex;
             justify-content: space-around;
+            margin-top: 5%;
 
-            .confirmButton {}
+            .confirmButton,
+            .cancelButton {
+                background: none;
+                font-size: 1rem;
+                font-family: var(--font-family);
+                padding: 1% 2%;
+                border-radius: 1rem;
+                cursor: pointer;
+            }
+
+            .confirmButton {
+                color: var(--text-color-light);
+                background-color: var(--secondary);
+                border: none;
+                transition: .5s all;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+
+            .cancelButton {
+                color: var(--text-color-dark);
+                border: .1rem solid var(--text-color-dark);
+                transition: .5s all;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
         }
     }
 }

@@ -126,8 +126,10 @@ router.delete("/deleteRecipe", (req, res) => {
 router.patch("/modifyRecipe/:id", upload.single("img"), async (req, res) => {
     const idRecipePatched = req.params.id;
     const { value, choice } = req.body;
+    let img = req?.file?.filename;
+    console.log("img", img);
+    console.log("req.body", req.body);
     console.log("value", value, "choice", choice, "id", idRecipePatched);
-    // let img = req.file.filename;
 
     if (choice === "recipeName") {
         console.log("Arrivé à recipeName");
@@ -145,13 +147,21 @@ router.patch("/modifyRecipe/:id", upload.single("img"), async (req, res) => {
                 });
             }
         });
+    } else if (choice === "img") {
+        console.log("Changement image démarre");
+        const sqlModifyImage = `UPDATE recipes SET img = ? WHERE idRecipe = ?`;
+        connection.query(sqlModifyImage, [img, idRecipePatched], (err, result) => {
+            if (err) throw err;
+            res.status(200).json("La recette a été modifiée avec succès !");
+        });
+
     } else {
-        console.log("Arrivé ici");
+        console.log("Arrivé au else");
         const sqlPatch = `UPDATE recipes SET ${choice} = "${value}" WHERE idRecipe = ?`;
         connection.query(sqlPatch, [idRecipePatched], (err, result) => {
             if (err) throw err;
             console.log("Recette mise à jour : ", value, choice);
-            res.status(200);
+            res.status(200).json("La recette a été modifiée avec succès !");
         });
     }
 });

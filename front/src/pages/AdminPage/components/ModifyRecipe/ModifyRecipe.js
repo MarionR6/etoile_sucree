@@ -14,6 +14,7 @@ export default function ModifyRecipe() {
     const [details, setDetails] = useState();
     const [modifiedInfo, setModifiedInfo] = useState(null);
     const [sentValues, setSentValues] = useState([]);
+    const [sentImage, setSentImage] = useState();
 
     useEffect(() => {
         async function getRecipeDetails() {
@@ -22,7 +23,6 @@ export default function ModifyRecipe() {
                 if (response.ok) {
                     const detailsFromBack = await response.json();
                     setDetails(detailsFromBack[0]);
-                    console.log(details);
                 }
             } catch (error) {
                 console.error(error);
@@ -53,48 +53,49 @@ export default function ModifyRecipe() {
         });
         if (response.ok) {
             setFeedback("Recette modifiée avec succès.");
+            setModifiedInfo(null);
         }
     }
 
-    // async function submit() {
-    //     const values = getValues();
-    //     console.log(values);
-    //     const formData = new FormData();
-    //     formData.append("recipeName", values.recipeName);
-    //     formData.append("cookingTime", values.cookingTime);
-    //     formData.append("preparingTime", values.preparingTime);
-    //     formData.append("difficulty", values.difficulty);
-    //     formData.append("instructions", values.instructions);
-    //     formData.append("cakeIngredients", values.cakeIngredients);
-    //     formData.append("icingIngredients", values.icingIngredients);
-    //     formData.append("nbrOfPeople", values.nbrOfPeople);
+    const changeImage = (e, choice) => {
+        let value = e.target.files;
+        let values = { value, choice };
+        setSentImage(values);
+    };
 
-    //     if (imgRef.current && imgRef.current.files[0]) {
-    //         const maxFileSize = 200000;
-    //         if (imgRef.current.files[0].size > maxFileSize) {
-    //             setErrorImg("Le fichier est trop volumineux, celui-ci ne doit pas dépasser 9Mo.");
-    //             console.log("Fichier trop volumineux");
-    //             return;
-    //         }
-    //         const supportedExtensions = ["jpg", "jpeg", "png", "webp", "avif"];
-    //         const fileExtension = imgRef.current.files[0].name.split(".").pop().toLowerCase();
-    //         if (!supportedExtensions.includes(fileExtension)) {
-    //             setErrorImg("Format de fichier non supporté.");
-    //             console.log("Format non supporté");
-    //             return;
-    //         }
-    //         formData.append("img", imgRef.current.files[0]);
-    //     }
-    //     const response = await fetch(`http://localhost:8000/api/recipes/modifyRecipe/${id}`, {
-    //         method: "PATCH",
-    //         body: formData,
-    //     });
-    //     if (response.ok) {
-    //         const newRecipe = await response.json();
-    //         setFeedback(newRecipe);
-    //     }
+    async function submitImage(sentImage) {
+        // let value = 
+        //     console.log(values);
+        console.log("sentImage", sentImage);
+        const formData = new FormData();
 
-    // }
+        if (imgRef.current && imgRef.current.files[0]) {
+            const maxFileSize = 200000;
+            if (imgRef.current.files[0].size > maxFileSize) {
+                setErrorImg("Le fichier est trop volumineux, celui-ci ne doit pas dépasser 9Mo.");
+                console.log("Fichier trop volumineux");
+                return;
+            }
+            const supportedExtensions = ["jpg", "jpeg", "png", "webp", "avif"];
+            const fileExtension = imgRef.current.files[0].name.split(".").pop().toLowerCase();
+            if (!supportedExtensions.includes(fileExtension)) {
+                setErrorImg("Format de fichier non supporté.");
+                console.log("Format non supporté");
+                return;
+            }
+            formData.append("img", imgRef.current.files[0]);
+            console.log(sentImage.choice);
+            formData.append("choice", sentImage.choice);
+        }
+        const response = await fetch(`http://localhost:8000/api/recipes/modifyRecipe/${id}`, {
+            method: "PATCH",
+            body: formData,
+        });
+        if (response.ok) {
+            setFeedback("Recette modifiée avec succès.");
+        }
+
+    }
 
     return (
         <div className={styles.formContainer}>
@@ -244,10 +245,11 @@ export default function ModifyRecipe() {
                     <label htmlFor="img">Photo de la recette</label>
                     <input type="file" id="img"
                         ref={imgRef}
-                        onFocus={() => handleShowPen(9)} />
+                        onFocus={() => handleShowPen(9)}
+                        onChange={(e) => changeImage(e, "img")} />
                     {modifiedInfo === 9 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
+                            onClick={() => submitImage(sentImage)}><i className="fa-regular fa-circle-check"></i></button>
                         <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
                 </div>
