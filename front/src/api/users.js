@@ -73,3 +73,14 @@ export async function getAllUsers() {
     );
     return response.json();
 }
+
+export async function adminDeleteUser(idUser) {
+    const response = await fetch(`${API_USERS}/adminDeleteUser`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ idUser })
+    });
+    return response.json();
+}

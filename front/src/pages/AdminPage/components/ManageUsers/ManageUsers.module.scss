@@ -3,4 +3,53 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .usersTableContainer {
+        width: 50%;
+    }
+
+    .tableUsers {
+        width: 100%;
+        padding: 5%;
+        border-spacing: 0;
+        font-family: var(--font-family);
+
+        thead {
+
+            tr {
+
+                th {
+                    border-bottom: .1rem solid var(--primary);
+                    font-weight: 500;
+                    font-size: 1.2rem;
+                    padding-bottom: 3%;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+
+                td {
+                    border-bottom: .1rem solid var(--primary);
+                    padding-block: 2%;
+                }
+
+                .buttonContainer {
+                    text-align: center;
+
+                    button {
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+
+                        i {
+                            color: var(--text-color-light);
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

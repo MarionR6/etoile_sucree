@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import styles from './ManageUsers.module.scss';
-import { getAllUsers } from '../../../../api/users';
+import { adminDeleteUser, getAllUsers } from '../../../../api/users';
+import Modal from "../../../../components/Modal/Modal";
 
 export default function ManageUsers() {
 
     const [showModal, setShowModal] = useState(false);
     const [idToDelete, setIdToDelete] = useState();
     const [allUsers, setAllUsers] = useState([]);
+    const [feedback, setFeedback] = useState("");
+    const [userToDelete, setUserToDelete] = useState([]);
 
     useEffect(() => {
         async function getUsers() {
@@ -16,31 +19,58 @@ export default function ManageUsers() {
         getUsers();
     }, [allUsers]);
 
-    const handleDelete = (idUser) => {
+    const handleDelete = (idUser, name, firstname) => {
         // const isConfirmed = window.confirm("Voulez-vous vraiment supprimer cette recette ? Cette action est irréversible.");
         setShowModal(true);
         setIdToDelete(idUser);
+        setUserToDelete({ name: name, firstname: firstname });
+        console.log(userToDelete);
     };
+
+    const handleCancelDelete = () => {
+        setShowModal(false);
+    };
+
+    const handleConfirmDelete = async () => {
+        const response = await adminDeleteUser(idToDelete);
+        handleDeleteFront(idToDelete);
+        setShowModal(false);
+        setFeedback(response);
+    };
+
+    const handleDeleteFront = (id) => {
+        console.log("id sent", id);
+        setAllUsers(allUsers.filter((user) => user.idUser !== id));
+    };
+
     return (
         <div className={styles.manageUsersContainer}>
-            <table className='cardBrown'>
-                <thead>
-                    <tr>
-                        <th>Nom de l'utilisateur</th>
-                        <th>Supprimer</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {allUsers.map((u, index) => (
-                        <tr key={index}>
-                            <td>{u.name}, {u.firstname}</td>
-                            <td className={styles.buttonContainer}><button
-                                type='button'
-                                onClick={() => handleDelete(u.idUser)}><i className="fa-solid fa-trash"></i></button></td>
+            <div className={styles.usersTableContainer}>
+                <table className={`cardBrown ${styles.tableUsers}`}>
+                    <thead>
+                        <tr>
+                            <th>Nom de l'utilisateur</th>
+                            <th>Supprimer</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {allUsers.map((u, index) => (
+                            <tr key={index}>
+                                <td>{u.name}, {u.firstname}</td>
+                                <td className={styles.buttonContainer}>
+                                    <button
+                                        type='button'
+                                        onClick={() => handleDelete(u.idUser, u.name, u.firstname)}><i className="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                {showModal && <Modal message={`Souhaitez-vous vraiment supprimer l'utilisateur ${userToDelete.firstname} ${userToDelete.name} ? Cette action est irréversible.`}
+                    onConfirm={handleConfirmDelete} onCancel={handleCancelDelete} />}
+                {feedback && <p>{feedback}</p>}
+            </div>
+
         </div>
     );
 }

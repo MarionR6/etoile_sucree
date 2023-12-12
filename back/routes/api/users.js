@@ -223,4 +223,13 @@ router.get("/getAllUsers", (req, res) => {
     });
 });
 
+router.delete("/adminDeleteUser", (req, res) => {
+    const { idUser } = req.body;
+    const sql = "DELETE FROM users WHERE idUser = ?";
+    connection.query(sql, [idUser], (err, result) => {
+        if (err) throw err;
+        res.status(200).json("L'utilisateur a été supprimé avec succès !");
+    });
+});
+
 module.exports = router;
