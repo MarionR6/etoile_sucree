@@ -54,16 +54,12 @@ router.post("/login", (req, res) => {
         console.log(result);
         if (!result.length) {
             console.log("Email et/ou mot de passe incorrects");
-            // let doesExist = { message: "Email et/ou mot de passe incorrects" };
-            // res.send(JSON.stringify(doesExist));
             res.status(401).json('Email et/ou mot de passe incorrects');
         } else {
             const dbPassword = result[0].password;
             const passwordMatch = await bcrypt.compare(password, dbPassword);
             if (!passwordMatch) {
                 console.log("Email et/ou mot de passe incorrects");
-                // let doesExist = { message: "Email et/ou mot de passe incorrects" };
-                // res.send(JSON.stringify(doesExist));
                 res.status(401).json('Email et/ou mot de passe incorrects');
             } else {
                 const token = jsonwebtoken.sign({}, key, {

@@ -31,7 +31,8 @@ export default function Register() {
             .required("Le champ est obligatoire"),
         mail: yup
             .string()
-            .email("Vous devez entrer une adresse mail valide")
+            .matches(
+                /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, "Votre mail n'est pas valide")
             .required("Ce champ est obligatoire"),
         password: yup
             .string()

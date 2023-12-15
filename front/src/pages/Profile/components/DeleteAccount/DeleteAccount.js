@@ -32,7 +32,7 @@ export default function DeleteAccount() {
             });
             console.log("TEST LIGNE 28");
             if (response.ok) {
-                setFeedbackGood("Votre compte est en cours de suppresion.");
+                setFeedbackGood("Votre compte est en cours de suppression.");
                 console.log(feedbackGood);
                 await logout();
                 setTimeout(() => {
