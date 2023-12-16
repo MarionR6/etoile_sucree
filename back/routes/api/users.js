@@ -136,7 +136,7 @@ router.delete("/deleteUser/:userId", (req, res) => {
     });
 });
 
-router.get("/resetPassword/:email", (req, res) => {
+router.get("/resetForgottenPassword/:email", (req, res) => {
     const email = req.params.email;
     let randomNumber = Math.floor(Math.random() * 9000 + 1000);
     const sqlSearchEmail = "SELECT * FROM users WHERE mail = ?";

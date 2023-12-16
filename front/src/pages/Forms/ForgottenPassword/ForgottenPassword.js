@@ -43,7 +43,7 @@ export default function ForgottenPassword() {
     async function submit(values) {
 
         try {
-            const response = await fetch(`http://localhost:8000/api/users/resetPassword/${values.email}`);
+            const response = await fetch(`http://localhost:8000/api/users/resetForgottenPassword/${values.email}`);
             if (response.ok) {
                 const resetCodeFromBack = await response.json();
                 setResetPasswordCode(resetCodeFromBack);
