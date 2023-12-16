@@ -48,7 +48,6 @@ export default function ModifyPassword() {
         });
 
     async function submitNewPassword(values) {
-        console.log("En cours");
         try {
             setFeedback("");
             const response = await fetch(`http://localhost:8000/api/users/modifyPassword/${userId}`, {
@@ -61,7 +60,6 @@ export default function ModifyPassword() {
             if (response.ok) {
                 const responseFromBack = await response.json();
                 setFeedbackGood(responseFromBack);
-                console.log(feedbackGood);
                 setTimeout(() => {
                     setFeedbackGood("");
                 }, 3000);

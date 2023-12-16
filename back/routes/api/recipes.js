@@ -17,7 +17,6 @@ const upload = multer({
         }
     }),
     fileFilter: (req, file, cb) => {
-        console.log(file);
         cb(null, true);
     }
 });
@@ -85,13 +84,11 @@ router.post("/likeRecipe/:idUser", (req, res) => {
             const deleteSQL = "DELETE FROM favorites WHERE idRecipe = ? AND idUser = ?";
             connection.query(deleteSQL, [idRecipe, idUser], (err, result) => {
                 if (err) throw err;
-                console.log("Disliked the already liked recipe");
             });
         } else {
             const sql = "INSERT INTO favorites (idRecipe, idUser) VALUES (?, ?)";
             connection.query(sql, [idRecipe, idUser], (err, result) => {
                 if (err) throw err;
-                console.log("Recipe Liked !");
                 res.sendStatus(200);
             });
         }
@@ -111,7 +108,6 @@ router.delete("/dislike/:idUser", (req, res) => {
 
 router.delete("/deleteRecipe", (req, res) => {
     const { idRecipe } = req.body;
-    console.log(req.body);
     const sqlDeleteFavorite = "DELETE FROM favorites WHERE idRecipe = ?";
     connection.query(sqlDeleteFavorite, [idRecipe], (err, result) => {
         if (err) throw err;
@@ -127,12 +123,8 @@ router.patch("/modifyRecipe/:id", upload.single("img"), async (req, res) => {
     const idRecipePatched = req.params.id;
     const { value, choice } = req.body;
     let img = req?.file?.filename;
-    console.log("img", img);
-    console.log("req.body", req.body);
-    console.log("value", value, "choice", choice, "id", idRecipePatched);
 
     if (choice === "recipeName") {
-        console.log("Arrivé à recipeName");
         const sqlVerify = "SELECT idRecipe FROM recipes WHERE recipeName = ?";
         connection.query(sqlVerify, [value], (err, result) => {
             if (result.length) {
@@ -148,7 +140,6 @@ router.patch("/modifyRecipe/:id", upload.single("img"), async (req, res) => {
             }
         });
     } else if (choice === "img") {
-        console.log("Changement image démarre");
         const sqlModifyImage = `UPDATE recipes SET img = ? WHERE idRecipe = ?`;
         connection.query(sqlModifyImage, [img, idRecipePatched], (err, result) => {
             if (err) throw err;
@@ -156,11 +147,9 @@ router.patch("/modifyRecipe/:id", upload.single("img"), async (req, res) => {
         });
 
     } else {
-        console.log("Arrivé au else");
         const sqlPatch = `UPDATE recipes SET ${choice} = "${value}" WHERE idRecipe = ?`;
         connection.query(sqlPatch, [idRecipePatched], (err, result) => {
             if (err) throw err;
-            console.log("Recette mise à jour : ", value, choice);
             res.status(200).json("La recette a été modifiée avec succès !");
         });
     }

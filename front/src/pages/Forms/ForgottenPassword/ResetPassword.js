@@ -21,8 +21,6 @@ export default function ResetPassword() {
     const searchParams = new URLSearchParams(location.search);
     const email = searchParams.get('email');
 
-    console.log(email);
-
     const { resetPasswordCode } = useContext(AuthContext);
 
     const handleChange = (e) => {
@@ -39,9 +37,6 @@ export default function ResetPassword() {
         } else {
             setFeedback("Code erronné");
         }
-        console.log(feedback);
-        console.log(resetPasswordCode);
-        console.log(enteredCode);
     };
 
     const defaultValues = {
@@ -76,7 +71,6 @@ export default function ResetPassword() {
 
     async function submit(values) {
         try {
-            console.log("values", values);
             const response = await fetch(`http://localhost:8000/api/users/resetPassword/${email}`, {
                 method: "PATCH",
                 headers: {

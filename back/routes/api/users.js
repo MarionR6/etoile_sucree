@@ -17,14 +17,12 @@ const transporter = nodeMailer.createTransport({
 // REGISTER
 
 router.post("/addUser", async (req, res) => {
-    console.log(req.body);
     const { name, firstname, mail, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const sql = `SELECT * FROM users WHERE mail= ?`;
     connection.query(sql, [mail], (err, result) => {
         try {
             if (err) throw err;
-            console.log(result);
             if (result.length) {
                 res.status(401).json("Adresse mail déjà existante");
             } else {
@@ -46,20 +44,16 @@ router.post("/addUser", async (req, res) => {
 //LOGIN
 
 router.post("/login", (req, res) => {
-    console.log(req.body);
     const { mail, password } = req.body;
     const sql = `SELECT * FROM users WHERE mail= ?`;
     connection.query(sql, [mail], async (err, result) => {
         if (err) throw err;
-        console.log(result);
         if (!result.length) {
-            console.log("Email et/ou mot de passe incorrects");
             res.status(401).json('Email et/ou mot de passe incorrects');
         } else {
             const dbPassword = result[0].password;
             const passwordMatch = await bcrypt.compare(password, dbPassword);
             if (!passwordMatch) {
-                console.log("Email et/ou mot de passe incorrects");
                 res.status(401).json('Email et/ou mot de passe incorrects');
             } else {
                 const token = jsonwebtoken.sign({}, key, {
@@ -68,7 +62,6 @@ router.post("/login", (req, res) => {
                     algorithm: "RS256"
                 });
                 res.cookie("token", token, { maxAge: 30 * 24 * 60 * 60 * 1000 });
-                console.log("Token créé");
                 res.json(result[0]);
             }
         }
@@ -102,7 +95,6 @@ router.get('/userConnected', (req, res) => {
 
 router.delete("/logout", (req, res) => {
     res.clearCookie("token");
-    console.log("Déconnexion en cours");
     res.send("Cookie cleared");
 });
 
@@ -126,7 +118,6 @@ router.delete("/deleteUser/:userId", (req, res) => {
         const dbPassword = result[0].password;
         const passwordMatch = await bcrypt.compare(password, dbPassword);
         if (!passwordMatch) {
-            console.log("Mot de passe incorrect");
             res.status(401).json("Le mot de passe est incorrect.");
         } else {
             const deleteFavoritesSql = `DELETE FROM favorites WHERE idUser = ?`;
@@ -162,7 +153,6 @@ router.get("/resetPassword/:email", (req, res) => {
                 if (err) {
                     throw err;
                 } else {
-                    // console.log(randomNumber);
                     res.send(JSON.stringify(randomNumber));
                 }
             });
@@ -184,19 +174,15 @@ router.patch("/resetPassword/:email", async (req, res) => {
 router.patch("/modifyPassword/:id", async (req, res) => {
     const { currentPassword, newPassword } = req.body;
     const idUser = req.params.id;
-    console.log("req params", req.params.id);
-    console.log("idUser", idUser);
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     const searchSql = "SELECT * FROM users WHERE idUser = ?";
     connection.query(searchSql, [idUser], async (err, result) => {
         if (err) {
             throw err;
         }
-        console.log(result);
         const dataBasePassword = result[0]?.password;
         const passwordMatch = await bcrypt.compare(currentPassword, dataBasePassword);
         if (!passwordMatch) {
-            console.log("Mot de passe erronné");
             res.status(401).json("Le mot de passe actuel est erronné");
         } else {
             const sql = "UPDATE users SET password = ? WHERE idUser = ?";
@@ -204,7 +190,6 @@ router.patch("/modifyPassword/:id", async (req, res) => {
                 if (err) {
                     throw err;
                 }
-                console.log("Modification réussie");
                 res.status(200).json("Votre mot de passe a été modifié avec succès.");
             });
         }

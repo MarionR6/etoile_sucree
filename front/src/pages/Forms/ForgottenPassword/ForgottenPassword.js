@@ -41,7 +41,6 @@ export default function ForgottenPassword() {
     });
 
     async function submit(values) {
-        console.log(values);
 
         try {
             const response = await fetch(`http://localhost:8000/api/users/resetPassword/${values.email}`);
@@ -49,7 +48,6 @@ export default function ForgottenPassword() {
                 const resetCodeFromBack = await response.json();
                 setResetPasswordCode(resetCodeFromBack);
                 setFeedbackGood("Un email vous a été envoyé. Vous allez être redirigé(e).");
-                console.log(resetPasswordCode);
                 setChangingPassword(true);
                 setTimeout(() => {
                     navigate(`/resetPassword?email=${values.email}`);

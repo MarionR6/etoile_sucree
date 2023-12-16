@@ -31,14 +31,12 @@ export default function ModifyRecipe() {
     }, []);
 
     const handleShowPen = (n) => {
-        console.log(n);
         setModifiedInfo(n);
     };
 
     const changeValue = (e, choice) => {
         let value = e.target.value;
         let values = { value, choice };
-        console.log("values", values);
         setSentValues(values);
 
     };
@@ -64,27 +62,21 @@ export default function ModifyRecipe() {
     };
 
     async function submitImage(sentImage) {
-        // let value = 
-        //     console.log(values);
-        console.log("sentImage", sentImage);
         const formData = new FormData();
 
         if (imgRef.current && imgRef.current.files[0]) {
             const maxFileSize = 200000;
             if (imgRef.current.files[0].size > maxFileSize) {
                 setErrorImg("Le fichier est trop volumineux, celui-ci ne doit pas dépasser 9Mo.");
-                console.log("Fichier trop volumineux");
                 return;
             }
             const supportedExtensions = ["jpg", "jpeg", "png", "webp", "avif"];
             const fileExtension = imgRef.current.files[0].name.split(".").pop().toLowerCase();
             if (!supportedExtensions.includes(fileExtension)) {
                 setErrorImg("Format de fichier non supporté.");
-                console.log("Format non supporté");
                 return;
             }
             formData.append("img", imgRef.current.files[0]);
-            console.log(sentImage.choice);
             formData.append("choice", sentImage.choice);
         }
         const response = await fetch(`http://localhost:8000/api/recipes/modifyRecipe/${id}`, {

@@ -18,7 +18,6 @@ export default function DeleteAccount() {
     const handleChange = (e) => {
         const value = e.target.value;
         setInputContent(value);
-        console.log(value);
     };
 
     async function handleDeleteUser(password) {
@@ -30,10 +29,8 @@ export default function DeleteAccount() {
                 },
                 body: JSON.stringify({ password }),
             });
-            console.log("TEST LIGNE 28");
             if (response.ok) {
                 setFeedbackGood("Votre compte est en cours de suppression.");
-                console.log(feedbackGood);
                 await logout();
                 setTimeout(() => {
                     setUser(null);

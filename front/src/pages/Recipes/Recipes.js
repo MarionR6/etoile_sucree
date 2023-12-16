@@ -21,7 +21,6 @@ export default function Recipes() {
                     const recipesFromBack = await response.json();
                     setLatestRecipe(recipesFromBack.slice(0, 1));
                     setAllRecipes(recipesFromBack);
-                    console.log(recipesFromBack);
                     let allRecipesExceptLatest = recipesFromBack.slice(1);
                     setAllRecipesButLatest(allRecipesExceptLatest);
                     setDisplayedRecipe([allRecipesExceptLatest[0]]);
@@ -34,15 +33,10 @@ export default function Recipes() {
     }, []);
 
 
-    console.log(displayedRecipe);
     const handleShowRecipe = (r) => {
         setDisplayedRecipe([r]);
-        console.log(displayedRecipe);
     };
 
-    console.log(displayedRecipe);
-
-    console.log([allRecipesButLatest[0]]);
     return (
         <>
             <Header title={"Nos recettes"} srcImg={imgHeader} />
@@ -70,7 +64,6 @@ export default function Recipes() {
                                 </ul>
                             </div>
                         </div>
-                        {console.log(displayedRecipe)}
                         <DisplayRecipe chosenRecipe={displayedRecipe} brownBackground={true} />
                     </div>
                 </article>

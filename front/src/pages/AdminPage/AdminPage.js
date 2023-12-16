@@ -68,7 +68,6 @@ export default function AdminPage() {
 
     async function submit() {
         const values = getValues();
-        console.log(values);
         const formData = new FormData();
         formData.append("recipeName", values.recipeName);
         formData.append("cookingTime", values.cookingTime);
@@ -83,14 +82,12 @@ export default function AdminPage() {
             const maxFileSize = 200000;
             if (imgRef.current.files[0].size > maxFileSize) {
                 setErrorImg("Le fichier est trop volumineux, celui-ci ne doit pas dépasser 9Mo.");
-                console.log("Fichier trop volumineux");
                 return;
             }
             const supportedExtensions = ["jpg", "jpeg", "png", "webp", "avif"];
             const fileExtension = imgRef.current.files[0].name.split(".").pop().toLowerCase();
             if (!supportedExtensions.includes(fileExtension)) {
                 setErrorImg("Format de fichier non supporté.");
-                console.log("Format non supporté");
                 return;
             }
             formData.append("img", imgRef.current.files[0]);
@@ -103,7 +100,6 @@ export default function AdminPage() {
             const newRecipe = await response.json();
             if (newRecipe.message) {
                 setFeedback(newRecipe.message);
-                console.log(feedback);
 
             } else {
                 setFeedbackGood(newRecipe.messageGood);
@@ -119,106 +115,6 @@ export default function AdminPage() {
     return (
         <>
             <Banner />
-            {/* <div className={styles.formContainer}>
-                <form
-                    onSubmit={handleSubmit(submit)}
-                    className={`cardBrown ${styles.form}`}
-                >
-                    <h2>Ajouter une recette</h2>
-                    <div className={styles.oneFormElement}>
-                        <label htmlFor="recipeName">Nom de la recette</label>
-                        <input {...register("recipeName")} type="text" id="recipeName" />
-                        {errors.recipeName && <p className="form-error">{errors.recipeName.message}</p>}
-                    </div>
-                    <div className={styles.oneFormElement}>
-                        <label htmlFor="cookingTime">Temps de cuisson</label>
-                        <input {...register("cookingTime")} type="text" id="cookingTime" />
-                        {errors.cookingTime && <p className="form-error">{errors.cookingTime.message}</p>}
-                    </div>
-                    <div className={styles.oneFormElement}>
-                        <label htmlFor="preparingTime">Temps de préparation</label>
-                        <input {...register("preparingTime")} type="text" id="preparingTime" />
-                        {errors.preparingTime && <p className="form-error">{errors.preparingTime.message}</p>}
-                    </div>
-                    <div className={styles.oneFormElement}>
-                        <label htmlFor="difficulty">Difficulté</label>
-                        <select
-                            {...register("difficulty")}
-                            id="difficulty"
-                        >
-                            <option value="facile" defaultValue="selected">Facile</option>
-                            <option value="intermédiaire">Intermédiaire</option>
-                            <option value="difficile">Difficile</option>
-                        </select>
-                        {errors.difficulty && (
-                            <p className="form-error">{errors.difficulty.message}</p>
-                        )}
-                    </div>
-                    <div className={styles.oneFormElement}>
-                        <label htmlFor="instructions">Instructions</label>
-                        <textarea
-                            {...register("instructions")}
-                            cols={200}
-                            rows={10}
-                            id="instructions"
-                        />
-                        {errors.instructions && (
-                            <p className="form-error">{errors.instructions.message}</p>
-                        )}
-                    </div>
-                    <div className={styles.oneFormElement}>
-                        <label htmlFor="cakeIngredients">Ingrédients du gâteau</label>
-                        <textarea
-                            {...register("cakeIngredients")}
-                            cols={200}
-                            rows={10}
-                            id="cakeIngredients"
-                        />
-                        {errors.cakeIngredients && (
-                            <p className="form-error">{errors.cakeIngredients.message}</p>
-                        )}
-                    </div>
-                    <div className={styles.oneFormElement}>
-                        <label htmlFor="cakeIngredients">Ingrédients du glaçage</label>
-                        <textarea
-                            {...register("icingIngredients")}
-                            cols={200}
-                            rows={10}
-                            id="icingIngredients"
-                        />
-                        {errors.icingIngredients && (
-                            <p className="form-error">{errors.icingIngredients.message}</p>
-                        )}
-                    </div>
-                    <div className={styles.oneFormElement}>
-                        <label htmlFor="nbrOfPeople">Pour combien de personnes ?</label>
-                        <input type="number"
-                            min={1}
-                            max={10}
-                            {...register("nbrOfPeople")}
-                            id="nbrOfPeople"
-                        />
-                        {errors.nbrOfPeople && (
-                            <p className="form-error">{errors.nbrOfPeople.message}</p>
-                        )}
-                    </div>
-                    <div className={styles.oneFormElement}>
-                        <label htmlFor="img">Photo de la recette</label>
-                        <input {...register("img")} type="file" id="img"
-                            ref={imgRef} />
-                        {errors.img && <p className="form-error">{errors.img.message}</p>}
-                    </div>
-                    <div>
-                        {feedback && <p>{feedback}</p>}
-                        {feedbackGood && <p>{feedbackGood}</p>}
-                    </div>
-                    <div className={styles.buttonContainer}>
-                        <button className="btn btn-primary">
-                            Sauvegarder
-                        </button>
-                    </div>
-                </form>
-            </div> */}
             <nav className={styles.adminNav}>
                 <ul>
                     <li><NavLink end to="/admin">Ajouter une recette</NavLink></li>

@@ -45,7 +45,6 @@ export default function ModifyInfo() {
         });
 
     async function submitInfo(values) {
-        console.log("test");
         try {
             clearErrors();
             await modifyUserInfo(values);

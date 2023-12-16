@@ -36,8 +36,10 @@ export default function Register() {
             .required("Ce champ est obligatoire"),
         password: yup
             .string()
-            .required("Ce champ est obligatoire")
-            .min(6, "Le mot de passe est trop court"),
+            .matches(
+                /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, "Le mot de passe doit contenir au moins 8 caractères dont un chiffre et une lettre"
+            )
+            .required("Ce champ est obligatoire"),
         confirmPassword: yup
             .string()
             .required("Vous devez confirmer le mot de passe")
@@ -60,11 +62,9 @@ export default function Register() {
 
     const handleChangeAcceptGCU = () => {
         setAcceptGCU(!acceptGCU);
-        console.log(acceptGCU);
     };
     const handleChangeAcceptGDPR = () => {
         setAcceptGDPR(!acceptGDPR);
-        console.log(acceptGDPR);
     };
 
     async function submit(values) {

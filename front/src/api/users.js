@@ -38,7 +38,6 @@ export async function createUser(values) {
         return (backResponse);
     } else {
         if (backResponse) {
-            console.log(backResponse);
             throw backResponse;
         } else {
             throw new Error("Error API createUser");

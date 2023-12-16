@@ -14,8 +14,6 @@ export default function Profile() {
         setUser(null);
     }
 
-    console.log(user);
-
     return (
         <>
             <Banner />

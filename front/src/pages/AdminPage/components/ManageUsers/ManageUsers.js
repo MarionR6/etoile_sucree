@@ -24,7 +24,6 @@ export default function ManageUsers() {
         setShowModal(true);
         setIdToDelete(idUser);
         setUserToDelete({ name: name, firstname: firstname });
-        console.log(userToDelete);
     };
 
     const handleCancelDelete = () => {
@@ -39,7 +38,6 @@ export default function ManageUsers() {
     };
 
     const handleDeleteFront = (id) => {
-        console.log("id sent", id);
         setAllUsers(allUsers.filter((user) => user.idUser !== id));
     };
 

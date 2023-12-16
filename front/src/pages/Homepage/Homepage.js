@@ -24,7 +24,6 @@ export default function Homepage() {
                 const response = await fetch(`http://localhost:8000/api/recipes/getRecipesHomepage`);
                 if (response.ok) {
                     const recipesFromBack = await response.json();
-                    console.log(recipesFromBack);
                     setHomeRecipes(recipesFromBack);
                 }
             } catch (error) {
@@ -34,7 +33,7 @@ export default function Homepage() {
     }, []);
 
     return (
-        <>
+        <main>
             <Header srcImg={HomepageHeader} />
             <section>
                 <Carousel />
@@ -44,7 +43,7 @@ export default function Homepage() {
                     <h1>Notre histoire</h1>
                     <div className={`${styles.txtImgContainer}`}>
                         <div className={`${styles.imgStory}`}>
-                            <img src={StoryImg} alt="" />
+                            <img src={StoryImg} alt="Photo d'une personne sortant une plaque de gâteaux d'un four" />
                         </div>
                         <div className={`line-dark ${styles.lineStory}`}></div>
                         <div className={`cardPink ${styles.txtStory}`}>
@@ -58,9 +57,31 @@ export default function Homepage() {
                 <article className={`${styles.servicesContainer}`}>
                     <h1>Nos services</h1>
                     <div className={styles.allServices}>
-                        <ServiceCard servImg={imgSurPlace} title={"Sur place ou à emporter"} servTxt={"Laissez-vous séduire par nos créations, à déguster au sein de notre boutique, ou à emporter afin d’en profiter où que vous alliez !"} isButton={true} txtButton={"Voir la carte"} linkContent={"/carte"} />
-                        <ServiceCard servImg={imgSalon} title={"Notre salon de thé"} servTxt={"Découvrez notre espace salon de thé ! Passez un agréable moment dans une atmosphère unique et chaleureuse. Réservation du salon disponible avec une capacité de 30 personnes maximum !"} isButton={false} isReversed={true} />
-                        <ServiceCard servImg={imgLivraison} title={"Livraisons et traiteur"} servTxt={"Apportez une touche sucrée à vos événements spéciaux. Nous pouvons également vous livrer à domicile pour toute commande de plus de 100 euros."} isButton={true} txtButton={"Découvrir"} linkContent={"/services"} />
+                        <ServiceCard
+                            servImg={imgSurPlace}
+                            altImg={"Photo de cupcakes"}
+                            title={"Sur place ou à emporter"}
+                            servTxt={"Laissez-vous séduire par nos créations, à déguster au sein de notre boutique, ou à emporter afin d’en profiter où que vous alliez !"}
+                            isButton={true}
+                            txtButton={"Voir la carte"}
+                            titleButton={"Cliquez pour accéder à la carte"}
+                            linkContent={"/carte"} />
+                        <ServiceCard
+                            servImg={imgSalon}
+                            altImg={"Photo de tasses de thé et de cupcakes"}
+                            title={"Notre salon de thé"}
+                            servTxt={"Découvrez notre espace salon de thé ! Passez un agréable moment dans une atmosphère unique et chaleureuse. Réservation du salon disponible avec une capacité de 30 personnes maximum !"}
+                            isButton={false}
+                            isReversed={true} />
+                        <ServiceCard
+                            servImg={imgLivraison}
+                            altImg={"Photo de cupcakes sur des plateaux"}
+                            title={"Livraisons et traiteur"}
+                            servTxt={"Apportez une touche sucrée à vos événements spéciaux. Nous pouvons également vous livrer à domicile pour toute commande de plus de 100 euros."}
+                            isButton={true}
+                            txtButton={"Découvrir"}
+                            titleButton={"Cliquez pour accéder aux services"}
+                            linkContent={"/services"} />
                     </div>
                 </article>
             </section>
@@ -82,6 +103,6 @@ export default function Homepage() {
                     <Link to="/recettes" className={`btn ${styles.linkHomepage}`}>Venez les découvrir !</Link>
                 </article>
             </section>
-        </>
+        </main>
     );
 }

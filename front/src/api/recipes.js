@@ -9,7 +9,6 @@ export async function toggleLikeRecipe(idRecipe, idUser) {
         body: JSON.stringify({ idRecipe })
     });
     if (response.ok) {
-        console.log("Liked");
     } else {
         throw new Error("Error api recipes liked");
     }

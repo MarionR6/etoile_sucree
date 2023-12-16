@@ -29,10 +29,8 @@ export default function FavoriteRecipes() {
     }, [userId]);
 
     const handleDeleteFront = (id) => {
-        console.log("id sent", id);
         setUsersFaves(usersFaves.filter((oneRecipe) => oneRecipe.idRecipe !== id));
     };
-    console.log(usersFaves);
 
     return (
         <div className={styles.chosenCategory}>

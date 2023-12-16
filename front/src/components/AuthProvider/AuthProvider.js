@@ -11,8 +11,6 @@ export default function AuthProvider({ children }) {
 
     const [resetPasswordCode, setResetPasswordCode] = useState([]);
 
-    console.log(resetPasswordCode);
-
     async function login(values) {
         const newUser = await signin(values);
         setUser({ ...newUser, password: "" });

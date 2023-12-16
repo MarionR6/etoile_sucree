@@ -16,7 +16,6 @@ export default function ManageRecipes() {
                 const response = await fetch(`http://localhost:8000/api/recipes/getRecipes`);
                 if (response.ok) {
                     const recipesFromBack = await response.json();
-                    console.log(recipesFromBack);
                     const orderedRecipes = recipesFromBack.sort(function (a, b) {
                         if (a.recipeName.toUpperCase() < b.recipeName.toUpperCase()) {
                             return -1;
@@ -46,7 +45,6 @@ export default function ManageRecipes() {
     };
 
     const handleDeleteFront = (id) => {
-        console.log("id sent", id);
         setAllRecipes(allRecipes.filter((oneRecipe) => oneRecipe.idRecipe !== id));
     };
 
@@ -55,15 +53,6 @@ export default function ManageRecipes() {
         handleDeleteFront(idToDelete);
         setShowModal(false);
     };
-
-
-    // const handleModify = (idRecipe) => {
-    //     handleModifyFront(idRecipe);
-    // };
-
-    // const handleModifyFront = (id) => {
-    //     setAllRecipes(allRecipes.filter((modifyingRecipe) => modifyingRecipe.idRecipe === id));
-    // };
 
     return (
         <div className={styles.recipesTableContainer}>
