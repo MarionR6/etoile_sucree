@@ -79,8 +79,8 @@ export default function Register() {
         } catch (error) {
             setError("generic", { type: "generic", message: error });
         }
-
     }
+
     return (
         <div className={`${styles.inscriptionArticle}`}>
             <div className={`cardBrown ${styles.formContainer}`}>

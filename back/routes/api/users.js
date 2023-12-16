@@ -206,6 +206,12 @@ router.get("/getAllUsers", (req, res) => {
 
 router.delete("/adminDeleteUser", (req, res) => {
     const { idUser } = req.body;
+    const deleteFavoritesSql = `DELETE FROM favorites WHERE idUser = ?`;
+    connection.query(deleteFavoritesSql, [idUser], (err, result) => {
+        if (err) {
+            throw err;
+        }
+    });
     const sql = "DELETE FROM users WHERE idUser = ?";
     connection.query(sql, [idUser], (err, result) => {
         if (err) throw err;
