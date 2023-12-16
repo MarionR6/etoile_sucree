@@ -64,6 +64,8 @@ export default function AddRecipe() {
     });
 
     async function submit() {
+        setFeedback("");
+        setErrorImg("");
         const values = getValues();
         const formData = new FormData();
         formData.append("recipeName", values.recipeName);
@@ -193,7 +195,7 @@ export default function AddRecipe() {
                     <label htmlFor="img">Photo de la recette</label>
                     <input {...register("img")} type="file" id="img"
                         ref={imgRef} />
-                    {errors.img && <p className="form-error">{errors.img.message}</p>}
+                    {errorImg && <p className="form-error">{errorImg}</p>}
                 </div>
                 <div>
                     {feedback && <p>{feedback}</p>}

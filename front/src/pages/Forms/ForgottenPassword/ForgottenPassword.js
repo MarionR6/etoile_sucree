@@ -41,6 +41,7 @@ export default function ForgottenPassword() {
     });
 
     async function submit(values) {
+        setFeedback("");
 
         try {
             const response = await fetch(`http://localhost:8000/api/users/resetForgottenPassword/${values.email}`);
@@ -54,7 +55,8 @@ export default function ForgottenPassword() {
                 }, 3000);
 
             } else {
-                setFeedback("Une erreur s'est produite, veuillez réessayer plus tard.");
+                const responseFromBack = await response.json();
+                setFeedback(responseFromBack);
             }
         } catch (error) {
             console.error(error);

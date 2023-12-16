@@ -138,11 +138,11 @@ router.delete("/deleteUser/:userId", (req, res) => {
 
 router.get("/resetForgottenPassword/:email", (req, res) => {
     const email = req.params.email;
-    let randomNumber = Math.floor(Math.random() * 9000 + 1000);
     const sqlSearchEmail = "SELECT * FROM users WHERE mail = ?";
     connection.query(sqlSearchEmail, [email], (err, result) => {
         if (err) throw err;
         if (result.length !== 0) {
+            let randomNumber = Math.floor(Math.random() * 9000 + 1000);
             const mailOptions = {
                 from: "etoile.sucree.cupcakes@gmail.com",
                 to: email,
@@ -156,6 +156,8 @@ router.get("/resetForgottenPassword/:email", (req, res) => {
                     res.send(JSON.stringify(randomNumber));
                 }
             });
+        } else {
+            res.status(401).json("L'adresse mail est introuvable.");
         }
     });
 });

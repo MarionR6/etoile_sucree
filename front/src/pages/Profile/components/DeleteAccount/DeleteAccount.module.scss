@@ -24,5 +24,17 @@
         cursor: pointer;
         padding: 1% 2%;
         font-size: 1rem;
+        // margin-top: 5%;
+    }
+}
+
+.feedbackContainer {
+    width: 100%;
+    margin-bottom: 5%;
+
+    .feedback {
+        color: red;
+        text-align: center;
+        margin: 0;
     }
 }

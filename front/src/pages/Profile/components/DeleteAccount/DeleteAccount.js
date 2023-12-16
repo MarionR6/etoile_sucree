@@ -9,6 +9,7 @@ export default function DeleteAccount() {
     const { user, setUser } = useContext(AuthContext);
 
     const [feedbackGood, setFeedbackGood] = useState("");
+    const [feedback, setFeedback] = useState("");
     const [inputContent, setInputContent] = useState("");
 
     const userId = user.idUser;
@@ -37,6 +38,9 @@ export default function DeleteAccount() {
                     navigate("/");
                 }, 3000);
 
+            } else {
+                const responseFromBack = await response.json();
+                setFeedback(responseFromBack);
             }
         } catch (error) {
             console.error(error);
@@ -51,6 +55,9 @@ export default function DeleteAccount() {
 
                 <label htmlFor="password">Veuillez entrer votre mot de passe afin de supprimer votre compte</label>
                 <input type="password" onChange={handleChange} />
+                <div className={styles.feedbackContainer}>
+                    {feedback && <p className={styles.feedback}>{feedback}</p>}
+                </div>
 
                 <button type='button' className='btn' onClick={() => handleDeleteUser(inputContent)}>Supprimer mon compte</button></>}
             {feedbackGood && <p>{feedbackGood}</p>}
