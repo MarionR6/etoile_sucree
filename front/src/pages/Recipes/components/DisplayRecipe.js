@@ -53,13 +53,13 @@ export default function DisplayRecipe({ chosenRecipe, brownBackground }) {
                                     style={{ color: "var(--text-color-dark)" }}></i>
                             ) : (
                                 !isLiked ? (
-                                    <i class="fa-regular fa-heart"></i>
+                                    <i className="fa-regular fa-heart"></i>
                                 ) : (
                                     <i className="fa-solid fa-heart"></i>
                                 )
                             )}
                     </button>) : (<button type="button" onClick={() => navigate("/utilisateur")}>
-                        {brownBackground ? (<i class="fa-regular fa-heart" style={{ color: "var(--text-color-dark)" }}></i>) : (<i class="fa-regular fa-heart"></i>)}
+                        {brownBackground ? (<i className="fa-regular fa-heart" style={{ color: "var(--text-color-dark)" }}></i>) : (<i className="fa-regular fa-heart"></i>)}
                     </button>)}
                 </div>
                 <h3>

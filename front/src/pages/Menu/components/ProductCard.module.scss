@@ -1,11 +1,22 @@
+@use"../../../assets/styles/mixin" as mixin;
+
 .card {
-    width: 40%;
+    width: 44%;
     display: flex;
     align-items: center;
     position: relative;
     border-radius: var(--border-radius);
     border: .2rem solid var(--primary);
     overflow: hidden;
+
+    @include mixin.tablet {
+        width: 70%;
+    }
+
+    @include mixin.smartphone {
+        width: 85%;
+    }
+
 }
 
 .biggerCard {
@@ -17,15 +28,44 @@
     border: .2rem solid var(--primary);
     overflow: hidden;
 
+    @include mixin.xs {
+        width: 100%;
+    }
+
     .recipePrice {
         p {
             font-size: 1.5rem;
+
+            @include mixin.large-laptop {
+                font-size: 1.2rem;
+            }
         }
+
     }
 
     .recipeName {
         p {
             font-size: 2.5rem;
+
+            @include mixin.large-laptop {
+                font-size: 1.8rem;
+            }
+
+            @include mixin.laptop {
+                font-size: 2.5rem;
+            }
+
+            @include mixin.small-laptop {
+                font-size: 2rem;
+            }
+
+            @include mixin.tablet {
+                font-size: 1.4rem;
+            }
+
+            @include mixin.xs {
+                font-size: 1.3rem;
+            }
         }
     }
 }
@@ -40,11 +80,17 @@
 
 .imgContainer {
     width: 30%;
+    overflow: hidden;
+
+    @include mixin.large-laptop {
+        width: 50%;
+    }
 
     img {
         width: 100%;
         border-right: .2rem solid var(--primary);
     }
+
 }
 
 .recipeName {
@@ -55,5 +101,25 @@
         font-family: var(--font-title);
         text-align: center;
         color: var(--text-color-light);
+
+        @include mixin.large-laptop {
+            font-size: 1.6rem;
+        }
+
+        @include mixin.laptop {
+            font-size: 2rem;
+        }
+
+        @include mixin.small-laptop {
+            font-size: 1.8rem;
+        }
+
+        @include mixin.tablet {
+            font-size: 2rem;
+        }
+
+        @include mixin.xs {
+            font-size: 1.3rem;
+        }
     }
 }

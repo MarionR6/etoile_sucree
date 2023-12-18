@@ -1,3 +1,5 @@
+@use "../../assets/styles/mixin" as mixin;
+
 section {
     padding-block: var(--padding-block-section);
     font-family: var(--font-family);
@@ -9,6 +11,10 @@ section {
 
 .currentRecipeContainer {
     padding: var(--padding-block-article);
+
+    @include mixin.small-laptop {
+        padding: 0;
+    }
 
     .currentRecipeTitle {
         color: var(--text-color-dark);
@@ -29,6 +35,10 @@ section {
             width: 25%;
             border-radius: var(--border-radius);
             padding: 2% 2%;
+
+            @include mixin.small-laptop {
+                width: 30%;
+            }
 
             .recipeNamesContainer {
 

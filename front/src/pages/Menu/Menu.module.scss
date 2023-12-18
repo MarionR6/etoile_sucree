@@ -1,3 +1,5 @@
+@use"../../assets/styles/mixin" as mixin;
+
 section {
     padding: 5% 0;
 
@@ -14,9 +16,18 @@ section {
             flex-direction: column;
             align-items: center;
 
+            @include mixin.laptop {
+                width: 80%;
+            }
+
             h1 {
                 color: var(--text-color-dark);
                 margin-bottom: 3%;
+
+                @include mixin.tablet {
+                    margin-bottom: 0;
+                    margin-block: 3%;
+                }
             }
 
             .products {
@@ -43,6 +54,15 @@ section {
                     display: flex;
                     flex-direction: column;
                     gap: 2em 4em;
+
+                    @include mixin.xs {
+                        width: 80%;
+                        margin: 0 auto;
+                    }
+
+                    @include mixin.smartphone {
+                        width: 100%;
+                    }
                 }
 
                 .message {
@@ -55,14 +75,53 @@ section {
                     align-items: center;
                     transform: rotate(20deg);
 
+                    @include mixin.laptop {
+                        width: 15vw;
+                        height: 15vw;
+                    }
+
+                    @include mixin.xs {
+                        width: 20vw;
+                        height: 20vw;
+                        margin: 0 auto;
+                    }
+
+                    @include mixin.smartphone {
+                        width: 30vw;
+                        height: 30vw;
+                    }
+
                     p {
                         font-family: var(--font-title);
                         font-size: 2.5rem;
                         text-align: center;
                         color: var(--text-color-light);
+
+                        @include mixin.large-laptop {
+                            font-size: 2rem;
+                        }
+
+                        @include mixin.laptop {
+                            font-size: 3rem;
+                        }
+
+                        @include mixin.small-laptop {
+                            font-size: 2rem;
+                        }
+
+                        @include mixin.tablet {
+                            font-size: 1.8rem;
+                        }
+
                     }
                 }
 
+            }
+
+            #rightNow {
+                @include mixin.xs {
+                    flex-wrap: wrap;
+                }
             }
 
             #twoLinesTitle {

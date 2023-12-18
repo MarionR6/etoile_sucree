@@ -7,7 +7,7 @@ export default function ProductCard({ recipePrice, srcImage, recipeName, atTheMo
                 <p>{recipePrice}</p>
             </div>
             <div className={styles.imgContainer}>
-                <img src={srcImage} alt="" />
+                <img src={srcImage} alt="Photo d'un cupcake" />
             </div>
             <div className={styles.recipeName}>
                 <p>{recipeName}</p>

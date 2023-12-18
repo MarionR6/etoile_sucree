@@ -12,45 +12,18 @@ footer {
         align-items: center;
         flex-wrap: wrap;
 
-        // .logoContainer {
-        //     width: 20%;
-        //     display: flex;
-        //     justify-content: center;
-        //     display: none;
-
-        //     @include mixin.laptop {
-        //         width: 10%;
-        //     }
-
-        //     @include mixin.tablet {
-        //         width: 7%;
-        //     }
-
-        //     @include mixin.smartphone {
-        //         display: none;
-        //     }
-
-        //     img {
-        //         width: 25%;
-
-        //         @include mixin.laptop {
-        //             width: 60%;
-        //         }
-
-        //         @include mixin.tablet {
-        //             width: 100%;
-        //         }
-        //     }
-        // }
-
         .footerCategory {
-            // width: 20%;
             min-width: 170px;
             color: var(--text-color-dark);
             font-size: 1.1rem;
 
             @include mixin.laptop {
                 font-size: 1rem;
+            }
+
+            @include mixin.smartphone {
+                text-align: center;
+                margin-block: 1%;
             }
 
             .footerTitle {
@@ -91,18 +64,25 @@ footer {
                 justify-content: space-between;
                 align-items: center;
 
-                i {
-                    padding-right: 5%;
-                    transition: .5s all;
+                a {
+                    display: flex;
+                    align-items: center;
 
-                    &:hover {
-                        transform: scale(1.2);
-                    }
+                    i {
+                        padding-right: 5%;
+                        transition: .5s all;
 
-                    @include mixin.smartphone {
-                        font-size: 1.3rem;
+                        &:hover {
+                            transform: scale(1.2);
+                        }
+
+                        @include mixin.smartphone {
+                            font-size: 1.3rem;
+                        }
                     }
                 }
+
+
 
                 @include mixin.smartphone {
                     display: flex;

@@ -35,11 +35,16 @@ export default function Navbar() {
                         <li><NavLink to="/recettes">Recettes</NavLink></li>
                     </ul>
                 </nav>
-                <div className={`${styles.icon}`}>
-                    {/* {user ? (<Link to="/profil"><img src={UserIcon} alt="" /></Link>) : (<Link to="/utilisateur"><img src={UserIcon} alt="" /></Link>)} */}
-                    {user ? (<div className={styles.buttonsContainer}><Link to="/profil" className={styles.firstButton}>Mon profil</Link>
-                        <button onClick={() => handleDisconnect()} type="button">Déconnexion</button></div>) : (<div className={styles.buttonsContainer}><Link to="/utilisateur" className={styles.firstButton}>Se connecter</Link>
-                            <Link to="/utilisateur/inscription">S'inscrire</Link></div>)}
+                <div className={`${styles.userButtons}`}>
+                    {user ? (
+                        <div className={styles.buttonsContainer}>
+                            <Link to="/profil" className={styles.firstButton}>Mon profil</Link>
+                            <button
+                                onClick={() => handleDisconnect()} type="button">Déconnexion</button>
+                        </div>) : (<div className={styles.buttonsContainer}>
+                            <Link to="/utilisateur" className={styles.firstButton}>Se connecter</Link>
+                            <Link to="/utilisateur/inscription">S'inscrire</Link>
+                        </div>)}
 
                 </div>
             </div>

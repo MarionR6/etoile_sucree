@@ -19,7 +19,7 @@ export default function BurgerMenu({ toggleMenu, handleDisconnect }) {
 
         <div>
             <ul className={styles.mobileContainer}>
-                <button className={styles.closeMenu} type='button' onClick={(e) => toggleMenu(e)}><i class="fa-solid fa-xmark"></i></button>
+                <button className={styles.closeMenu} type='button' onClick={(e) => toggleMenu(e)}><i className="fa-solid fa-xmark"></i></button>
                 <Link
                     onClick={(e) => toggleMenu(e)}
                     to="/"

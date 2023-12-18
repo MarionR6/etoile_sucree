@@ -5,8 +5,12 @@
     height: 55vh;
     display: flex;
 
-    @include mixin.laptop {
+    @include mixin.large-laptop {
         height: 45vh;
+    }
+
+    @include mixin.laptop {
+        height: 35vh;
     }
 
     @include mixin.tablet {
@@ -22,6 +26,14 @@
         color: var(--text-color-light);
         font-size: 8rem;
         padding: 0 4%;
+
+        @include mixin.large-laptop {
+            font-size: 7rem;
+        }
+
+        @include mixin.laptop {
+            font-size: 6rem;
+        }
 
         @include mixin.tablet {
             font-size: 4rem;

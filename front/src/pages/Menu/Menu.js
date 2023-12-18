@@ -70,7 +70,7 @@ export default function Menu() {
                     </article>
                     <article className={styles.onePartMenu}>
                         <h1>En ce moment</h1>
-                        <div className={styles.products}>
+                        <div className={styles.products} id={styles.rightNow}>
                             <div className={styles.threeProducts}>
                                 <ProductCard
                                     recipePrice={"6€"}
@@ -92,7 +92,7 @@ export default function Menu() {
                                 <p>Joyeuses Fêtes !</p>
                             </div>
                         </div>
-                        <h1 id={styles.twoLinesTitle}>Demandez notre cupcake du jour !</h1>
+                        <h1 id={styles.twoLinesTitle}>Demandez notre cupcake du jour!</h1>
                     </article>
                 </div>
             </section>
