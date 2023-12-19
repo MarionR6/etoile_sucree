@@ -1,3 +1,5 @@
+@use "../../assets/styles/mixin" as mixin;
+
 section {
     padding: 5% 1.5%;
 
@@ -10,10 +12,18 @@ section {
         margin: 0 auto;
         position: relative;
 
+        @include mixin.small-laptop {
+            width: 90%;
+        }
+
+        @include mixin.tablet {
+            width: 95%;
+        }
+
         .heartContainer {
             position: absolute;
-            right: 5%;
-            top: 5%;
+            right: 20px;
+            top: 20px;
 
             button {
                 background: none;
@@ -75,9 +85,15 @@ section {
             width: 100%;
             padding: 0 2%;
             gap: 5%;
+            flex-wrap: wrap;
+
+            @include mixin.small-laptop {
+                justify-content: center;
+            }
 
             .imgContainer {
-                width: 25%;
+                max-width: 200px;
+                min-width: 150px;
 
                 img {
                     width: 100%;
@@ -88,11 +104,17 @@ section {
             .txtContainer {
                 width: 70%;
 
+                @include mixin.tablet {
+                    width: 100%;
+                }
+
                 .infoContainer {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
                     flex-wrap: wrap;
+
+                    @include mixin.tablet {}
 
                     i {
                         font-size: 1.5rem;
@@ -136,13 +158,21 @@ section {
                         flex-wrap: wrap;
 
                         .ingredientsPart {
-                            max-width: 40%;
+                            width: 40%;
                             min-width: 240px;
+
+                            @include mixin.xs {
+                                width: 100%;
+                            }
+
+                            @include mixin.smartphone {
+                                padding: 0 5%;
+                            }
 
                             .ingredientsSubtitle {
                                 font-weight: 500;
-                                font-size: 1.1rem;
-                                margin-bottom: 2%;
+                                font-size: 1rem;
+                                margin-block: 4%;
                             }
 
                         }
@@ -153,7 +183,13 @@ section {
                     font-size: 1.3rem;
                     font-weight: 500;
                     text-align: center;
-                    margin-block: 2%;
+                    margin-block: 4%;
+                }
+
+                .instructions {
+                    @include mixin.smartphone {
+                        padding: 0 5%;
+                    }
                 }
 
                 ul {

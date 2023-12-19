@@ -5,14 +5,25 @@
     justify-content: center;
 
     .txtContainer {
-        width: 30%;
+        max-width: 30%;
         padding: 3% 2%;
         display: flex;
         flex-direction: column;
         position: relative;
+        min-width: fit-content;
+
 
         @include mixin.small-laptop {
             width: 50%;
+        }
+
+        @include mixin.tablet {
+            width: 70%;
+        }
+
+        @include mixin.smartphone {
+            width: 50%;
+            margin-block: 2%;
         }
 
         .heartContainer {
@@ -116,7 +127,6 @@
             .timeRecipe {
                 display: flex;
                 align-items: center;
-                // justify-content: center;
                 width: 33%;
                 min-width: 267px;
                 gap: 5%;
@@ -168,9 +178,14 @@
     #brownBackgroundTxtContainer {
         width: 100%;
         padding: 5% 4%;
+        min-width: fit-content;
 
         @include mixin.small-laptop {
             width: 75%;
+        }
+
+        @include mixin.smartphone {
+            width: 90%;
         }
 
         .currentRecipeInfo {

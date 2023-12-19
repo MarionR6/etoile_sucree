@@ -28,7 +28,6 @@ export default function Recipes() {
             } catch (error) {
                 console.error(error);
             }
-            window.scrollTo(0, 0);
         } getRecipes();
     }, []);
 
@@ -64,7 +63,10 @@ export default function Recipes() {
                                 </ul>
                             </div>
                         </div>
-                        <DisplayRecipe chosenRecipe={displayedRecipe} brownBackground={true} />
+                        <div className={styles.chosenRecipeContainer}>
+                            <DisplayRecipe chosenRecipe={displayedRecipe} brownBackground={true} />
+                        </div>
+
                     </div>
                 </article>
             </section>
