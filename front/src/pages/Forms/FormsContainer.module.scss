@@ -1,5 +1,25 @@
+.formContainer {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 60vh;
+
+}
+
+.outlet {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .navForms {
     padding: 2% 7%;
+    width: 100%;
 
     ul {
         display: flex;

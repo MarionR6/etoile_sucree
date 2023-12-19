@@ -70,7 +70,7 @@ h2 {
 
 p {
     font-family: var(--font-family);
-    font-size: 1.2rem;
+    font-size: 1rem;
 
     @include mixin.large-laptop {
         font-size: 1rem;

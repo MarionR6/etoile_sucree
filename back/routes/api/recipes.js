@@ -147,8 +147,8 @@ router.patch("/modifyRecipe/:id", upload.single("img"), async (req, res) => {
         });
 
     } else {
-        const sqlPatch = `UPDATE recipes SET ${choice} = "${value}" WHERE idRecipe = ?`;
-        connection.query(sqlPatch, [idRecipePatched], (err, result) => {
+        const sqlPatch = `UPDATE recipes SET ${choice} = ? WHERE idRecipe = ?`;
+        connection.query(sqlPatch, [value, idRecipePatched], (err, result) => {
             if (err) throw err;
             res.status(200).json("La recette a été modifiée avec succès !");
         });

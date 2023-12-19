@@ -60,7 +60,7 @@ export default function ManageRecipes() {
                 <thead>
                     <tr>
                         <th>Nom de la recette</th>
-                        <th>Image</th>
+                        <th id={styles.imgColumn}>Image</th>
                         <th>Modifier</th>
                         <th>Supprimer</th>
                     </tr>
@@ -70,12 +70,22 @@ export default function ManageRecipes() {
                         <tr key={index}>
                             <td>{r.recipeName}</td>
                             <td className={styles.imgContainer}><img src={`http://localhost:8000/${r.img}`} /></td>
-                            <td className={styles.buttonContainer}><button
-                                type='button'
-                            ><Link to={`/admin/modifier-recette/${r.idRecipe}`}><i className="fa-solid fa-pen"></i></Link></button></td>
-                            <td className={styles.buttonContainer}><button
-                                type='button'
-                                onClick={() => handleDelete(r.idRecipe)}><i className="fa-solid fa-trash"></i></button></td>
+                            <td className={styles.buttonContainer}>
+                                <button
+                                    type='button'
+                                >
+                                    <Link to={`/admin/modifier-recette/${r.idRecipe}`}>
+                                        <i className="fa-solid fa-pen"></i>
+                                    </Link>
+                                </button>
+                            </td>
+                            <td className={styles.buttonContainer}>
+                                <button
+                                    type='button'
+                                    onClick={() => handleDelete(r.idRecipe)}>
+                                    <i className="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

@@ -1,3 +1,5 @@
+@use"../../../../assets/styles/mixin" as mixin;
+
 .recipesTableContainer {
     flex: 1 1 auto;
     display: flex;
@@ -9,6 +11,16 @@
         border-spacing: 0;
         font-family: var(--font-family);
         width: 60%;
+        margin-bottom: 5%;
+
+        @include mixin.small-laptop {
+            width: 80%;
+        }
+
+        @include mixin.tablet {
+            width: 90%;
+            padding: 4%;
+        }
 
         thead {
 
@@ -19,6 +31,14 @@
                     font-weight: 500;
                     font-size: 1.2rem;
                     padding-bottom: 3%;
+
+                    @include mixin.tablet {
+                        font-size: 1rem;
+                    }
+
+                    @include mixin.smartphone {
+                        font-size: .9rem;
+                    }
                 }
             }
         }
@@ -29,10 +49,18 @@
                 td {
                     border-bottom: .1rem solid var(--primary);
                     padding-block: 2%;
+
+                    @include mixin.smartphone {
+                        font-size: .9rem;
+                    }
                 }
 
                 .imgContainer {
                     width: 20%;
+
+                    @include mixin.smartphone {
+                        display: none;
+                    }
 
                     img {
                         width: 100%;
@@ -44,6 +72,14 @@
                 .buttonContainer {
                     text-align: center;
 
+                    @include mixin.tablet {
+                        width: 20%;
+                    }
+
+                    @include mixin.smartphone {
+                        width: 22%;
+                    }
+
                     button {
                         background: none;
                         border: none;
@@ -52,11 +88,21 @@
                         i {
                             color: var(--text-color-light);
                             font-size: 1.2rem;
+
+                            @include mixin.smartphone {
+                                font-size: .9rem;
+                            }
                         }
                     }
                 }
             }
         }
 
+    }
+}
+
+#imgColumn {
+    @include mixin.smartphone {
+        display: none;
     }
 }

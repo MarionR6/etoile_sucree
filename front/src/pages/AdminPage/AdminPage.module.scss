@@ -1,3 +1,5 @@
+@use"../../assets/styles/mixin" as mixin;
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -13,11 +15,28 @@ input:-webkit-autofill:active {
         width: 100%;
         justify-content: space-around;
 
+        @include mixin.smartphone {
+            flex-direction: column;
+        }
+
         li {
+            @include mixin.smartphone {
+                margin-block: 1%;
+            }
+
             a {
                 color: var(--text-color-dark);
                 font-family: var(--font-family);
                 font-size: 1.5rem;
+                display: inline;
+
+                @include mixin.tablet {
+                    font-size: 1.1rem;
+                }
+
+                @include mixin.smartphone {
+                    font-size: .9rem;
+                }
             }
         }
     }
@@ -35,6 +54,23 @@ input:-webkit-autofill:active {
         padding: 2%;
         width: 40%;
 
+        @include mixin.large-laptop {
+            width: 45%;
+        }
+
+        @include mixin.laptop {
+            width: 55%;
+        }
+
+        @include mixin.tablet {
+            width: 80%;
+        }
+
+        @include mixin.smartphone {
+            width: 90%;
+        }
+
+
         h2 {
             text-align: center;
             color: var(--text-color-light);
@@ -51,6 +87,10 @@ input:-webkit-autofill:active {
                 font-family: var(--font-family);
                 font-size: 1.1rem;
                 margin-bottom: 1%;
+
+                @include mixin.smartphone {
+                    font-size: .9rem;
+                }
             }
 
             input,
@@ -66,11 +106,19 @@ input:-webkit-autofill:active {
                 font-size: 1rem;
                 font-family: var(--font-family);
 
+                @include mixin.smartphone {
+                    font-size: .9rem;
+                }
+
                 &::placeholder {
                     color: var(--text-color-dark);
                     font-size: .8rem;
                     opacity: .8;
                     font-style: italic;
+
+                    @include mixin.smartphone {
+                        font-size: .9rem;
+                    }
                 }
             }
         }

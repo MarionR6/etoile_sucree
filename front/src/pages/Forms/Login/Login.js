@@ -42,9 +42,6 @@ export default function Login() {
         try {
             clearErrors();
             await login(values);
-            setTimeout(() => {
-                navigate("../");
-            }, 3000);
             setFeedbackGood("Connexion réussie, vous allez être redirigé(e)");
         } catch (error) {
             setError("generic", { type: "generic", message: error });

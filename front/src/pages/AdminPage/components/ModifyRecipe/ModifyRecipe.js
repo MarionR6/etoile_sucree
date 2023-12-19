@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from "../../AdminPage.module.scss";
 import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function ModifyRecipe() {
 
@@ -40,6 +41,7 @@ export default function ModifyRecipe() {
         setSentValues(values);
 
     };
+
 
     async function submit(sentValues) {
         const response = await fetch(`http://localhost:8000/api/recipes/modifyRecipe/${id}`, {
@@ -249,8 +251,8 @@ export default function ModifyRecipe() {
                     {feedback && <p>{feedback}</p>}
                 </div>
                 <div className={styles.buttonContainer}>
-                    <button className="btn btn-primary">
-                        Retourner aux recettes
+                    <button type='button' className="btn">
+                        <Link to="/admin/gestion-recettes">Retourner aux recettes</Link>
                     </button>
                 </div>
             </form>

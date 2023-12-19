@@ -100,7 +100,6 @@ footer {
 
     .legal {
         background-color: var(--secondary);
-        font-family: var(--font-family);
         padding: 1rem 0;
         display: flex;
         justify-content: center;
@@ -111,6 +110,7 @@ footer {
             justify-content: center;
             align-items: center;
             color: var(--text-color-light);
+            gap: .2rem;
 
             @include mixin.smartphone {
                 flex-direction: column;
@@ -118,6 +118,14 @@ footer {
 
             .legalName {
                 display: flex;
+                gap: .2rem;
+                align-items: center;
+
+                p {
+                    @include mixin.smartphone {
+                        font-size: .8rem;
+                    }
+                }
 
                 @include mixin.smartphone {
                     margin-bottom: 2%;
@@ -132,28 +140,33 @@ footer {
 
             .legalLinks {
                 display: flex;
-            }
+                align-items: center;
+                gap: .2rem;
 
-            p {
-                font-size: 1rem;
+                a {
+                    font-size: 1rem;
+                    color: var(--text-color-light);
+                    transition: .5s all;
+                    display: inline;
+                    white-space: nowrap;
 
-                @include mixin.tablet {
+                    @include mixin.tablet {
+                        font-size: 1rem;
+                    }
+
+                    @include mixin.smartphone {
+                        font-size: .8rem;
+                    }
+
+                    &:hover {
+                        transform: scale(1.02);
+                    }
+                }
+
+                span {
                     font-size: .9rem;
                 }
-            }
 
-            a {
-                font-size: 1rem;
-                color: var(--text-color-light);
-                transition: .5s all;
-
-                @include mixin.tablet {
-                    font-size: .9rem;
-                }
-
-                &:hover {
-                    transform: scale(1.02);
-                }
             }
         }
     }

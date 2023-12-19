@@ -1,3 +1,5 @@
+@use"../../../../assets/styles/mixin" as mixin;
+
 .manageUsersContainer {
     flex: 1 1 auto;
     display: flex;
@@ -6,6 +8,11 @@
 
     .usersTableContainer {
         width: 50%;
+        margin-bottom: 5%;
+
+        @include mixin.tablet {
+            width: 90%;
+        }
     }
 
     .tableUsers {
@@ -13,6 +20,10 @@
         padding: 5%;
         border-spacing: 0;
         font-family: var(--font-family);
+
+        @include mixin.tablet {
+            padding: 8%;
+        }
 
         thead {
 
@@ -23,6 +34,10 @@
                     font-weight: 500;
                     font-size: 1.2rem;
                     padding-bottom: 3%;
+
+                    @include mixin.tablet {
+                        font-size: 1rem;
+                    }
                 }
             }
         }

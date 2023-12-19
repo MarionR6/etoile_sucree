@@ -84,7 +84,7 @@ section {
             display: flex;
             width: 100%;
             padding: 0 2%;
-            gap: 5%;
+            gap: 1rem;
             flex-wrap: wrap;
 
             @include mixin.small-laptop {
@@ -112,9 +112,14 @@ section {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    flex-wrap: wrap;
+                    // flex-wrap: wrap;
+                    gap: 2rem;
 
-                    @include mixin.tablet {}
+                    @include mixin.recipeDetailCard {
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: flex-start;
+                    }
 
                     i {
                         font-size: 1.5rem;
@@ -127,15 +132,23 @@ section {
                     .time {
                         display: flex;
                         align-items: center;
-                        justify-content: space-evenly;
-                        min-width: 270px;
+                        // justify-content: center;
+                        text-align: center;
+                        gap: 1rem;
+
+                        // min-width: 270px;
+                        &:nth-child(1) {
+                            white-space: nowrap;
+                        }
                     }
 
                     .difficulty {
                         display: flex;
                         align-items: center;
-                        justify-content: space-evenly;
-                        min-width: 220px;
+                        gap: 1rem;
+
+                        // justify-content: space-evenly;
+                        // min-width: 220px;
 
                         .difficultyDots {
                             display: flex;
@@ -145,8 +158,12 @@ section {
                     .nbrOfPeople {
                         display: flex;
                         align-items: center;
-                        justify-content: space-evenly;
-                        min-width: 210px;
+                        gap: 1rem;
+                        white-space: nowrap;
+
+
+                        // justify-content: space-evenly;
+                        // min-width: 210px;
                     }
                 }
 

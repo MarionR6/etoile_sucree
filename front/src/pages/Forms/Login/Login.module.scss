@@ -1,3 +1,5 @@
+@use"../../../assets/styles/mixin" as mixin;
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -7,16 +9,28 @@ input:-webkit-autofill:active {
 
 .signInUp {
     background-color: var(--primary);
-    padding-bottom: 8%;
+    // padding-bottom: 8%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1 1 auto;
+    justify-content: center;
 
     .formContainer {
+        min-width: 540px;
         width: 28%;
         padding: 3% 0;
         display: flex;
         justify-content: center;
+
+        @include mixin.small-laptop {
+            width: 45%;
+        }
+
+        @include mixin.tablet {
+            width: 90%;
+            min-width: 300px;
+        }
 
         .form {
             display: flex;
@@ -30,6 +44,10 @@ input:-webkit-autofill:active {
                 color: var(--text-color-light);
                 margin: 3% 0 1% 0;
                 align-self: flex-start;
+
+                @include mixin.tablet {
+                    font-size: 1rem;
+                }
             }
 
             input {

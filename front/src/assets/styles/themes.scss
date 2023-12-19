@@ -44,6 +44,15 @@
     transition: .5s all;
     background-color: var(--secondary);
 
+    a {
+        color: var(--text-color-light);
+        transition: .5s all;
+
+        &:hover {
+            color: var(--text-color-dark);
+        }
+    }
+
     &:hover {
         background-color: var(--primary);
         color: var(--text-color-dark);

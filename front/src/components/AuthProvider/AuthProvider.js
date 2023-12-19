@@ -13,7 +13,10 @@ export default function AuthProvider({ children }) {
 
     async function login(values) {
         const newUser = await signin(values);
-        setUser({ ...newUser, password: "" });
+        setTimeout(() => {
+            setUser({ ...newUser, password: "" });
+
+        }, 3000);
     }
 
     return (

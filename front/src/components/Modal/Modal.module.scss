@@ -1,3 +1,5 @@
+@use"../../assets/styles/mixin" as mixin;
+
 .modalContainer {
     position: fixed;
     top: 0;
@@ -7,7 +9,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    // filter: blur(.1rem);
 
     .modalContent {
         background-color: var(--primary);
@@ -16,6 +17,14 @@
         text-align: center;
         width: 40%;
         border: .1rem solid var(--secondary);
+
+        @include mixin.tablet {
+            width: 60%;
+        }
+
+        @include mixin.smartphone {
+            width: 80%;
+        }
 
         .message {
             font-family: var(--font-family);
