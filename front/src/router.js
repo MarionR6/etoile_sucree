@@ -24,12 +24,14 @@ import AddRecipe from "./pages/AdminPage/components/AddRecipe/AddRecipe";
 import ManageRecipes from "./pages/AdminPage/components/ManageRecipes/ManageRecipes";
 import ModifyRecipe from "./pages/AdminPage/components/ModifyRecipe/ModifyRecipe";
 import ManageUsers from "./pages/AdminPage/components/ManageUsers/ManageUsers";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
         loader: userLoader,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: "/",

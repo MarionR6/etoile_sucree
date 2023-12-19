@@ -43,11 +43,11 @@ section {
             border-radius: 5%;
 
             &::-webkit-scrollbar {
-                width: 10px;
+                width: .8rem;
             }
 
             &::-webkit-scrollbar-thumb {
-                background-color: var(--text-color-dark);
+                background-color: #39191992;
                 border-radius: 1rem;
             }
 

@@ -20,7 +20,6 @@ export default function ManageUsers() {
     }, [allUsers]);
 
     const handleDelete = (idUser, name, firstname) => {
-        // const isConfirmed = window.confirm("Voulez-vous vraiment supprimer cette recette ? Cette action est irréversible.");
         setShowModal(true);
         setIdToDelete(idUser);
         setUserToDelete({ name: name, firstname: firstname });
