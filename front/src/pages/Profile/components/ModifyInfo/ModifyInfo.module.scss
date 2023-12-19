@@ -1,3 +1,5 @@
+@use"../../../../assets/styles/mixin" as mixin;
+
 .chosenCategory {
     padding: var(--padding-block-article);
     display: flex;
@@ -9,6 +11,10 @@
         font-size: 1.5rem;
         align-self: center;
         margin: 5% 0 3% 0;
+
+        @include mixin.smartphone {
+            font-size: 1rem;
+        }
     }
 
     .subContainerProfile {
@@ -39,6 +45,14 @@
                         padding: .25% 2%;
                         font-size: 1.2rem;
                         font-family: var(--font-family);
+
+                        @include mixin.tablet {
+                            max-width: 100%;
+                        }
+
+                        @include mixin.smartphone {
+                            font-size: 1rem;
+                        }
                     }
                 }
 
@@ -56,6 +70,10 @@
 
                 .labelInfo {
                     font-size: 1.2rem;
+
+                    @include mixin.smartphone {
+                        font-size: 1rem;
+                    }
                 }
 
                 .lockedInfo {
@@ -66,6 +84,11 @@
                     padding: .25% 2%;
                     color: var(--text-color-dark);
                     font-size: 1.2rem;
+
+                    @include mixin.smartphone {
+                        width: 100%;
+                        font-size: 1rem;
+                    }
                 }
             }
 

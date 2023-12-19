@@ -1,13 +1,41 @@
+@use"../../../../../../assets/styles/mixin" as mixin;
+
 .oneRecipe {
     width: 10vw;
     height: 10vw;
     margin: 2% 2%;
     position: relative;
 
+    @include mixin.tablet {
+        width: 20vw;
+        height: 20vw;
+    }
+
+    @include mixin.xs {
+        width: 25vw;
+        height: 25vw;
+    }
+
+    @include mixin.smartphone {
+        width: 35vw;
+        height: 35vw;
+    }
+
+    .heartContainerMobile {
+        display: none;
+
+        @include mixin.tablet {
+            display: block;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    }
+
     img {
-        width: 10vw;
-        height: 10vw;
+        width: 100%;
         border: 0.2rem solid var(--primary);
+
     }
 
     .showTxt {
@@ -27,6 +55,14 @@
         opacity: 0;
         transition: .5s all;
 
+        @include mixin.tablet {
+            opacity: 1;
+            height: 35%;
+            top: 65%;
+            border-top: none;
+            background: linear-gradient(0deg, rgba(24, 24, 24, 1) 0%, rgba(24, 24, 24, 1) 0%, rgba(24, 24, 24, 0.87718837535014) 24%, rgba(24, 24, 24, 0.7035189075630253) 53%, rgba(24, 24, 24, 0) 100%);
+        }
+
         &:hover {
             opacity: 1;
         }
@@ -40,11 +76,21 @@
                 cursor: pointer;
                 color: var(--primary);
             }
+
+            @include mixin.tablet {
+                display: none;
+            }
         }
 
         p {
             margin-bottom: 5%;
             font-size: 1rem;
+
+
+            @include mixin.tablet {
+                display: none;
+            }
+
         }
 
         .btnRecipe {
@@ -55,6 +101,10 @@
                 color: var(--text-color-dark);
                 background-color: var(--primary);
             }
+
+            @include mixin.tablet {
+                display: none;
+            }
         }
 
         .btnRecipeTablet {
@@ -63,6 +113,12 @@
             &:hover {
                 color: var(--text-color-dark);
                 background-color: var(--primary);
+            }
+
+            @include mixin.tablet {
+                display: block;
+                font-size: 0.8rem;
+                background: none;
             }
         }
     }

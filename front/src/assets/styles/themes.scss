@@ -48,6 +48,14 @@
         background-color: var(--primary);
         color: var(--text-color-dark);
     }
+
+    @include mixin.tablet {
+        &:hover {
+            background-color: var(--secondary);
+            color: var(--text-color-light);
+        }
+
+    }
 }
 
 .btn-secondary {
@@ -59,6 +67,13 @@
     &:hover {
         background-color: var(--secondary);
         color: var(--text-color-light);
+    }
+
+    @include mixin.tablet {
+        &:hover {
+            background-color: var(--primary);
+            color: var(--text-color-dark);
+        }
     }
 }
 

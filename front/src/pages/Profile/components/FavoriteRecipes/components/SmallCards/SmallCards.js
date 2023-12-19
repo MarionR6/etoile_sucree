@@ -16,6 +16,9 @@ export default function SmallCards({ image, recipeName, idRecipe, handleDeleteFr
     }
     return (
         <div className={styles.oneRecipe}>
+            <div className={styles.heartContainerMobile}>
+                <i onClick={() => handleDislike(idRecipe, idUser)} className="fas fa-heart"></i>
+            </div>
             <img src={image} alt="" />
             <div className={styles.showTxt}>
                 <div className={styles.heartContainer}>

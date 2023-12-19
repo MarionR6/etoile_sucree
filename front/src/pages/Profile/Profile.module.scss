@@ -1,3 +1,9 @@
+@use"../../assets/styles/mixin" as mixin;
+
+.profilePage {
+    flex: 1 1 auto;
+}
+
 .profileSection {
     padding-block: var(--padding-block-section);
 
@@ -21,6 +27,10 @@
                 flex-direction: column;
                 align-items: center;
                 padding: 3% 5%;
+
+                @include mixin.tablet {
+                    display: none;
+                }
 
                 .subContainerTitle {
                     font-size: 1.5rem;
@@ -49,6 +59,10 @@
                                 font-family: var(--font-family);
                                 color: var(--text-color-light);
                                 font-size: 1.2rem;
+
+                                @include mixin.tablet {
+                                    font-size: 1rem;
+                                }
                             }
                         }
                     }
@@ -61,11 +75,99 @@
             }
 
             .chosenProfileCategory {
+                min-width: fit-content;
                 width: 50%;
                 min-height: 40vh;
+
+                @include mixin.tablet {
+                    width: 80%;
+                }
+
+                @include mixin.xs {
+                    width: 85%;
+                }
             }
         }
 
 
+    }
+}
+
+.burgerMenu {
+    display: none;
+
+    @include mixin.tablet {
+        display: block;
+        position: fixed;
+        z-index: 3;
+        left: 0;
+        top: 20%;
+        text-shadow: 0px 0px 3px var(--text-color-light);
+
+    }
+
+    i {
+        font-size: 2rem;
+        color: var(--text-color-dark);
+    }
+}
+
+.mobileNav {
+    transform: translateX(-100%);
+    // display: block;
+    position: fixed;
+    left: 0;
+    top: 20%;
+    z-index: 2;
+    display: flex;
+    transition: .5s all;
+
+}
+
+.showMobileNav {
+    // display: block;
+    position: fixed;
+    left: 0;
+    top: 20%;
+    z-index: 2;
+    display: flex;
+    transition: .5s all;
+    transform: translateX(0);
+
+}
+
+.burgerNav {
+    width: 30vw;
+    background-color: var(--secondary);
+    border: .1rem solid var(--primary);
+    padding: 5% 3%;
+
+    @include mixin.smartphone {
+        width: 60vw;
+    }
+
+    ul {
+        li {
+            padding: 5% 0;
+
+            a {
+                color: var(--text-color-light);
+            }
+
+            .disconnectButton {
+                background: none;
+                border: none;
+                font-family: var(--font-family);
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+.closeBurgerMenu {
+    i {
+        font-size: 2rem;
+        color: var(--text-color-light);
+        backdrop-filter: blur(1rem);
     }
 }

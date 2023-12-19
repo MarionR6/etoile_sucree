@@ -41,7 +41,7 @@ export default function FavoriteRecipes() {
                     <SmallCards key={index} image={`http://localhost:8000/${r.img}`} recipeName={r.recipeName} idRecipe={r.idRecipe} handleDeleteFront={handleDeleteFront} />
                 ))}
             </div>
-            <Link to="/recettes" className="btn">Voir toutes les recettes</Link>
+            <Link to="/recettes" className={`btn ${styles.btn}`}>Voir toutes les recettes</Link>
         </div>
     );
 }
