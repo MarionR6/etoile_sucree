@@ -1,3 +1,5 @@
+@use"../../../assets/styles/mixin" as mixin;
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -13,10 +15,16 @@ input:-webkit-autofill:active {
     align-items: center;
 
     .formContainer {
+        min-width: 540px;
         width: 28%;
         padding: 3% 0;
         display: flex;
         justify-content: center;
+
+        @include mixin.tablet {
+            width: 90%;
+            min-width: 300px;
+        }
 
         .form {
             display: flex;
@@ -30,6 +38,14 @@ input:-webkit-autofill:active {
                 color: var(--text-color-light);
                 margin: 3% 0 1% 0;
                 align-self: flex-start;
+
+                @include mixin.tablet {
+                    font-size: 1.1rem;
+                }
+
+                @include mixin.smartphone {
+                    font-size: 1rem;
+                }
             }
 
             input {

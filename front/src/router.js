@@ -25,6 +25,9 @@ import ManageRecipes from "./pages/AdminPage/components/ManageRecipes/ManageReci
 import ModifyRecipe from "./pages/AdminPage/components/ModifyRecipe/ModifyRecipe";
 import ManageUsers from "./pages/AdminPage/components/ManageUsers/ManageUsers";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import TermsOfService from "./pages/TermsOfService/TermsOfService";
+import LegalNotice from "./pages/LegalNotice/LegalNotice";
+import Gdpr from "./pages/Gdpr/Gdpr";
 
 export const router = createBrowserRouter([
     {
@@ -106,6 +109,18 @@ export const router = createBrowserRouter([
                 element: (<ProtectedRoutesChangingPassword>
                     <ResetPassword />
                 </ProtectedRoutesChangingPassword>)
+            },
+            {
+                path: "/cgu",
+                element: <TermsOfService />
+            },
+            {
+                path: "/mentions-legales",
+                element: <LegalNotice />
+            },
+            {
+                path: "/rgpd",
+                element: <Gdpr />
             },
             {
                 path: "/admin",

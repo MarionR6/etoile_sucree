@@ -13,8 +13,8 @@ export default function Footer() {
                 </div>
                 <div className={styles.footerCategory}>
                     <h2 className={styles.footerTitle}>Nous contacter</h2>
-                    <Link href='tel:0000000000' className={styles.footerLines}>00.00.00.00.00</Link>
-                    <Link href='mailto:etoile.sucree.cupcakes@gmail.com' className={styles.footerLines}>etoile.sucree.cupcakes@gmail.com</Link>
+                    <a href='tel:0000000000' className={styles.footerLines}>00.00.00.00.00</a>
+                    <a href='mailto:etoile.sucree.cupcakes@gmail.com' className={styles.footerLines}>etoile.sucree.cupcakes@gmail.com</a>
                 </div>
                 <div className={styles.footerCategory}>
                     <h2 className={styles.footerTitle} id={styles.socialTitle}>Nous suivre</h2>
@@ -34,11 +34,11 @@ export default function Footer() {
 
                     </div>
                     <div className={styles.legalLinks}>
-                        <Link to="/">Mentions Légales</Link>
+                        <Link to="/mentions-legales">Mentions Légales</Link>
                         <span>||</span>
-                        <Link to="/">CGU</Link>
+                        <Link to="/cgu">CGU</Link>
                         <span>||</span>
-                        <Link to="/">Politique de confidentialité</Link>
+                        <Link to="/rgpd">Politique de confidentialité</Link>
                     </div>
 
                 </div>

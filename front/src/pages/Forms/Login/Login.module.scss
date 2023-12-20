@@ -23,9 +23,6 @@ input:-webkit-autofill:active {
         display: flex;
         justify-content: center;
 
-        @include mixin.small-laptop {
-            width: 45%;
-        }
 
         @include mixin.tablet {
             width: 90%;

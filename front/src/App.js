@@ -7,11 +7,11 @@ import styles from "./App.module.scss";
 function App() {
   return (
     <AuthProvider>
-      <div className={styles.app}>
+      <main className={styles.app}>
         <Navbar />
         <Outlet />
         <Footer />
-      </div>
+      </main>
 
     </AuthProvider>
   );
