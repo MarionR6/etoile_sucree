@@ -41,26 +41,39 @@ export default function DisplayRecipe({ chosenRecipe, brownBackground }) {
         <div className={styles.displayRecipeContainer}>{chosenRecipe ? (
             <div className={brownBackground ? (`cardPink ${styles.txtContainer}`) : (`cardBrown ${styles.txtContainer}`)} id={brownBackground && styles.brownBackgroundTxtContainer}>
                 <div className={brownBackground ? `${styles.heartContainer} ${styles.darkHeart}` : styles.heartContainer}>
-                    {user ? (<button type="button" onClick={() => handleLike(chosenRecipe[0].idRecipe, idUser)}>
-                        {brownBackground ?
-                            !isLiked ? (
+                    {user ? (
+                        <button
+                            type="button"
+                            onClick={() => handleLike(chosenRecipe[0].idRecipe, idUser)}>
+                            {brownBackground ?
+                                !isLiked ? (
+                                    <i
+                                        className="fa-regular fa-heart"
+                                        style={{ color: "var(--text-color-dark)" }}></i>
+                                ) : (
+                                    <i
+                                        className="fa-solid fa-heart"
+                                        style={{ color: "var(--text-color-dark)" }}></i>
+                                ) : (
+                                    !isLiked ? (
+                                        <i className="fa-regular fa-heart"></i>
+                                    ) : (
+                                        <i className="fa-solid fa-heart"></i>
+                                    )
+                                )}
+                        </button>
+                    ) : (
+                        <button
+                            type="button"
+                            onClick={() => navigate("/utilisateur")}>
+                            {brownBackground ? (
                                 <i
                                     className="fa-regular fa-heart"
                                     style={{ color: "var(--text-color-dark)" }}></i>
                             ) : (
-                                <i
-                                    className="fa-solid fa-heart"
-                                    style={{ color: "var(--text-color-dark)" }}></i>
-                            ) : (
-                                !isLiked ? (
-                                    <i className="fa-regular fa-heart"></i>
-                                ) : (
-                                    <i className="fa-solid fa-heart"></i>
-                                )
+                                <i className="fa-regular fa-heart"></i>
                             )}
-                    </button>) : (<button type="button" onClick={() => navigate("/utilisateur")}>
-                        {brownBackground ? (<i className="fa-regular fa-heart" style={{ color: "var(--text-color-dark)" }}></i>) : (<i className="fa-regular fa-heart"></i>)}
-                    </button>)}
+                        </button>)}
                 </div>
                 <h3>
                     {chosenRecipe[0]?.recipeName}

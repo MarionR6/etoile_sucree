@@ -5,7 +5,7 @@ const fs = require("fs");
 
 const connection = require("../../database");
 
-//UPLOAD IMAGES
+//UPLOAD IMAGES TO THE SERVER
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -34,7 +34,7 @@ router.post("/addRecipe", upload.single("img"), async (req, res) => {
     });
 });
 
-// GET ALL RECIPES
+// GET ALL RECIPES WITH DETAILS
 
 router.get("/getRecipes", (req, res) => {
     const sql = `SELECT * FROM recipes ORDER BY idRecipe DESC`;
@@ -44,7 +44,7 @@ router.get("/getRecipes", (req, res) => {
     });
 });
 
-// GET RECIPES DETAILS
+// GET ONE RECIPE IN PARTICULAR WITH ITS DETAILS
 
 router.get("/getRecipeDetails/:id", (req, res) => {
     const idRecipe = req.params.id;
@@ -65,6 +65,8 @@ router.get("/getRecipesHomepage", (req, res) => {
     });
 });
 
+//GET ALL THE USER'S FAVORITE RECIPES
+
 router.get("/getFaves/:idUser", (req, res) => {
     const idUser = req.params.idUser;
     const sql = "SELECT recipes.idRecipe, recipes.recipeName, recipes.img FROM users INNER JOIN favorites ON users.idUser = favorites.idUser INNER JOIN recipes ON favorites.idRecipe = recipes.idRecipe WHERE users.idUser = ?";
@@ -73,6 +75,8 @@ router.get("/getFaves/:idUser", (req, res) => {
         res.send(JSON.stringify(result));
     });
 });
+
+//ADD OR REMOVE A RECIPE FROM THE USER'S FAVORITE RECIPES, IF IT IS ALREADY LIKED, IT GETS DISLIKED, IF NOT, IT'S ADDED TO THE FAVORITES TABLES
 
 router.post("/likeRecipe/:idUser", (req, res) => {
     const idUser = req.params.idUser;
@@ -96,15 +100,7 @@ router.post("/likeRecipe/:idUser", (req, res) => {
 
 });
 
-router.delete("/dislike/:idUser", (req, res) => {
-    const idUser = req.params.idUser;
-    const { idRecipe } = req.body;
-    const sql = "DELETE FROM favorites WHERE idRecipe = ? AND idUser = ?";
-    connection.query(sql, [idRecipe, idUser], (err, result) => {
-        if (err) throw err;
-        res.sendStatus(200);
-    });
-});
+//ADMIN DELETES A RECIPE
 
 router.delete("/deleteRecipe", (req, res) => {
     const { idRecipe } = req.body;
@@ -118,6 +114,8 @@ router.delete("/deleteRecipe", (req, res) => {
         });
     });
 });
+
+// ADMIN MODIFIES A RECIPE
 
 router.patch("/modifyRecipe/:id", upload.single("img"), async (req, res) => {
     const idRecipePatched = req.params.id;

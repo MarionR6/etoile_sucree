@@ -24,6 +24,8 @@ export default function Recipes() {
                     let allRecipesExceptLatest = recipesFromBack.slice(1);
                     setAllRecipesButLatest(allRecipesExceptLatest);
                     setDisplayedRecipe([allRecipesExceptLatest[0]]);
+
+                    console.log(recipesFromBack);
                 }
             } catch (error) {
                 console.error(error);

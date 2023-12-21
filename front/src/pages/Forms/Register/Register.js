@@ -9,7 +9,6 @@ import { createUser } from '../../../api/users';
 export default function Register() {
     const navigate = useNavigate();
 
-    // const [feedback, setFeedback] = useState('');
     const [feedbackGood, setFeedbackGood] = useState('');
     const [acceptGCU, setAcceptGCU] = useState(false);
     const [acceptGDPR, setAcceptGDPR] = useState(false);
