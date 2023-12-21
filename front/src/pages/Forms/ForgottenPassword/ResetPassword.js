@@ -92,15 +92,23 @@ export default function ResetPassword() {
 
     }
 
+    const handleEnter = (e) => {
+        if (e.key === "Enter" || e.keyCode === 13) {
+            e.preventDefault();
+            compareCodes();
+        }
+    };
+
     return (
         <>
             <Banner />
             <div className={styles.resetPasswordContainer}>
                 <div className={styles.resetPassword}>
                     {showInputCode &&
-                        <form className={styles.enterCodeForm}>
+                        <form className={styles.enterCodeForm} onKeyDown={(e) => handleEnter(e)} onSubmit={() => compareCodes(enteredCode)}>
                             <label htmlFor="enterCode">Veuillez entrer le code reçu par mail :</label>
                             <input type="number" id='enterCode' onChange={handleChange} maxLength={4} />
+                            {feedback && <p className={styles.feedback}>{feedback}</p>}
                             <button className='btn' type='button' onClick={() => compareCodes(enteredCode)}>Valider</button>
                             <p className={styles.infoCode}>Ne quittez pas cette page.</p>
                         </form>}
