@@ -16,7 +16,7 @@ export default function Profile() {
         setUser(null);
     }
 
-    function toggleMenu(e) {
+    function toggleMenu(e) { // FUNCTION TO SHOW OR HIDE THE MOBILE MENU
         e.stopPropagation();
         setShowMenu(!showMenu);
     }

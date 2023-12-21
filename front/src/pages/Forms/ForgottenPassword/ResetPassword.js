@@ -28,8 +28,8 @@ export default function ResetPassword() {
         setEnteredCode(value);
     };
 
-    const compareCodes = () => {
-        if (resetPasswordCode == enteredCode) {
+    const compareCodes = () => { // COMPARING THE CODE TYPED BY THE USER TO THE ONE SENT BY EMAIL AND STORED IN A USESTATE
+        if (resetPasswordCode == enteredCode) { // IF THE CODE IS CORRECT, IT HIDES THE CODE INPUT AND SHOWS THE NEW PASSWORD INPUT
             setShowInputCode(false);
             setShowInputPassword(true);
         } else if (!enteredCode) {
@@ -48,7 +48,9 @@ export default function ResetPassword() {
         password: yup
             .string()
             .required("Ce champ est obligatoire")
-            .min(6, "Le mot de passe est trop court"),
+            .matches(
+                /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, "Le mot de passe doit contenir au moins 8 caractères dont un chiffre et une lettre"
+            ),
         confirmPassword: yup
             .string()
             .required("Vous devez confirmer le mot de passe")

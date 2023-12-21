@@ -1,8 +1,8 @@
 import styles from "./SearchBar.module.scss";
 
-export default function SearchBar({ setFilter, options }) {
+export default function SearchBar({ setFilter }) {
 
-    const handleInput = (e) => {
+    const handleInput = (e) => { // FUNCTION TO GET WHAT THE USER TYPES IN THE SEARCH BAR INPUT
         const search = e.target.value;
         setFilter(search.trim().toLowerCase());
     };

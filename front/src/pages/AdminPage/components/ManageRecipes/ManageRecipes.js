@@ -34,21 +34,20 @@ export default function ManageRecipes() {
         } getRecipes();
     }, []);
 
-    const handleDelete = (idRecipe) => {
-        // const isConfirmed = window.confirm("Voulez-vous vraiment supprimer cette recette ? Cette action est irréversible.");
+    const handleDelete = (idRecipe) => { // FUNCTION USED TO SHOW THE POP UP TO CONFIRM THE CHOICE
         setShowModal(true);
         setIdToDelete(idRecipe);
     };
 
-    const handleCancelDelete = () => {
+    const handleCancelDelete = () => { // CLOSE THE POP UP AND CANCELS THE DELETION
         setShowModal(false);
     };
 
-    const handleDeleteFront = (id) => {
+    const handleDeleteFront = (id) => { // FUNCTION TO REMOVE THE RECIPE FROM THE FRONTEND ONCE IT GETS DELETED
         setAllRecipes(allRecipes.filter((oneRecipe) => oneRecipe.idRecipe !== id));
     };
 
-    const handleConfirmDelete = async () => {
+    const handleConfirmDelete = async () => { // FUNCTION TO CONFIRM THE DELETION, CALLS FOR THE BACKEND REQUEST AND TRIGGERS THE DELETION IN FRONT
         await deleteRecipe(idToDelete);
         handleDeleteFront(idToDelete);
         setShowModal(false);

@@ -11,7 +11,7 @@ export default function ManageUsers() {
     const [feedback, setFeedback] = useState("");
     const [userToDelete, setUserToDelete] = useState([]);
 
-    useEffect(() => {
+    useEffect(() => { // USE EFFECT TO FETCH THE USERS AND STORES THEM IN AN ARRAY TO BE MAPPED ON
         async function getUsers() {
             const usersFromBack = await getAllUsers();
             setAllUsers(usersFromBack);
@@ -19,24 +19,24 @@ export default function ManageUsers() {
         getUsers();
     }, [allUsers]);
 
-    const handleDelete = (idUser, name, firstname) => {
+    const handleDelete = (idUser, name, firstname) => { // PREPARES THE DELETION, SHOWS THE POP UP TO CONFIRM OR CANCEL THE DELETION
         setShowModal(true);
         setIdToDelete(idUser);
         setUserToDelete({ name: name, firstname: firstname });
     };
 
     const handleCancelDelete = () => {
-        setShowModal(false);
+        setShowModal(false); // REMOVES THE POP UP AND CANCELS THE DELETION
     };
 
-    const handleConfirmDelete = async () => {
+    const handleConfirmDelete = async () => { // CONFIRMS THE DELETION? REMOVES IT FROM THE FRONT AND CALLS FOR THE REQUEST IN THE BACK
         const response = await adminDeleteUser(idToDelete);
         handleDeleteFront(idToDelete);
         setShowModal(false);
         setFeedback(response);
     };
 
-    const handleDeleteFront = (id) => {
+    const handleDeleteFront = (id) => { // REMOVE THE DELETED USER FROM THE FRONT
         setAllUsers(allUsers.filter((user) => user.idUser !== id));
     };
 

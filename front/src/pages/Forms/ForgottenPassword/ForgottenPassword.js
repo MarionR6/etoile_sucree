@@ -12,7 +12,7 @@ export default function ForgottenPassword() {
 
     const [feedbackGood, setFeedbackGood] = useState("");
     const [feedback, setFeedback] = useState("");
-    const { resetPasswordCode, setResetPasswordCode, setChangingPassword } = useContext(AuthContext);
+    const { setResetPasswordCode, setChangingPassword } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -47,9 +47,9 @@ export default function ForgottenPassword() {
             const response = await fetch(`http://localhost:8000/api/users/resetForgottenPassword/${values.email}`);
             if (response.ok) {
                 const resetCodeFromBack = await response.json();
-                setResetPasswordCode(resetCodeFromBack);
+                setResetPasswordCode(resetCodeFromBack); // SETS THE RESET CODE TO THE RANDOMLY GENERATED CODE SENT BY EMAIL TO THE USER
                 setFeedbackGood("Un email vous a été envoyé. Vous allez être redirigé(e).");
-                setChangingPassword(true);
+                setChangingPassword(true); // USED TO ENABLE THE ACCESS TO THE PROTECTED ROUTE
                 setTimeout(() => {
                     navigate(`/resetPassword?email=${values.email}`);
                 }, 3000);

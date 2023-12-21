@@ -1,5 +1,7 @@
 const API_RECIPES = "/api/recipes";
 
+// FRONT FUNCTION TO CALL BACK REQUEST TO LIKE OR DISLIKE A RECIPE
+
 export async function toggleLikeRecipe(idRecipe, idUser) {
     const response = await fetch(`http://localhost:8000${API_RECIPES}/likeRecipe/${idUser}`, {
         method: "POST",
@@ -13,6 +15,8 @@ export async function toggleLikeRecipe(idRecipe, idUser) {
         throw new Error("Error api recipes liked");
     }
 }
+
+// FUNCTION FOR THE ADMIN TO DELETE A RECIPE
 
 export async function deleteRecipe(idRecipe) {
     const response = await fetch(`http://localhost:8000${API_RECIPES}/deleteRecipe`, {

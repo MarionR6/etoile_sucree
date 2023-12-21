@@ -10,7 +10,6 @@ export default function ModifyRecipe() {
 
     const imgRef = useRef();
     const [errorImg, setErrorImg] = useState("");
-    // const [feedbackGood, setFeedbackGood] = useState("");
     const [feedback, setFeedback] = useState("");
     const [details, setDetails] = useState();
     const [modifiedInfo, setModifiedInfo] = useState(null);
@@ -248,6 +247,7 @@ export default function ModifyRecipe() {
                     </div>}
                 </div>
                 <div>
+                    {errorImg && <p>{errorImg}</p>}
                     {feedback && <p>{feedback}</p>}
                 </div>
                 <div className={styles.buttonContainer}>

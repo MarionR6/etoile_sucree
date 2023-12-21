@@ -26,7 +26,7 @@ export default function RecipesDetails() {
                 const response = await fetch(`http://localhost:8000/api/recipes/getRecipeDetails/${id}`);
                 if (response.ok) {
                     const detailsFromBack = await response.json();
-                    setDetails(detailsFromBack[0]);
+                    setDetails(detailsFromBack[0]); // STORES THE FETCHED DATA
                 }
             } catch (error) {
                 console.error(error);
@@ -53,7 +53,7 @@ export default function RecipesDetails() {
         } getFavoriteRecipes(idUser);
     }, [idUser, details]);
 
-    const handleLike = async (id, idUser) => {
+    const handleLike = async (id, idUser) => { // TOGGLE LIKES ON RECIPES
         setIsLiked(!isLiked);
         await toggleLikeRecipe(id, idUser);
     };

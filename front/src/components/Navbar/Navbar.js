@@ -19,7 +19,7 @@ export default function Navbar() {
         navigate('/');
     }
 
-    function toggleMenu(e) {
+    function toggleMenu(e) { // FUNCTION TO SHOW OR STOP SHOWING THE BURGER MENU
         e.stopPropagation();
         setShowMenu(!showMenu);
     }

@@ -14,7 +14,7 @@ export default function DisplayRecipe({ chosenRecipe, brownBackground }) {
 
     const navigate = useNavigate();
 
-    const handleLike = async (id, idUser) => {
+    const handleLike = async (id, idUser) => { // FUNCTION TO TOGGLE THE LIKE IN FRONT AND BACK
         setIsLiked(!isLiked);
         await toggleLikeRecipe(id, idUser);
     };
@@ -27,7 +27,7 @@ export default function DisplayRecipe({ chosenRecipe, brownBackground }) {
                 }
                 const response = await fetch(`http://localhost:8000/api/recipes/getFaves/${idUser}`);
                 if (response.ok) {
-                    const favesFromBack = await response.json();
+                    const favesFromBack = await response.json(); // STORES THE FETCHED DATA
                     const isRecipeLiked = favesFromBack.some((fave) => fave.idRecipe === chosenRecipe[0]?.idRecipe);//Searching through the array "chosenRecipe", testing each element of the array to find whether the chosenRecipe is part of the array, if it is, it sets the liked state to true, if it is not, it is set to false. I am using this in order to render the heart in the recipe display component conditionally
                     setIsLiked(isRecipeLiked);
                 }

@@ -19,7 +19,7 @@ export default function Homepage() {
     const [homeRecipes, setHomeRecipes] = useState([]);
 
     useEffect(() => {
-        async function getRecipesForHomepage() {
+        async function getRecipesForHomepage() { // FETCH DATA FROM RECIPES TABLE IN DATABASE
             try {
                 const response = await fetch(`http://localhost:8000/api/recipes/getRecipesHomepage`);
                 if (response.ok) {

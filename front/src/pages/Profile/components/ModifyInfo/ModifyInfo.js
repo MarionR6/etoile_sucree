@@ -30,6 +30,8 @@ export default function ModifyInfo() {
             .required("Ce champ est nécessaire"),
         mail: yup
             .string()
+            .matches(
+                /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, "Votre mail n'est pas valide")
             .required("Ce champ est nécessaire"),
     });
 

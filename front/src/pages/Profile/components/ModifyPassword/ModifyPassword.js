@@ -27,7 +27,9 @@ export default function ModifyPassword() {
             .required("Ce champ est nécessaire"),
         newPassword: yup
             .string()
-            .min(6, "Le mot de passe est trop court")
+            .matches(
+                /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, "Le mot de passe doit contenir au moins 8 caractères dont un chiffre et une lettre"
+            )
             .required("Ce champ est nécessaire"),
         confirmPassword: yup
             .string()
