@@ -30,27 +30,28 @@ export default function Navbar() {
                 <Link to="/" className={`${styles.logo}`}><img src={Logo} alt="Logo de l'Étoile Sucrée" /></Link>
                 <nav>
                     <ul>
-                        <li><NavLink end to="/services">Services</NavLink></li>
-                        <li><NavLink to="/carte">La carte</NavLink></li>
-                        <li><NavLink to="/recettes">Recettes</NavLink></li>
+                        <li><NavLink end to="/services" title="Cliquez pour accéder à la page services">Services</NavLink></li>
+                        <li><NavLink to="/carte" title="Cliquez pour accéder à la page carte">La carte</NavLink></li>
+                        <li><NavLink to="/recettes" title="Cliquez pour accéder à la page recettes">Recettes</NavLink></li>
                     </ul>
                 </nav>
                 <div className={`${styles.userButtons}`}>
                     {user ? (
                         <div className={styles.buttonsContainer}>
-                            <Link to="/profil" className={styles.firstButton}>Mon profil</Link>
+                            <Link to="/profil" title="Cliquez pour accéder à la page profil" className={styles.firstButton}>Mon profil</Link>
                             <button
-                                onClick={() => handleDisconnect()} type="button">Déconnexion</button>
+                                onClick={() => handleDisconnect()} type="button" title="Cliquez pour vous déconnecter">Déconnexion</button>
                         </div>) : (<div className={styles.buttonsContainer}>
-                            <Link to="/utilisateur" className={styles.firstButton}>Se connecter</Link>
-                            <Link to="/utilisateur/inscription">S'inscrire</Link>
+                            <Link to="/utilisateur" title="Cliquez pour accéder à la page de connexion" className={styles.firstButton}>Se connecter</Link>
+                            <Link to="/utilisateur/inscription" title="Cliquez pour accéder à la page d'inscription">S'inscrire</Link>
                         </div>)}
 
                 </div>
             </div>
             <div className={styles.burgerMenu}>
                 <i className="fa-solid fa-bars"
-                    onClick={(e) => toggleMenu(e)}></i>
+                    onClick={(e) => toggleMenu(e)}
+                    title="Cliquez pour ouvrir le menu"></i>
             </div>
 
             <div className={showMenu ? styles.showMobileMenuContainer : styles.mobileMenuContainer}>

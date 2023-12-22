@@ -202,7 +202,7 @@ export default function AddRecipe() {
                     {feedbackGood && <p>{feedbackGood}</p>}
                 </div>
                 <div className={styles.buttonContainer}>
-                    <button className="btn btn-primary">
+                    <button className="btn btn-primary" title="Cliquez pour enregistrer la recette">
                         Sauvegarder
                     </button>
                 </div>

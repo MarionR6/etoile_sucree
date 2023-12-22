@@ -68,12 +68,13 @@ export default function ManageRecipes() {
                     {allRecipes.map((r, index) => (
                         <tr key={index}>
                             <td>{r.recipeName}</td>
-                            <td className={styles.imgContainer}><img src={`http://localhost:8000/${r.img}`} /></td>
+                            <td className={styles.imgContainer}><img src={`http://localhost:8000/${r.img}`} alt='Cupcake' /></td>
                             <td className={styles.buttonContainer}>
                                 <button
                                     type='button'
                                 >
-                                    <Link to={`/admin/modifier-recette/${r.idRecipe}`}>
+                                    <Link to={`/admin/modifier-recette/${r.idRecipe}`}
+                                        title="Cliquez pour modifier la recette">
                                         <i className="fa-solid fa-pen"></i>
                                     </Link>
                                 </button>
@@ -81,7 +82,8 @@ export default function ManageRecipes() {
                             <td className={styles.buttonContainer}>
                                 <button
                                     type='button'
-                                    onClick={() => handleDelete(r.idRecipe)}>
+                                    onClick={() => handleDelete(r.idRecipe)}
+                                    title="Cliquez pour supprimer la recette">
                                     <i className="fa-solid fa-trash"></i>
                                 </button>
                             </td>

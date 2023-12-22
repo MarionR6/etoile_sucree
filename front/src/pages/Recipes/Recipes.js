@@ -1,6 +1,6 @@
 import Header from "../../components/Header/Header";
 import styles from "./Recipes.module.scss";
-import imgHeader from "../../assets/img/RecipesImg/recipes-header.jpg";
+import imgHeader from "../../assets/img/RecipesImg/recipes-header.webp";
 import { useEffect, useState } from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import DisplayRecipe from "./components/DisplayRecipe";

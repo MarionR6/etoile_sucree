@@ -10,9 +10,9 @@ export default function AdminPage() {
             <Banner />
             <nav className={styles.adminNav}>
                 <ul>
-                    <li><NavLink end to="/admin">Ajouter une recette</NavLink></li>
-                    <li><NavLink to="/admin/gestion-recettes">Gérer les recettes</NavLink></li>
-                    <li><NavLink to="/admin/gestion-utilisateurs">Gérer les utilisateurs</NavLink></li>
+                    <li><NavLink end to="/admin" title="Cliquez pour accéder à la page d'ajout de recettes">Ajouter une recette</NavLink></li>
+                    <li><NavLink to="/admin/gestion-recettes" title="Cliquez pour accéder à la page de gestion des recettes">Gérer les recettes</NavLink></li>
+                    <li><NavLink to="/admin/gestion-utilisateurs" title="Cliquez pour accéder à la page de gestion des utilisateurs">Gérer les utilisateurs</NavLink></li>
                 </ul>
             </nav>
             <Outlet />

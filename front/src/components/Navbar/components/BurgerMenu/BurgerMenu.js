@@ -19,10 +19,11 @@ export default function BurgerMenu({ toggleMenu, handleDisconnect }) {
 
         <div>
             <ul className={styles.mobileContainer}>
-                <button className={styles.closeMenu} type='button' onClick={(e) => toggleMenu(e)}><i className="fa-solid fa-xmark"></i></button>
+                <button className={styles.closeMenu} type='button' title="Cliquez pour fermer le menu" onClick={(e) => toggleMenu(e)}><i className="fa-solid fa-xmark"></i></button>
                 <Link
                     onClick={(e) => toggleMenu(e)}
                     to="/"
+                    title="Cliquez pour accéder à la page d'accueil"
                     className={styles.linkBurgerMenu}
                 >
                     Accueil
@@ -30,6 +31,7 @@ export default function BurgerMenu({ toggleMenu, handleDisconnect }) {
                 <Link
                     onClick={(e) => toggleMenu(e)}
                     to="/services"
+                    title="Cliquez pour accéder à la page services"
                     className={styles.linkBurgerMenu}
                 >
                     Services
@@ -37,6 +39,7 @@ export default function BurgerMenu({ toggleMenu, handleDisconnect }) {
                 <Link
                     onClick={(e) => toggleMenu(e)}
                     to="/carte"
+                    title="Cliquez pour accéder à la page carte"
                     className={styles.linkBurgerMenu}
                 >
                     La carte
@@ -44,6 +47,7 @@ export default function BurgerMenu({ toggleMenu, handleDisconnect }) {
                 <Link
                     onClick={(e) => toggleMenu(e)}
                     to="/recettes"
+                    title="Cliquez pour accéder à la page recettes"
                     className={styles.linkBurgerMenu}
                 >
                     Recettes
@@ -51,6 +55,7 @@ export default function BurgerMenu({ toggleMenu, handleDisconnect }) {
                 {user && <Link
                     onClick={(e) => toggleMenu(e)}
                     to="/profil"
+                    title="Cliquez pour accéder à la page de profil"
                     className={styles.linkBurgerMenu}
                 >
                     Profil
@@ -58,11 +63,13 @@ export default function BurgerMenu({ toggleMenu, handleDisconnect }) {
                 {user?.isAdmin === 1 && <Link
                     onClick={(e) => toggleMenu(e)}
                     to="/admin"
+                    title="Cliquez pour accéder à la page administrateur"
                     className={styles.linkBurgerMenu}
                 >
                     Zone Admin
                 </Link>}
                 {user ? (<Link
+                    title="Cliquez pour vous déconnecter"
                     onClick={(e) => {
                         handleDisconnect();
                         toggleMenu(e);
@@ -71,6 +78,7 @@ export default function BurgerMenu({ toggleMenu, handleDisconnect }) {
 
                     Se déconnecter
                 </Link>) : (<Link to="/utilisateur"
+                    title="Cliquez pour accéder à la page de connexion"
                     onClick={(e) => {
                         toggleMenu(e);
                     }}
@@ -80,6 +88,7 @@ export default function BurgerMenu({ toggleMenu, handleDisconnect }) {
                 </Link>)
                 }
                 {!user && <Link to="/utilisateur/inscription"
+                    title="Cliquez pour accéder à la page d'inscription"
                     onClick={(e) => {
                         toggleMenu(e);
                     }}

@@ -7,11 +7,11 @@ import ServiceCard from './components/ServiceCard/ServiceCard';
 import SquareCards from './components/SquareCards/SquareCards';
 
 // Image imports
-import HomepageHeader from "../../assets/img/HomepageImg/header.jpg";
-import StoryImg from "../../assets/img/HomepageImg/histoire.jpg";
-import imgSurPlace from "../../assets/img/HomepageImg/Services/sur-place.jpg";
-import imgSalon from "../../assets/img/HomepageImg/Services/salon-the.jpg";
-import imgLivraison from "../../assets/img/HomepageImg/Services/livraison-traiteur.jpg";
+import HomepageHeader from "../../assets/img/HomepageImg/header.webp";
+import StoryImg from "../../assets/img/HomepageImg/histoire.webp";
+import imgSurPlace from "../../assets/img/HomepageImg/Services/sur-place.webp";
+import imgSalon from "../../assets/img/HomepageImg/Services/salon-the.webp";
+import imgLivraison from "../../assets/img/HomepageImg/Services/livraison-traiteur.webp";
 
 
 export default function Homepage() {

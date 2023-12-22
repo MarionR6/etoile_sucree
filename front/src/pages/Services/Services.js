@@ -1,9 +1,9 @@
 import Header from '../../components/Header/Header';
 import styles from './Services.module.scss';
-import imgHeader from "../../assets/img/ServicesImg/services-header.jpg";
-import DeliveryImg from "../../assets/img/ServicesImg/services-delivery.jpg";
-import caterImg from "../../assets/img/ServicesImg/cater-img.jpg";
-import salonImg from "../../assets/img/ServicesImg/salon.jpg";
+import imgHeader from "../../assets/img/ServicesImg/services-header.webp";
+import DeliveryImg from "../../assets/img/ServicesImg/services-delivery.webp";
+import caterImg from "../../assets/img/ServicesImg/cater-img.webp";
+import salonImg from "../../assets/img/ServicesImg/salon.webp";
 import { useEffect } from 'react';
 
 export default function Services() {

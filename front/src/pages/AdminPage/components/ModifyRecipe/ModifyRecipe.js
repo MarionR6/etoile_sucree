@@ -106,8 +106,10 @@ export default function ModifyRecipe() {
                         defaultValue={details?.recipeName} />
                     {modifiedInfo === 1 && <div className={styles.buttonContainer}>
                         <button type='button'
+                            title="Cliquez pour valider les modifications"
                             onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
-                        <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
+                        <button type='button'
+                            title="Cliquez pour annuler les modifications"><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
 
                 </div>
@@ -121,8 +123,10 @@ export default function ModifyRecipe() {
                         defaultValue={details?.cookingTime} />
                     {modifiedInfo === 2 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
-                        <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
+                            onClick={() => submit(sentValues)}
+                            title="Cliquez pour valider les modifications"><i className="fa-regular fa-circle-check"></i></button>
+                        <button type='button'
+                            title="Cliquez pour annuler les modifications"><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
                 </div>
                 <div className={styles.oneFormElement}>
@@ -135,8 +139,10 @@ export default function ModifyRecipe() {
                         defaultValue={details?.preparingTime} />
                     {modifiedInfo === 3 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
-                        <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
+                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"
+                                title="Cliquez pour valider les modifications"></i></button>
+                        <button type='button'
+                            title="Cliquez pour annuler les modifications"><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
 
                 </div>
@@ -158,8 +164,14 @@ export default function ModifyRecipe() {
                     </select>
                     {modifiedInfo === 4 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
-                        <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
+                            onClick={() => submit(sentValues)}
+                            title="Cliquez pour valider les modifications">
+                            <i className="fa-regular fa-circle-check"></i>
+                        </button>
+                        <button type='button'
+                            title="Cliquez pour annuler les modifications">
+                            <i className="fa-regular fa-circle-xmark"></i>
+                        </button>
                     </div>}
 
                 </div>
@@ -176,8 +188,10 @@ export default function ModifyRecipe() {
                     />
                     {modifiedInfo === 5 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
-                        <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
+                            onClick={() => submit(sentValues)}
+                            title="Cliquez pour valider les modifications"><i className="fa-regular fa-circle-check"></i></button>
+                        <button type='button'
+                            title="Cliquez pour annuler les modifications"><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
 
                 </div>
@@ -194,8 +208,10 @@ export default function ModifyRecipe() {
                     />
                     {modifiedInfo === 6 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
-                        <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
+                            onClick={() => submit(sentValues)}
+                            title="Cliquez pour valider les modifications"><i className="fa-regular fa-circle-check"></i></button>
+                        <button type='button'
+                            title="Cliquez pour annuler les modifications"><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
 
                 </div>
@@ -212,8 +228,10 @@ export default function ModifyRecipe() {
                     />
                     {modifiedInfo === 7 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
-                        <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
+                            onClick={() => submit(sentValues)}
+                            title="Cliquez pour valider les modifications"><i className="fa-regular fa-circle-check"></i></button>
+                        <button type='button'
+                            title="Cliquez pour annuler les modifications"><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
 
                 </div>
@@ -229,8 +247,10 @@ export default function ModifyRecipe() {
                     />
                     {modifiedInfo === 8 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={() => submit(sentValues)}><i className="fa-regular fa-circle-check"></i></button>
-                        <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
+                            onClick={() => submit(sentValues)}
+                            title="Cliquez pour valider les modifications"><i className="fa-regular fa-circle-check"></i></button>
+                        <button type='button'
+                            title="Cliquez pour annuler les modifications"><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
 
                 </div>
@@ -242,8 +262,10 @@ export default function ModifyRecipe() {
                         onChange={(e) => changeImage(e, "img")} />
                     {modifiedInfo === 9 && <div className={styles.buttonContainer}>
                         <button type='button'
-                            onClick={() => submitImage(sentImage)}><i className="fa-regular fa-circle-check"></i></button>
-                        <button type='button'><i className="fa-regular fa-circle-xmark"></i></button>
+                            onClick={() => submitImage(sentImage)}
+                            title="Cliquez pour valider les modifications"><i className="fa-regular fa-circle-check"></i></button>
+                        <button type='button'
+                            title="Cliquez pour annuler les modifications"><i className="fa-regular fa-circle-xmark"></i></button>
                     </div>}
                 </div>
                 <div>

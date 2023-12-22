@@ -11,12 +11,14 @@ export default function Modal({ message, onConfirm, onCancel }) {
                 <div className={styles.buttonsContainer}>
                     <button
                         className={styles.confirmButton}
-                        onClick={onConfirm}>
+                        onClick={onConfirm}
+                        title='Cliquez pour confirmer votre choix'>
                         Confirmer
                     </button>
                     <button
                         className={styles.cancelButton}
-                        onClick={onCancel}>
+                        onClick={onCancel}
+                        title='Cliquez pour annuler'>
                         Annuler
                     </button>
                 </div>

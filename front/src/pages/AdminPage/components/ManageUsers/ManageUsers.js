@@ -57,6 +57,7 @@ export default function ManageUsers() {
                                 <td className={styles.buttonContainer}>
                                     <button
                                         type='button'
+                                        title="Cliquez pour supprimer l'utilisateur"
                                         onClick={() => handleDelete(u.idUser, u.name, u.firstname)}><i className="fa-solid fa-trash"></i></button>
                                 </td>
                             </tr>

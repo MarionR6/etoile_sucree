@@ -1,7 +1,7 @@
 import styles from "./Menu.module.scss";
 import { useEffect } from "react";
 import Header from "../../components/Header/Header";
-import HeaderImg from "../../assets/img/MenuImg/Header_img.jpg";
+import HeaderImg from "../../assets/img/MenuImg/Header_img.webp";
 import ProductCard from "./components/ProductCard";
 import RedVelvetImg from "../../assets/img/MenuImg/RedVelvet.jpg";
 import ChocoMenthe from "../../assets/img/MenuImg/ChocoMenthe.jpg";
